@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="逃离塔科夫弹药数据库，穿透力、伤害、护甲穿透完整数据">
+<title>弹药数据 | 塔科夫攻略站</title>
+<style>
+:root{--bg1:#0a0c0f;--bg2:#111418;--bg3:#161b21;--border:#2a3540;--gold:#c8a96e;--gold3:#a07840;--text1:#eae0cc;--text2:#9aabb8;--text3:#5a7080;--green2:#6aaa7a;--red2:#c05050;--orange2:#e09050;--font:'Segoe UI','Microsoft YaHei',sans-serif;--mono:'Courier New',monospace;--r:4px;--r2:8px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg1);color:var(--text1);font-family:var(--font);line-height:1.6}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--bg2)}::-webkit-scrollbar-thumb{background:var(--gold3);border-radius:3px}
+a{text-decoration:none;color:inherit}
+.nav{position:sticky;top:0;z-index:1000;height:60px;background:rgba(10,12,15,.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 32px;gap:16px}
+.nav-logo{display:flex;align-items:center;gap:10px}
+.mark{width:32px;height:32px;background:linear-gradient(135deg,var(--gold),var(--gold3));border-radius:var(--r);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;color:#07090b}
+.logo-name{font-size:17px;font-weight:800;letter-spacing:2px}.logo-name span{color:var(--gold)}
+.nav-links{display:flex;gap:2px;list-style:none;flex:1;justify-content:center}
+.nav-links a{padding:7px 12px;border-radius:var(--r);font-size:13px;color:var(--text2);white-space:nowrap}
+.nav-links a:hover{color:var(--text1);background:var(--bg3)}
+.nav-links a.active{color:var(--gold);background:rgba(200,169,110,.07)}
+.page-hero{background:linear-gradient(135deg,rgba(42,80,112,.15),rgba(22,27,33,.9));border-bottom:1px solid var(--border);padding:48px 32px}
+.page-hero-inner{max-width:1300px;margin:0 auto}
+.page-hero h1{font-size:32px;font-weight:900;margin-bottom:8px}.page-hero h1 span{color:var(--gold)}
+.page-hero p{font-size:14px;color:var(--text2)}
+.wrap{max-width:1300px;margin:0 auto;padding:40px 32px}
+/* 弹药推荐卡片 */
+.recommend-section{margin-bottom:32px}
+.rec-title{font-size:16px;font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.rec-title::before{content:'';width:4px;height:20px;background:linear-gradient(180deg,var(--gold),transparent);border-radius:2px}
+.rec-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.rec-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:14px;text-align:center;transition:all .2s}
+.rec-card:hover{border-color:var(--gold)}
+.rec-armor{font-size:11px;color:var(--text3);margin-bottom:6px}
+.rec-name{font-size:14px;font-weight:700;color:var(--text1);margin-bottom:4px}
+.rec-pen{font-size:12px;color:var(--green2);font-family:var(--mono)}
+.rec-price{font-size:11px;color:var(--gold);font-family:var(--mono);margin-top:4px}
+/* 筛选 */
+.filter-section{display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap;align-items:center}
+.f-btn{background:var(--bg3);border:1px solid var(--border);color:var(--text2);padding:6px 14px;border-radius:16px;font-size:12px;cursor:pointer;transition:all .2s}
+.f-btn:hover,.f-btn.on{background:rgba(200,169,110,.08);border-color:var(--gold);color:var(--gold)}
+.sort-info{margin-left:auto;font-size:12px;color:var(--text3)}
+/* 表格 */
+.table-wrap{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);overflow:hidden;overflow-x:auto}
+table{width:100%;min-width:720px;border-collapse:collapse;font-size:13px}
+thead{background:var(--bg2);border-bottom:1px solid var(--border)}
+th{padding:12px 14px;text-align:left;font-size:10px;font-weight:700;color:var(--text3);letter-spacing:1px;text-transform:uppercase;white-space:nowrap;cursor:pointer;user-select:none;transition:color .2s}
+th:hover{color:var(--gold)}
+th.sort-desc::after{content:' ↓';color:var(--gold)}
+th.sort-asc::after{content:' ↑';color:var(--gold)}
+th.sortable::after{content:' ↕';opacity:.3}
+tbody tr{border-bottom:1px solid rgba(255,255,255,.03);transition:background .15s}
+tbody tr:hover{background:rgba(200,169,110,.03)}
+tbody tr:last-child{border-bottom:none}
+td{padding:11px 14px;color:var(--text2);white-space:nowrap}
+.td-name{font-weight:600;color:var(--text1)!important;display:flex;align-items:center;gap:7px}
+.cal-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.v-hi{color:var(--green2)!important;font-weight:700}
+.v-md{color:var(--orange2)!important;font-weight:700}
+.v-lo{color:var(--red2)!important;font-weight:700}
+.pen-wrap{display:flex;align-items:center;gap:7px}
+.pen-track{width:72px;height:5px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden;flex-shrink:0}
+.pen-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--green2),var(--gold))}
+.armc-wrap{display:flex;gap:2px}
+.armc{width:17px;height:17px;border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:800}
+.armc-y{background:rgba(74,140,92,.25);color:var(--green2);border:1px solid rgba(74,140,92,.3)}
+.armc-n{background:rgba(192,80,80,.10);color:var(--red2);border:1px solid rgba(192,80,80,.15)}
+.armc-m{background:rgba(192,112,48,.20);color:var(--orange2);border:1px solid rgba(192,112,48,.25)}
+.footer{background:var(--bg2);border-top:1px solid var(--border);padding:24px 32px;margin-top:60px}
+.footer-inner{max-width:1300px;margin:0 auto;display:flex;justify-content:space-between;font-size:12px;color:var(--text3);flex-wrap:wrap;gap:8px}
+.footer-inner a:hover{color:var(--gold)}
+@media(max-width:900px){.nav-links{display:none}.rec-grid{grid-template-columns:repeat(2,1fr)}.wrap{padding:32px 16px}.page-hero{padding:32px 16px}}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <a class="nav-logo" href="index.html"><div class="mark">⚔</div><span class="logo-name">TARKOV<span>GUIDE</span></span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">🏠 首页</a></li>
+    <li><a href="maps.html">🗺️ 地图</a></li>
+    <li><a href="ammo.html" class="active">💊 弹药</a></li>
+    <li><a href="loadouts.html">🔫 武器</a></li>
+    <li><a href="quests.html">📋 任务</a></li>
+    <li><a href="articles.html">📰 攻略</a></li>
+  </ul>
+</nav>
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <h1>💊 弹药<span>数据库</span></h1>
+    <p>完整弹药穿透/伤害数据 · 点击表头排序 · 按口径筛选 · 实时更新</p>
+  </div>
+</div>
+<div class="wrap">
+  <div class="recommend-section">
+    <div class="rec-title">⚡ 各护甲等级推荐弹药</div>
+    <div class="rec-grid" id="recGrid"></div>
+  </div>
+  <div class="filter-section">
+    <button class="f-btn on" onclick="filterCal(this,'')">全部口径</button>
+    <button class="f-btn" onclick="filterCal(this,'5.45×39')">5.45×39</button>
+    <button class="f-btn" onclick="filterCal(this,'5.56×45')">5.56×45</button>
+    <button class="f-btn" onclick="filterCal(this,'7.62×39')">7.62×39</button>
+    <button class="f-btn" onclick="filterCal(this,'7.62×51')">7.62×51</button>
+    <button class="f-btn" onclick="filterCal(this,'9×19')">9×19</button>
+    <button class="f-btn" onclick="filterCal(this,'.45 ACP')">.45 ACP</button>
+    <span class="sort-info" id="sortInfo">共 <b style="color:var(--gold)">0</b> 条数据 · 点击表头排序</span>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr>
+        <th class="sortable" onclick="doSort('name')">弹药名称</th>
+        <th>口径</th>
+        <th class="sort-desc" onclick="doSort('pen')">穿透力</th>
+        <th class="sortable" onclick="doSort('damage')">伤害</th>
+        <th class="sortable" onclick="doSort('armorDmg')">护甲伤害</th>
+        <th>可穿甲级</th>
+        <th class="sortable" onclick="doSort('priceNum')">参考价格</th>
+        <th>获取方式</th>
+      </tr></thead>
+      <tbody id="ammoTbody"></tbody>
+    </table>
+  </div>
+</div>
+<footer class="footer">
+  <div class="footer-inner">
+    <span>© 2024 TarkovGuide · <a href="index.html">返回首页</a></span>
+    <span>非官方粉丝攻略站 · 仅供参考</span>
+  </div>
+</footer>
+<script>
+const DEF=[
+  {name:'7N40',caliber:'5.45×39',pen:58,damage:47,armorDmg:54,priceNum:960,price:'960₽',source:'跳蚤/商人',armorClass:5,color:'#ff6644'},
+  {name:'7N39',caliber:'5.45×39',pen:50,damage:54,armorDmg:48,priceNum:750,price:'750₽',source:'帕帕商人',armorClass:5,color:'#ff8844'},
+  {name:'M995',caliber:'5.56×45',pen:53,damage:40,armorDmg:57,priceNum:1850,price:'1,850₽',source:'跳蚤市场',armorClass:5,color:'#44aaff'},
+  {name:'M855A1',caliber:'5.56×45',pen:48,damage:44,armorDmg:50,priceNum:980,price:'980₽',source:'和平卫士',armorClass:4,color:'#66bbff'},
+  {name:'BP',caliber:'7.62×39',pen:46,damage:73,armorDmg:43,priceNum:380,price:'380₽',source:'帕帕商人',armorClass:4,color:'#ffaa44'},
+  {name:'PS',caliber:'7.62×39',pen:36,damage:72,armorDmg:36,priceNum:180,price:'180₽',source:'帕帕商人',armorClass:3,color:'#ffcc66'},
+  {name:'M61',caliber:'7.62×51',pen:61,damage:82,armorDmg:66,priceNum:3200,price:'3,200₽',source:'跳蚤/任务',armorClass:6,color:'#aa44ff'},
+  {name:'M62',caliber:'7.62×51',pen:53,damage:77,armorDmg:58,priceNum:1400,price:'1,400₽',source:'跳蚤市场',armorClass:5,color:'#cc66ff'},
+  {name:'PBP',caliber:'9×19',pen:38,damage:52,armorDmg:38,priceNum:580,price:'580₽',source:'机修工/跳蚤',armorClass:3,color:'#44ffaa'},
+  {name:'RIP',caliber:'.45 ACP',pen:22,damage:79,armorDmg:25,priceNum:420,price:'420₽',source:'跳蚤市场',armorClass:2,color:'#ff4488'}
+];
+const RECS=[
+  {armor:'1-2级甲',name:'RIP (.45 ACP)',pen:22,price:'420₽'},
+  {armor:'3-4级甲',name:'BP (7.62×39)',pen:46,price:'380₽'},
+  {armor:'5级甲',name:'7N40 (5.45×39)',pen:58,price:'960₽'},
+  {armor:'6级甲',name:'M61 (7.62×51)',pen:61,price:'3,200₽'}
+];
+let allAmmo=[],calFilter='',sortKey='pen',sortDir=-1;
+
+function getLS(k){try{const d=localStorage.getItem('tarkov_'+k);return d?JSON.parse(d):null;}catch{return null;}}
+async function loadData(){
+  let data=getLS('ammo');
+  if(!data||!data.length){
+    try{const r=await fetch('data/ammo.json?t='+Date.now());if(r.ok){const j=await r.json();data=j.ammo||j||[];}}catch(e){}
+  }
+  allAmmo=(data&&data.length?data:DEF).map(a=>({...a,pen:a.pen||a.penetration||0,armorDmg:a.armorDmg||a.armorDamage||0,priceNum:a.priceNum||(typeof a.price==='number'?a.price:parseInt((a.price||'0').replace(/[^\d]/g,'')))||0}));
+  renderRec();
+  render();
+}
+
+function renderRec(){
+  document.getElementById('recGrid').innerHTML=RECS.map(r=>`
+  <div class="rec-card">
+    <div class="rec-armor">${r.armor}</div>
+    <div class="rec-name">${r.name}</div>
+    <div class="rec-pen">穿透：${r.pen}</div>
+    <div class="rec-price">${r.price}</div>
+  </div>`).join('');
+}
+
+function render(){
+  let data=[...allAmmo];
+  if(calFilter) data=data.filter(a=>a.caliber===calFilter);
+  data.sort((a,b)=>{
+    const av=a[sortKey],bv=b[sortKey];
+    if(typeof av==='string') return sortDir*av.localeCompare(bv,'zh');
+    return sortDir*((av||0)-(bv||0));
+  });
+  document.getElementById('sortInfo').innerHTML=`共 <b style="color:var(--gold)">${data.length}</b> 条数据 · 点击表头排序`;
+  const colors=['#ff6644','#44aaff','#ffaa44','#aa44ff','#44ffaa','#ff4488','#ffcc44','#44ccff','#ff88aa','#88ff44'];
+  document.getElementById('ammoTbody').innerHTML=data.length?data.map((a,i)=>{
+    const pct=Math.min(100,Math.round((a.pen/70)*100));
+    const pc=a.pen>=50?'v-hi':a.pen>=35?'v-md':'v-lo';
+    const dc=a.damage>=70?'v-hi':a.damage>=50?'v-md':'v-lo';
+    const ac=a.armorClass||0;
+    const acs=[1,2,3,4,5,6].map(n=>{const cls=n<=ac?'armc-y':n===ac+1?'armc-m':'armc-n';return `<span class="armc ${cls}">${n}</span>`;}).join('');
+    const pr=a.price||(a.priceNum?a.priceNum.toLocaleString()+'₽':'-');
+    return `<tr>
+      <td><div class="td-name"><span class="cal-dot" style="background:${a.color||colors[i%colors.length]}"></span>${a.name}</div></td>
+      <td><span style="font-size:10px;background:var(--bg2);border:1px solid var(--border);padding:2px 7px;border-radius:3px;color:var(--text2)">${a.caliber}</span></td>
+      <td><div class="pen-wrap"><div class="pen-track"><div class="pen-fill" style="width:${pct}%"></div></div><span class="${pc}">${a.pen}</span></div></td>
+      <td class="${dc}">${a.damage}</td>
+      <td>${a.armorDmg}%</td>
+      <td><div class="armc-wrap">${acs}</div></td>
+      <td style="color:var(--gold);font-family:var(--mono)">${pr}</td>
+      <td style="font-size:11px;color:var(--text3)">${a.source||'-'}</td>
+    </tr>`;
+  }).join(''):'<tr><td colspan="8" style="text-align:center;padding:24px;color:var(--text3)">暂无该口径弹药数据</td></tr>';
+}
+
+function filterCal(btn,cal){
+  calFilter=cal;
+  document.querySelectorAll('.f-btn').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  render();
+}
+
+function doSort(key){
+  document.querySelectorAll('th').forEach(th=>{th.classList.remove('sort-asc','sort-desc');if(th.getAttribute('onclick')?.includes(key)===false&&th.classList.contains('sortable')){}});
+  sortDir=sortKey===key?sortDir*-1:-1;
+  sortKey=key;
+  document.querySelectorAll('th').forEach(th=>{
+    th.classList.remove('sort-asc','sort-desc','sortable');
+    const oc=th.getAttribute('onclick')||'';
+    if(oc.includes(key)){th.classList.add(sortDir===-1?'sort-desc':'sort-asc');}
+    else if(oc.includes('doSort')){th.classList.add('sortable');}
+  });
+  render();
+}
+loadData();
+</script>
+</body>
+</html>
