@@ -1,130 +1,13 @@
 {
   "maps": [
-    {
-      "id": "customs",
-      "name": "æµ·å³ Customs",
-      "difficulty": "easy",
-      "time": 45,
-      "players": 12,
-      "exits": 7,
-      "icon": "ð­",
-      "tags": [
-        "æ°ææ¨è",
-        "ä»»å¡ä¸°å¯",
-        "BossÂ·ç¾"
-      ]
-    },
-    {
-      "id": "woods",
-      "name": "æ£®æ Woods",
-      "difficulty": "medium",
-      "time": 50,
-      "players": 14,
-      "exits": 5,
-      "icon": "ð²",
-      "tags": [
-        "è¿ç¨çå»",
-        "BossÂ·æ²ç",
-        "ä»»å¡è¦å°"
-      ]
-    },
-    {
-      "id": "interchange",
-      "name": "äºæ¢ Interchange",
-      "difficulty": "medium",
-      "time": 50,
-      "players": 14,
-      "exits": 4,
-      "icon": "ð¬",
-      "tags": [
-        "é«ä»·å¼ç©èµ",
-        "BossÂ·åè±æ ¼",
-        "è¿ææ¿ç"
-      ]
-    },
-    {
-      "id": "reserve",
-      "name": "å¨å¤åºå° Reserve",
-      "difficulty": "hard",
-      "time": 55,
-      "players": 12,
-      "exits": 6,
-      "icon": "ð°",
-      "tags": [
-        "åäºç©èµ",
-        "BossÂ·æ ¼é²ç¹",
-        "æ¤ç¦»å¤æ"
-      ]
-    },
-    {
-      "id": "shoreline",
-      "name": "æµ·å²¸çº¿ Shoreline",
-      "difficulty": "hard",
-      "time": 50,
-      "players": 12,
-      "exits": 8,
-      "icon": "ð",
-      "tags": [
-        "å»çèµæº",
-        "BossÂ·æ¡å¡",
-        "å°å¾è¶å¤§"
-      ]
-    },
-    {
-      "id": "labs",
-      "name": "å®éªå®¤ The Lab",
-      "difficulty": "extreme",
-      "time": 35,
-      "players": 10,
-      "exits": 3,
-      "icon": "ð¬",
-      "tags": [
-        "éè¦éè¡è¯",
-        "é¡¶çº§è£å¤",
-        "BossÂ·çäºº"
-      ]
-    },
-    {
-      "id": "darkcorner",
-      "name": "é»æä¹è§ Dark Corner",
-      "difficulty": "hard",
-      "time": 45,
-      "players": 12,
-      "exits": 5,
-      "icon": "ð",
-      "tags": [
-        "æ°å°å¾",
-        "0.15æ°å¢",
-        "é«ä»·å¼"
-      ]
-    },
-    {
-      "id": "factory",
-      "name": "å·¥å Factory",
-      "difficulty": "medium",
-      "time": 25,
-      "players": 6,
-      "exits": 4,
-      "icon": "ð­",
-      "tags": [
-        "è¿ææ¿ç",
-        "èå¥å¿«",
-        "PVPç­é¨"
-      ]
-    },
-    {
-      "id": "lighthouse",
-      "name": "ç¯å¡ Lighthouse",
-      "difficulty": "hard",
-      "time": 50,
-      "players": 12,
-      "exits": 5,
-      "icon": "ð¼",
-      "tags": [
-        "é«ä»·å¼",
-        "BossÂ·æå¾",
-        "é¾åº¦é«"
-      ]
-    }
+    { "id": "customs", "name": "海关 Customs", "difficulty": "easy", "time": 45, "players": 12, "exits": 7, "icon": "🏭", "tags": ["新手推荐", "任务丰富", "Boss·獾"] },
+    { "id": "woods", "name": "森林 Woods", "difficulty": "medium", "time": 50, "players": 14, "exits": 5, "icon": "🌲", "tags": ["远程狙击", "Boss·沙皇", "任务要地"] },
+    { "id": "interchange", "name": "互换 Interchange", "difficulty": "medium", "time": 50, "players": 14, "exits": 4, "icon": "🏬", "tags": ["高价值物资", "Boss·克莱格", "近战激烈"] },
+    { "id": "reserve", "name": "储备基地 Reserve", "difficulty": "hard", "time": 55, "players": 12, "exits": 6, "icon": "🏰", "tags": ["军事物资", "Boss·格鲁特", "撤离复杂"] },
+    { "id": "shoreline", "name": "海岸线 Shoreline", "difficulty": "hard", "time": 50, "players": 12, "exits": 8, "icon": "🌊", "tags": ["医疗资源", "Boss·桑塔", "地图超大"] },
+    { "id": "labs", "name": "实验室 The Lab", "difficulty": "extreme", "time": 35, "players": 10, "exits": 3, "icon": "🔬", "tags": ["需要通行证", "顶级装备", "Boss·狂人"] },
+    { "id": "darkcorner", "name": "黑暗之角 Dark Corner", "difficulty": "hard", "time": 45, "players": 12, "exits": 5, "icon": "🌑", "tags": ["新地图", "0.15新增", "高价值"] },
+    { "id": "factory", "name": "工厂 Factory", "difficulty": "medium", "time": 25, "players": 6, "exits": 4, "icon": "🏭", "tags": ["近战激烈", "节奏快", "PVP热门"] },
+    { "id": "lighthouse", "name": "灯塔 Lighthouse", "difficulty": "hard", "time": 50, "players": 12, "exits": 5, "icon": "🗼", "tags": ["高价值", "Boss·教徒", "难度高"] }
   ]
 }
