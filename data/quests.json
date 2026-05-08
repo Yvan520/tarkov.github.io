@@ -1,10 +1,64 @@
 {
   "quests": [
-    { "name": "肮脏的商业行为", "difficulty": "easy", "diffLabel": "简单", "merchant": "🦔 帕帕", "description": "在海关地图找到3个电脑，带出指定数据存储设备", "exp": "7,800 EXP", "rep": "+0.02", "itemReward": "AK-74N" },
-    { "name": "工厂突袭", "difficulty": "medium", "diffLabel": "中等", "merchant": "🦔 帕帕", "description": "在工厂地图击杀5名卫兵，不能死亡才算完成", "exp": "12,400 EXP", "rep": "+0.04", "itemReward": "防弹背心" },
-    { "name": "关键情报", "difficulty": "hard", "diffLabel": "困难", "merchant": "🔧 机修工", "description": "从储备基地的地下室找到情报文件，需要钥匙RB-AK", "exp": "24,800 EXP", "rep": "+0.07", "itemReward": "60发弹匣×4" },
-    { "name": "最后的边界", "difficulty": "extreme", "diffLabel": "极难", "merchant": "🎖️ 和平卫士", "description": "在实验室击杀狂人Boss并带出其狗牌，生存状态撤离", "exp": "68,000 EXP", "rep": "+0.15", "itemReward": "顶级装备箱" },
-    { "name": "医疗物资收集", "difficulty": "easy", "diffLabel": "简单", "merchant": "🩺 治疗者", "description": "收集5个医疗包并成功撤离", "exp": "5,200 EXP", "rep": "+0.02", "itemReward": "医疗箱×3" },
-    { "name": "铁路巡逻", "difficulty": "medium", "diffLabel": "中等", "merchant": "🚂 铁路员", "description": "在储备基地标记3个铁路信号点", "exp": "15,600 EXP", "rep": "+0.05", "itemReward": "弹药箱×2" }
+    {
+      "name": "è®èçåä¸è¡ä¸º",
+      "difficulty": "easy",
+      "diffLabel": "ç®å",
+      "merchant": "ð¦ å¸å¸",
+      "description": "å¨æµ·å³å°å¾æ¾å°3ä¸ªçµèï¼å¸¦åºæå®æ°æ®å­å¨è®¾å¤",
+      "exp": "7,800 EXP",
+      "rep": "+0.02",
+      "itemReward": "AK-74N"
+    },
+    {
+      "name": "å·¥åçªè¢­",
+      "difficulty": "medium",
+      "diffLabel": "ä¸­ç­",
+      "merchant": "ð¦ å¸å¸",
+      "description": "å¨å·¥åå°å¾å»æ5åå«åµï¼ä¸è½æ­»äº¡æç®å®æ",
+      "exp": "12,400 EXP",
+      "rep": "+0.04",
+      "itemReward": "é²å¼¹èå¿"
+    },
+    {
+      "name": "å³é®ææ¥",
+      "difficulty": "hard",
+      "diffLabel": "å°é¾",
+      "merchant": "ð§ æºä¿®å·¥",
+      "description": "ä»å¨å¤åºå°çå°ä¸å®¤æ¾å°ææ¥æä»¶ï¼éè¦é¥åRB-AK",
+      "exp": "24,800 EXP",
+      "rep": "+0.07",
+      "itemReward": "60åå¼¹å£Ã4"
+    },
+    {
+      "name": "æåçè¾¹ç",
+      "difficulty": "extreme",
+      "diffLabel": "æé¾",
+      "merchant": "ðï¸ åå¹³å«å£«",
+      "description": "å¨å®éªå®¤å»æçäººBosså¹¶å¸¦åºå¶ççï¼çå­ç¶ææ¤ç¦»",
+      "exp": "68,000 EXP",
+      "rep": "+0.15",
+      "itemReward": "é¡¶çº§è£å¤ç®±"
+    },
+    {
+      "name": "å»çç©èµæ¶é",
+      "difficulty": "easy",
+      "diffLabel": "ç®å",
+      "merchant": "ð©º æ²»çè",
+      "description": "æ¶é5ä¸ªå»çåå¹¶æåæ¤ç¦»",
+      "exp": "5,200 EXP",
+      "rep": "+0.02",
+      "itemReward": "å»çç®±Ã3"
+    },
+    {
+      "name": "éè·¯å·¡é»",
+      "difficulty": "medium",
+      "diffLabel": "ä¸­ç­",
+      "merchant": "ð éè·¯å",
+      "description": "å¨å¨å¤åºå°æ è®°3ä¸ªéè·¯ä¿¡å·ç¹",
+      "exp": "15,600 EXP",
+      "rep": "+0.05",
+      "itemReward": "å¼¹è¯ç®±Ã2"
+    }
   ]
 }
