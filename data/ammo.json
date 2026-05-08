@@ -1,12 +1,164 @@
 {
   "ammo": [
-    { "name": "7N40", "caliber": "5.45×39", "penetration": 58, "damage": 47, "armorDamage": 54, "penBar": 90, "armorClass": ["yes","yes","yes","yes","yes","maybe"], "price": "960₽", "source": "跳蚤/商人", "color": "#ff6644", "filter": "5.45x39" },
-    { "name": "BP", "caliber": "5.45×39", "penetration": 46, "damage": 73, "armorDamage": 43, "penBar": 72, "armorClass": ["yes","yes","yes","yes","maybe","no"], "price": "380₽", "source": "帕帕商人", "color": "#ff8844", "filter": "5.45x39" },
-    { "name": "M995", "caliber": "5.56×45", "penetration": 53, "damage": 40, "armorDamage": 57, "penBar": 88, "armorClass": ["yes","yes","yes","yes","yes","no"], "price": "1,850₽", "source": "跳蚤市场", "color": "#44aaff", "filter": "5.56x45" },
-    { "name": "M855A1", "caliber": "5.56×45", "penetration": 48, "damage": 44, "armorDamage": 50, "penBar": 78, "armorClass": ["yes","yes","yes","yes","maybe","no"], "price": "980₽", "source": "和平卫士", "color": "#66bbff", "filter": "5.56x45" },
-    { "name": "BP", "caliber": "7.62×39", "penetration": 46, "damage": 73, "armorDamage": 43, "penBar": 72, "armorClass": ["yes","yes","yes","yes","maybe","no"], "price": "380₽", "source": "帕帕商人", "color": "#ffaa44", "filter": "7.62x39" },
-    { "name": "M61", "caliber": "7.62×51", "penetration": 61, "damage": 82, "armorDamage": 66, "penBar": 95, "armorClass": ["yes","yes","yes","yes","yes","yes"], "price": "3,200₽", "source": "跳蚤/任务", "color": "#aa44ff", "filter": "7.62x51" },
-    { "name": "PBP", "caliber": "9×19", "penetration": 38, "damage": 52, "armorDamage": 38, "penBar": 60, "armorClass": ["yes","yes","yes","maybe","no","no"], "price": "580₽", "source": "机修工/跳蚤", "color": "#44ffaa", "filter": "9x19" },
-    { "name": "RIP", "caliber": ".45 ACP", "penetration": 22, "damage": 79, "armorDamage": 25, "penBar": 35, "armorClass": ["yes","yes","no","no","no","no"], "price": "420₽", "source": "跳蚤市场", "color": "#ff4488", "filter": ".45 ACP" }
+    {
+      "name": "7N40",
+      "caliber": "5.45×39",
+      "penetration": 58,
+      "damage": 47,
+      "armorDamage": 54,
+      "penBar": 90,
+      "armorClass": [
+        "yes",
+        "yes",
+        "yes",
+        "yes",
+        "yes",
+        "maybe"
+      ],
+      "price": "960₽",
+      "source": "跳蚤/商人",
+      "color": "#ff6644",
+      "filter": "5.45x39"
+    },
+    {
+      "name": "BP",
+      "caliber": "5.45×39",
+      "penetration": 46,
+      "damage": 73,
+      "armorDamage": 43,
+      "penBar": 72,
+      "armorClass": [
+        "yes",
+        "yes",
+        "yes",
+        "yes",
+        "maybe",
+        "no"
+      ],
+      "price": "380₽",
+      "source": "帕帕商人",
+      "color": "#ff8844",
+      "filter": "5.45x39"
+    },
+    {
+      "name": "M995",
+      "caliber": "5.56×45",
+      "penetration": 53,
+      "damage": 40,
+      "armorDamage": 57,
+      "penBar": 88,
+      "armorClass": [
+        "yes",
+        "yes",
+        "yes",
+        "yes",
+        "yes",
+        "no"
+      ],
+      "price": "1,850₽",
+      "source": "跳蚤市场",
+      "color": "#44aaff",
+      "filter": "5.56x45"
+    },
+    {
+      "name": "M855A1",
+      "caliber": "5.56×45",
+      "penetration": 48,
+      "damage": 44,
+      "armorDamage": 50,
+      "penBar": 78,
+      "armorClass": [
+        "yes",
+        "yes",
+        "yes",
+        "yes",
+        "maybe",
+        "no"
+      ],
+      "price": "980₽",
+      "source": "和平卫士",
+      "color": "#66bbff",
+      "filter": "5.56x45"
+    },
+    {
+      "name": "BP",
+      "caliber": "7.62×39",
+      "penetration": 46,
+      "damage": 73,
+      "armorDamage": 43,
+      "penBar": 72,
+      "armorClass": [
+        "yes",
+        "yes",
+        "yes",
+        "yes",
+        "maybe",
+        "no"
+      ],
+      "price": "380₽",
+      "source": "帕帕商人",
+      "color": "#ffaa44",
+      "filter": "7.62x39"
+    },
+    {
+      "name": "M61",
+      "caliber": "7.62×51",
+      "penetration": 61,
+      "damage": 82,
+      "armorDamage": 66,
+      "penBar": 95,
+      "armorClass": [
+        "yes",
+        "yes",
+        "yes",
+        "yes",
+        "yes",
+        "yes"
+      ],
+      "price": "3,200₽",
+      "source": "跳蚤/任务",
+      "color": "#aa44ff",
+      "filter": "7.62x51"
+    },
+    {
+      "name": "PBP",
+      "caliber": "9×19",
+      "penetration": 38,
+      "damage": 52,
+      "armorDamage": 38,
+      "penBar": 60,
+      "armorClass": [
+        "yes",
+        "yes",
+        "yes",
+        "maybe",
+        "no",
+        "no"
+      ],
+      "price": "580₽",
+      "source": "机修工/跳蚤",
+      "color": "#44ffaa",
+      "filter": "9x19"
+    },
+    {
+      "name": "RIP",
+      "caliber": ".45 ACP",
+      "penetration": 22,
+      "damage": 79,
+      "armorDamage": 25,
+      "penBar": 35,
+      "armorClass": [
+        "yes",
+        "yes",
+        "no",
+        "no",
+        "no",
+        "no"
+      ],
+      "price": "420₽",
+      "source": "跳蚤市场",
+      "color": "#ff4488",
+      "filter": ".45 ACP"
+    }
   ]
 }
