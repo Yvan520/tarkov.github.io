@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>文章详情 | 塔科夫攻略站</title>
+<style>
+:root{--bg0:#07090b;--bg1:#0a0c0f;--bg2:#111418;--bg3:#161b21;--border:#2a3540;--gold:#c8a96e;--gold3:#a07840;--text1:#eae0cc;--text2:#9aabb8;--text3:#5a7080;--green2:#6aaa7a;--red2:#c05050;--blue2:#4a80b0;--orange2:#e09050;--purple2:#9060d0;--font:'Segoe UI','Microsoft YaHei',sans-serif;--mono:'Courier New',monospace;--r:4px;--r2:8px}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg1);color:var(--text1);font-family:var(--font);line-height:1.6}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--bg2)}::-webkit-scrollbar-thumb{background:var(--gold3);border-radius:3px}
+a{text-decoration:none;color:inherit;transition:all .2s}
+.nav{position:sticky;top:0;z-index:1000;height:60px;background:rgba(10,12,15,.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 32px;gap:16px}
+.nav-logo{display:flex;align-items:center;gap:10px;cursor:pointer;flex-shrink:0;color:inherit}
+.mark{width:32px;height:32px;background:linear-gradient(135deg,var(--gold),var(--gold3));border-radius:var(--r);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;color:var(--bg0)}
+.logo-name{font-size:17px;font-weight:800;letter-spacing:2px;color:var(--text1)}
+.logo-name span{color:var(--gold)}
+.nav-links{display:flex;gap:2px;list-style:none}
+.nav-links a{padding:7px 12px;border-radius:var(--r);font-size:13px;color:var(--text2);font-weight:500;white-space:nowrap}
+.nav-links a:hover{color:var(--text1);background:var(--bg3)}
+.nav-back{display:flex;align-items:center;gap:6px;background:var(--bg3);border:1px solid var(--border);color:var(--text2);padding:7px 14px;border-radius:var(--r);font-size:12px;cursor:pointer;transition:all .2s;text-decoration:none}
+.nav-back:hover{border-color:var(--gold);color:var(--gold)}
+
+.container{max-width:860px;margin:0 auto;padding:48px 24px}
+
+/* 面包屑 */
+.breadcrumb{display:flex;align-items:center;gap:8px;margin-bottom:24px;font-size:12px;color:var(--text3)}
+.breadcrumb a{color:var(--text3)}
+.breadcrumb a:hover{color:var(--gold)}
+.breadcrumb .sep{color:var(--border)}
+
+/* 文章头部 */
+.art-header{margin-bottom:36px}
+.art-category{font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px}
+.cat-guide{color:var(--gold)}
+.cat-weapon{color:var(--blue2)}
+.cat-map{color:var(--green2)}
+.cat-economy{color:var(--orange2)}
+.cat-newbie{color:var(--purple2)}
+.art-h1{font-size:clamp(22px,3vw,36px);font-weight:900;line-height:1.3;color:var(--text1);margin-bottom:16px}
+.art-meta{display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:14px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.meta-item{font-size:12px;color:var(--text3);display:flex;align-items:center;gap:5px}
+.badge-hot{font-size:10px;background:rgba(192,80,80,.15);color:var(--red2);border:1px solid rgba(192,80,80,.2);padding:3px 9px;border-radius:3px;font-weight:800}
+.badge-new{font-size:10px;background:rgba(74,140,92,.15);color:var(--green2);border:1px solid rgba(74,140,92,.2);padding:3px 9px;border-radius:3px;font-weight:800}
+
+/* 文章正文 */
+.art-content{color:var(--text2);font-size:15px;line-height:1.9;margin-bottom:48px}
+.art-content h1,.art-content h2{color:var(--text1);font-weight:800;margin:32px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.art-content h1{font-size:24px}
+.art-content h2{font-size:20px;color:var(--gold)}
+.art-content h3{color:var(--text1);font-size:17px;font-weight:700;margin:24px 0 10px}
+.art-content p{margin-bottom:16px}
+.art-content ul,.art-content ol{padding-left:24px;margin-bottom:16px}
+.art-content li{margin-bottom:6px}
+.art-content strong{color:var(--text1);font-weight:700}
+.art-content em{color:var(--gold);font-style:normal}
+.art-content code{background:var(--bg3);border:1px solid var(--border);padding:2px 8px;border-radius:3px;font-family:var(--mono);font-size:13px;color:var(--gold)}
+.art-content pre{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:20px;overflow-x:auto;margin-bottom:16px}
+.art-content pre code{background:none;border:none;padding:0;font-size:13px;color:var(--text2)}
+.art-content blockquote{border-left:3px solid var(--gold);background:rgba(200,169,110,.05);padding:14px 20px;margin-bottom:16px;border-radius:0 var(--r) var(--r) 0;color:var(--text2)}
+.art-content hr{border:none;border-top:1px solid var(--border);margin:28px 0}
+.art-content table{width:100%;border-collapse:collapse;margin-bottom:16px;font-size:13px}
+.art-content th{background:var(--bg2);padding:10px 14px;text-align:left;font-weight:700;color:var(--text3);font-size:11px;letter-spacing:1px;text-transform:uppercase;border-bottom:1px solid var(--border)}
+.art-content td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,.04);color:var(--text2)}
+.art-content a{color:var(--gold)}
+.art-content a:hover{text-decoration:underline}
+.art-content img{border-radius:var(--r2);max-width:100%;border:1px solid var(--border)}
+
+/* 标签 */
+.art-tags{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:36px}
+.art-tag{background:var(--bg3);border:1px solid var(--border);color:var(--text2);padding:5px 12px;border-radius:16px;font-size:11px}
+
+/* 相关文章 */
+.related{border-top:1px solid var(--border);padding-top:36px;margin-bottom:36px}
+.related-title{font-size:16px;font-weight:700;color:var(--text1);margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.related-title::before{content:'';width:4px;height:20px;background:linear-gradient(180deg,var(--gold),transparent);border-radius:2px}
+.related-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.related-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:14px;cursor:pointer;transition:all .25s;text-decoration:none;display:block;color:inherit}
+.related-card:hover{border-color:var(--gold);transform:translateY(-2px)}
+.rc-cat{font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px}
+.rc-title{font-size:13px;font-weight:600;color:var(--text1);line-height:1.4}
+.rc-meta{font-size:11px;color:var(--text3);margin-top:6px}
+
+/* 返回按钮 */
+.back-btn{display:inline-flex;align-items:center;gap:8px;background:var(--bg3);border:1px solid var(--border);color:var(--text2);padding:10px 20px;border-radius:var(--r2);font-size:13px;cursor:pointer;transition:all .2s;text-decoration:none}
+.back-btn:hover{border-color:var(--gold);color:var(--gold)}
+
+/* 加载/错误状态 */
+.state-box{text-align:center;padding:80px 24px}
+.state-icon{font-size:48px;margin-bottom:16px}
+.state-title{font-size:20px;font-weight:700;color:var(--text1);margin-bottom:8px}
+.state-desc{font-size:14px;color:var(--text3);margin-bottom:24px}
+
+/* 页脚 */
+.footer{background:var(--bg2);border-top:1px solid var(--border);padding:24px 32px;margin-top:80px}
+.footer-inner{max-width:860px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--text3);flex-wrap:wrap;gap:8px}
+.footer-inner a{color:var(--text3)}
+.footer-inner a:hover{color:var(--gold)}
+
+@media(max-width:700px){.nav-links{display:none}.related-grid{grid-template-columns:1fr}.container{padding:32px 16px}}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a class="nav-logo" href="index.html">
+    <div class="mark">⚔</div>
+    <span class="logo-name">TARKOV<span>GUIDE</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">🏠 首页</a></li>
+    <li><a href="maps.html">🗺️ 地图</a></li>
+    <li><a href="ammo.html">💊 弹药</a></li>
+    <li><a href="quests.html">📋 任务</a></li>
+    <li><a href="articles.html">📰 攻略</a></li>
+  </ul>
+  <a class="nav-back" href="articles.html">← 返回攻略列表</a>
+</nav>
+
+<div class="container">
+
+  <div class="breadcrumb">
+    <a href="index.html">首页</a>
+    <span class="sep">›</span>
+    <a href="articles.html">攻略文章</a>
+    <span class="sep">›</span>
+    <span id="breadCat">加载中</span>
+  </div>
+
+  <div id="mainContent">
+    <div class="state-box">
+      <div class="state-icon">⏳</div>
+      <div class="state-title">正在加载文章...</div>
+      <div class="state-desc">请稍候</div>
+    </div>
+  </div>
+
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span>© 2024 TarkovGuide · <a href="index.html">返回首页</a></span>
+    <span>非官方粉丝攻略站 · 仅供参考</span>
+  </div>
+</footer>
+
+<script>
+/* ── 工具 ── */
+const BASE = (() => { const p = location.pathname.split('/'); p.pop(); return p.join('/'); })();
+const cache = {};
+async function loadJSON(f) {
+  if(cache[f]) return cache[f];
+  try {
+    const r = await fetch(BASE+'/data/'+f+'.json?t='+Date.now());
+    if(!r.ok) throw new Error(r.status);
+    return cache[f] = await r.json();
+  } catch(e) { return null; }
+}
+function getLS(k) {
+  try { const d=localStorage.getItem('tarkov_'+k); return d?JSON.parse(d):null; } catch{return null;}
+}
+
+/* ── Markdown 解析器（轻量版）── */
+function md2html(md) {
+  if (!md) return '<p>暂无内容</p>';
+  let h = md
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    // 标题
+    .replace(/^#### (.+)$/gm,'<h4>$1</h4>')
+    .replace(/^### (.+)$/gm,'<h3>$1</h3>')
+    .replace(/^## (.+)$/gm,'<h2>$1</h2>')
+    .replace(/^# (.+)$/gm,'<h1>$1</h1>')
+    // 分割线
+    .replace(/^---+$/gm,'<hr>')
+    // 引用
+    .replace(/^&gt; (.+)$/gm,'<blockquote>$1</blockquote>')
+    // 代码块
+    .replace(/```[\w]*\n([\s\S]*?)```/g,'<pre><code>$1</code></pre>')
+    // 行内代码
+    .replace(/`([^`]+)`/g,'<code>$1</code>')
+    // 粗体
+    .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')
+    // 斜体（当em标签用）
+    .replace(/\*(.+?)\*/g,'<em>$1</em>')
+    // 链接
+    .replace(/\[(.+?)\]\((.+?)\)/g,'<a href="$2" target="_blank">$1</a>')
+    // 无序列表
+    .replace(/^\- (.+)$/gm,'<li>$1</li>')
+    // 有序列表
+    .replace(/^\d+\. (.+)$/gm,'<li>$1</li>')
+    // 换行变段落
+    .split('\n\n').map(block => {
+      block = block.trim();
+      if (!block) return '';
+      if (block.match(/^<(h[1-6]|hr|pre|blockquote|ul|ol|li)/)) return block;
+      if (block.includes('<li>')) return '<ul>'+block+'</ul>';
+      return '<p>'+block.replace(/\n/g,'<br>')+'</p>';
+    }).join('\n');
+  return h;
+}
+
+/* ── 分类样式 ── */
+const catStyle = {guide:'cat-guide',weapon:'cat-weapon',map:'cat-map',economy:'cat-economy',newbie:'cat-newbie'};
+const diffStyle = {'简单':'background:rgba(74,140,92,.2);color:#6aaa7a','中等':'background:rgba(192,112,48,.2);color:#e09050','困难':'background:rgba(192,80,80,.2);color:#c05050','极难':'background:rgba(144,48,200,.2);color:#9060d0'};
+
+/* ── 默认文章数据 ── */
+const DEF_ARTICLES = [
+  {id:'m4a1-build', title:'0.15版本最强武器配装排行：M4A1完全改装指南', category:'weapon', categoryName:'武器攻略', icon:'🔫', date:'2024-01-15', hot:true, isNew:false, views:24380, tags:['M4A1','配装','0.15版本'], content:`## M4A1完全改装指南\n\n欢迎来到0.15版本的M4A1完全改装指南。本文将为你详细分析当前版本最优的M4A1配装方案。\n\n## 为什么选择M4A1？\n\n在0.15版本中，M4A1依然是**PVP首选武器**之一，原因如下：\n\n- 改装潜力巨大，可定制性强\n- 5.56口径弹药供应稳定\n- 人机体验改装后极佳\n- 外观帅气，拿出去有面子\n\n## 低预算方案（5万以内）\n\n这套方案适合刚开始的玩家：\n\n- **基础M4A1** 约25,000₽\n- **短导轨** 约3,000₽\n- **标准弹匣** 约1,500₽\n\n总计约30,000₽，适合日常PVE使用。\n\n## 中端方案（5-15万）\n\n进阶玩家推荐：\n\n- M4A1 + 消音器套装\n- 4倍镜或全息瞄具\n- 垂直握把减少后坐力\n\n---\n\n*数据来源：官方0.15补丁说明*`},
+  {id:'dark-corner', title:'新地图「黑暗之角」完全攻略：出口/物资/Boss全标注', category:'map', categoryName:'地图攻略', icon:'🗺️', date:'2024-01-15', hot:false, isNew:true, views:18640, tags:['黑暗之角','新地图'], content:`## 黑暗之角完全攻略\n\n黑暗之角是0.15版本新增的**中型城市地图**，融合了室内近战和室外远程的多种战斗场景。\n\n## 基本信息\n\n- **时长**：45分钟\n- **玩家数**：最多12人\n- **出口数**：5个\n- **Boss**：暗影（概率出现）\n\n## 出口位置\n\n### 出口1：北部仓库门\n条件：无特殊条件，直接撤离\n\n### 出口2：地下通道\n条件：需要钥匙「DA-RK01」\n\n### 出口3：屋顶直升机\n条件：信号弹+等待时间4分钟\n\n## 高价值物资点\n\n- 银行金库：电子设备、现金\n- 医院顶层：医疗物资\n- 警察局：武器配件、弹药\n\n---\n\n*地图攻略持续更新中*`},
+  {id:'ammo-rank',   title:'弹道系统重做后弹药重新排行：哪些弹药值得继续用？', category:'guide', categoryName:'游戏指南', icon:'💊', date:'2024-01-15', hot:false, isNew:true, views:15200, tags:['弹药','弹道系统'], content:`## 弹药重排行\n\n0.15版本重做了弹道系统，弹药格局发生了显著变化。\n\n## 核心变化\n\n- 穿透公式重新计算\n- 护甲耐久影响更显著\n- 距离衰减更真实\n\n## 5.45×39 推荐\n\n**7N40** 依然是首选：\n- 穿透：58\n- 伤害：47\n- 可穿5级甲\n- 价格约960₽\n\n## 7.62×51 推荐\n\n**M61** 表现出色：\n- 穿透：61\n- 伤害：82\n- 可穿全部护甲\n- 价格约3,200₽\n\n---\n\n*建议根据当局情况选择弹药*`},
+  {id:'money-guide', title:'2024最快刷卢布攻略：藏匿处比特币+海关资源线路', category:'economy', categoryName:'经济攻略', icon:'💰', date:'2024-01-14', hot:true, isNew:false, views:32100, tags:['卢布','经济','藏匿处'], content:`## 2024最快刷卢布攻略\n\n本文介绍目前游戏中效率最高的卢布获取方式。\n\n## 方式一：藏匿处比特币农场\n\n**前期投入**：约150万卢布\n**回报周期**：约3天回本\n**日收益**：约50-80万卢布\n\n### 建设步骤\n\n1. 升级发电机至2级\n2. 建设比特币农场\n3. 购入显卡（GPU）\n4. 等待产出即可\n\n## 方式二：海关资源线路\n\n**平均每局收益**：15-25万卢布\n**推荐装备**：轻装，能跑就行\n\n### 必走点位\n\n- 三层宿舍\n- 工厂附近储物柜\n- 油罐区\n\n---\n\n*以上数据基于0.15版本，可能随版本更新变化*`},
+  {id:'newbie',      title:'逃离塔科夫2024新手完全入门指南：从第一局到稳定生存', category:'newbie', categoryName:'新手必看', icon:'🎮', date:'2024-01-12', hot:true, isNew:false, views:88400, tags:['新手','入门','指南'], content:`## 新手完全入门指南\n\n欢迎来到塔科夫！这是一款**真实硬核**的战术射击游戏，初期可能会让你感到沮丧，但坚持下来你会爱上它。\n\n## 第一步：了解基础机制\n\n### 保险系统\n\n死亡后，你的装备可以通过保险取回（如果没人捡走）。建议**每局都买保险**。\n\n### 藏匿处\n\n你的私人基地，可以建设各种设施。优先建设：\n- 发电机\n- 医疗站\n- 休息区\n\n### 商人系统\n\n通过完成任务提升商人好感度，解锁更好的装备。\n\n## 第二步：先玩海关地图\n\n海关是**新手最友好**的地图：\n\n- 地图适中，不会迷路\n- 出口多，容易撤离\n- 资源丰富，适合练习\n\n## 第三步：不要贪装备\n\n新手最大的错误是带太多东西进去：\n\n- 死了损失惨重\n- 心理压力大，发挥失常\n- **轻装出发，活着回来才是赚**\n\n## 第四步：学会弹药选择\n\n用对弹药比换武器重要得多。记住：\n\n- **穿透力 > 伤害值**（有护甲时）\n- 5级甲以上建议用高穿透弹药\n- BP（7.62×39）是性价比之王\n\n---\n\n*祝你塔科夫之旅愉快，GLHF！*`}
+];
+
+/* ── 主逻辑 ── */
+async function loadArticle() {
+  const params = new URLSearchParams(location.search);
+  const id = params.get('id');
+
+  if (!id) {
+    showError('未指定文章', '请从文章列表进入', 'articles.html');
+    return;
+  }
+
+  // 获取所有文章
+  let articles = getLS('articles');
+  if (!articles || !articles.length) {
+    const j = await loadJSON('articles');
+    articles = j?.articles || j || [];
+  }
+  if (!articles.length) articles = DEF_ARTICLES;
+
+  // 查找文章
+  const art = articles.find(a => a.id === id || encodeURIComponent(a.title) === id || a.title === decodeURIComponent(id));
+
+  if (!art) {
+    // 找不到就用默认数据里找
+    const defArt = DEF_ARTICLES.find(a => a.id === id);
+    if (defArt) { renderArticle(defArt, articles); return; }
+    showError('文章不存在', '该文章可能已被删除或链接有误', 'articles.html');
+    return;
+  }
+
+  renderArticle(art, articles);
+}
+
+function renderArticle(art, allArticles) {
+  // 更新页面标题和meta
+  document.title = art.title + ' | 塔科夫攻略站';
+
+  // 面包屑
+  document.getElementById('breadCat').textContent = art.categoryName || art.categoryLabel || '攻略';
+
+  // 相关文章
+  const related = allArticles
+    .filter(a => (a.id||a.title) !== (art.id||art.title) && a.category === art.category)
+    .slice(0, 4);
+
+  const tags = art.tags || [];
+  const cs = catStyle[art.category] || 'cat-guide';
+
+  document.getElementById('mainContent').innerHTML = `
+    <div class="art-header">
+      <div class="art-category ${cs}">${art.categoryName||art.categoryLabel||''}</div>
+      <h1 class="art-h1">${art.title}</h1>
+      <div class="art-meta">
+        <span class="meta-item">👁 ${(art.views||0).toLocaleString()} 次阅读</span>
+        <span class="meta-item">🕐 ${art.date||art.timeAgo||'最近'}</span>
+        <span class="meta-item">✍️ 塔科夫攻略站</span>
+        ${art.hot||art.badge==='hot'?'<span class="badge-hot">🔥 HOT</span>':''}
+        ${art.isNew||art.badge==='new'?'<span class="badge-new">✨ NEW</span>':''}
+      </div>
+    </div>
+
+    <div class="art-content">${md2html(art.content||art.summary||'文章内容暂未录入，请关注后续更新。')}</div>
+
+    ${tags.length ? `<div class="art-tags">${tags.map(t=>`<span class="art-tag"># ${t}</span>`).join('')}</div>` : ''}
+
+    ${related.length ? `
+    <div class="related">
+      <div class="related-title">📌 相关文章</div>
+      <div class="related-grid">
+        ${related.map(r=>`
+        <a href="article.html?id=${r.id||encodeURIComponent(r.title)}" class="related-card">
+          <div class="rc-cat ${catStyle[r.category]||'cat-guide'}">${r.categoryName||r.categoryLabel||''}</div>
+          <div class="rc-title">${r.icon||''} ${r.title}</div>
+          <div class="rc-meta">👁 ${(r.views||0).toLocaleString()} · ${r.date||r.timeAgo||''}</div>
+        </a>`).join('')}
+      </div>
+    </div>` : ''}
+
+    <a href="articles.html" class="back-btn">← 返回攻略列表</a>
+  `;
+}
+
+function showError(title, desc, backUrl) {
+  document.getElementById('breadCat').textContent = '错误';
+  document.getElementById('mainContent').innerHTML = `
+    <div class="state-box">
+      <div class="state-icon">😕</div>
+      <div class="state-title">${title}</div>
+      <div class="state-desc">${desc}</div>
+      <a href="${backUrl}" class="back-btn">← 返回攻略列表</a>
+    </div>`;
+}
+
+loadArticle();
+</script>
+</body>
+</html>
