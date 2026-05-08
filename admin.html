@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>塔科夫攻略站 - 管理后台</title>
+    <style>
+        :root{--bg0:#0a0c0e;--bg1:#111518;--bg2:#161b20;--bgi:#0d1014;--bd:#2a3540;--gold:#c8a96e;--txt:#e8dcc8;--txt2:#8a9ba8;--txt3:#4a5a68;--ok:#44aa66;--err:#c05555;--warn:#d4a030;--mono:'Courier New',monospace;--font:'Segoe UI','Microsoft YaHei',sans-serif}
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{background:var(--bg0);color:var(--txt);font-family:var(--font);min-height:100vh}
+        .top{background:var(--bg1);border-bottom:1px solid var(--bd);padding:0 28px;height:52px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+        .top-l{display:flex;align-items:center;gap:14px}
+        .top-logo{font-size:15px;font-weight:700;color:var(--gold);letter-spacing:1px}
+        .top-logo span{color:var(--txt3);font-size:10px;font-weight:400;margin-left:6px;background:var(--bg2);padding:2px 7px;border-radius:3px;border:1px solid var(--bd)}
+        .top-st{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--txt3)}
+        .sd{width:8px;height:8px;border-radius:50%;background:var(--txt3)}
+        .sd-ok{background:var(--ok);box-shadow:0 0 5px rgba(68,170,102,.5)}.sd-err{background:var(--err)}
+        .top-r{display:flex;gap:8px;align-items:center}
+        .btn{display:inline-flex;align-items:center;gap:5px;padding:7px 14px;border-radius:4px;font-size:12px;font-weight:600;cursor:pointer;border:1px solid transparent;transition:.2s;white-space:nowrap;font-family:inherit}
+        .btn-g{background:linear-gradient(135deg,var(--gold),#8a6030);color:var(--bg0)}
+        .btn-g:hover{box-shadow:0 2px 10px rgba(200,169,110,.3)}
+        .btn-o{background:0;border-color:var(--bd);color:var(--txt2)}
+        .btn-o:hover{border-color:var(--gold);color:var(--gold)}
+        .btn-r{background:rgba(192,85,85,.1);border-color:rgba(192,85,85,.3);color:var(--err)}
+        .btn-r:hover{background:rgba(192,85,85,.2)}
+        .btn-s{padding:4px 9px;font-size:11px}
+        .lay{display:flex;min-height:calc(100vh - 52px)}
+        .side{width:200px;background:var(--bg1);border-right:1px solid var(--bd);padding:14px 0;flex-shrink:0}
+        .ss{padding:0 10px;margin-bottom:16px}
+        .ss-t{font-size:9px;font-weight:700;color:var(--txt3);letter-spacing:2px;text-transform:uppercase;padding:0 10px;margin-bottom:4px}
+        .si{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:5px;font-size:12px;color:var(--txt2);cursor:pointer;transition:.2s;margin-bottom:1px}
+        .si:hover{background:rgba(255,255,255,.03);color:var(--txt)}
+        .si.on{background:rgba(200,169,110,.08);color:var(--gold)}
+        .si .ic{font-size:14px;width:18px;text-align:center}
+        .si .ct{margin-left:auto;font-size:10px;background:var(--bg2);color:var(--txt3);padding:1px 5px;border-radius:8px}
+        .con{flex:1;padding:24px 28px;overflow-y:auto}
+        .pn{display:none}.pn.on{display:block}
+        .ph{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+        .pt{font-size:18px;font-weight:700}
+        .box{background:var(--bg2);border:1px solid var(--bd);border-radius:6px;padding:18px;margin-bottom:20px}
+        .box h3{font-size:13px;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:6px}
+        .fr{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+        .fr3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:12px}
+        .fg{margin-bottom:12px}
+        .fl{display:block;font-size:11px;font-weight:600;color:var(--txt2);margin-bottom:4px}
+        .fh{font-size:10px;color:var(--txt3);margin-top:2px}
+        .fi,.fta,.fs{width:100%;background:var(--bgi);border:1px solid var(--bd);border-radius:4px;padding:8px 11px;font-size:12px;color:var(--txt);outline:none;font-family:inherit;transition:border-color .2s}
+        .fi:focus,.fta:focus,.fs:focus{border-color:var(--gold)}
+        .fta{min-height:80px;resize:vertical;font-family:var(--mono);font-size:11px;line-height:1.6}
+        .fs{cursor:pointer}
+        .dl{display:flex;flex-direction:column;gap:5px}
+        .di{background:var(--bg2);border:1px solid var(--bd);border-radius:5px;padding:10px 14px;display:flex;align-items:center;gap:10px;transition:.2s}
+        .di:hover{border-color:rgba(200,169,110,.3)}
+        .di-ic{font-size:16px;flex-shrink:0}
+        .di-b{flex:1;min-width:0}
+        .di-t{font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+        .di-m{font-size:10px;color:var(--txt3);margin-top:1px}
+        .di-bd{font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;flex-shrink:0}
+        .bd-on{background:rgba(68,170,102,.15);color:var(--ok)}.bd-off{background:rgba(212,160,48,.15);color:var(--warn)}
+        .di-a{display:flex;gap:3px;flex-shrink:0}
+        .mo{position:fixed;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(4px);z-index:1000;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:.2s}
+        .mo.on{opacity:1;visibility:visible}
+        .md{background:var(--bg1);border:1px solid var(--bd);border-radius:6px;width:640px;max-width:95vw;max-height:85vh;overflow-y:auto;padding:20px}
+        .md-h{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+        .md-t{font-size:15px;font-weight:700;color:var(--gold)}
+        .md-x{background:0;border:0;color:var(--txt3);font-size:18px;cursor:pointer;padding:2px 6px}
+        .md-x:hover{color:var(--txt)}
+        .md-f{display:flex;gap:7px;justify-content:flex-end;margin-top:16px;padding-top:14px;border-top:1px solid var(--bd)}
+        .tc{position:fixed;top:64px;right:16px;z-index:9999;display:flex;flex-direction:column;gap:6px}
+        .toast{background:var(--bg2);border:1px solid var(--bd);border-radius:5px;padding:10px 14px;font-size:12px;max-width:340px;transform:translateX(120%);transition:transform .3s}
+        .toast.show{transform:translateX(0)}
+        .toast.ok{border-left:3px solid var(--ok)}.toast.er{border-left:3px solid var(--err)}.toast.info{border-left:3px solid var(--gold)}
+        .empty{text-align:center;padding:50px 16px;color:var(--txt3)}
+        .empty .eic{font-size:40px;margin-bottom:10px}
+        .empty p{font-size:13px;margin-bottom:12px}
+        @media(max-width:900px){.side{display:none}.con{padding:16px 12px}.fr,.fr3{grid-template-columns:1fr}}
+    </style>
+</head>
+<body>
+    <div class="top">
+        <div class="top-l"><div class="top-logo">⚔ TARKOVGUIDE <span>管理后台</span></div><div class="top-st"><div class="sd" id="sDot"></div><span id="sTxt">未连接</span></div></div>
+        <div class="top-r"><a href="index.html" class="btn btn-o btn-s">← 查看网站</a><button class="btn btn-g btn-s" onclick="publishAll()">🚀 发布所有更改</button></div>
+    </div>
+    <div class="lay">
+        <div class="side">
+            <div class="ss"><div class="ss-t">系统</div><div class="si on" onclick="sp('config',this)"><span class="ic">⚙️</span>连接配置</div><div class="si" onclick="sp('site',this)"><span class="ic">🏠</span>站点设置</div></div>
+            <div class="ss"><div class="ss-t">内容</div><div class="si" onclick="sp('articles',this)"><span class="ic">📝</span>文章管理<span class="ct" id="cA">0</span></div><div class="si" onclick="sp('ammo',this)"><span class="ic">💊</span>弹药数据<span class="ct" id="cAm">0</span></div><div class="si" onclick="sp('quests',this)"><span class="ic">📋</span>任务攻略<span class="ct" id="cQ">0</span></div><div class="si" onclick="sp('maps',this)"><span class="ic">🗺️</span>地图数据<span class="ct" id="cM">0</span></div><div class="si" onclick="sp('loadouts',this)"><span class="ic">🔫</span>配装方案<span class="ct" id="cL">0</span></div></div>
+            <div class="ss"><div class="ss-t">高级</div><div class="si" onclick="sp('json',this)"><span class="ic">🔧</span>JSON编辑器</div></div>
+        </div>
+        <div class="con">
+            <!-- 配置 -->
+            <div class="pn on" id="pn-config"><div class="ph"><h2 class="pt">⚙️ GitHub 连接配置</h2></div><div class="box"><h3>🔗 连接信息</h3><div class="fr"><div class="fg"><label class="fl">GitHub 用户名</label><input type="text" class="fi" id="cO" placeholder="你的用户名"></div><div class="fg"><label class="fl">仓库名</label><input type="text" class="fi" id="cR" placeholder="tarkov-guide"></div></div><div class="fr"><div class="fg"><label class="fl">Personal Access Token</label><input type="password" class="fi" id="cT" placeholder="ghp_xxxxxxxxxxxx"><div class="fh">GitHub → Settings → Developer settings → Personal access tokens → 勾选 repo</div></div><div class="fg"><label class="fl">分支</label><input type="text" class="fi" id="cB" value="main"></div></div><div style="display:flex;gap:7px"><button class="btn btn-g" onclick="saveCfg()">💾 保存配置</button><button class="btn btn-o" onclick="testC()">🔗 测试连接</button></div></div><div class="box"><h3>📖 使用说明</h3><div style="font-size:12px;color:var(--txt2);line-height:2"><p>1. 在 GitHub 创建仓库，开启 GitHub Pages</p><p>2. 生成 Token（只需 repo 权限）</p><p>3. 填入信息 → 保存 → 测试连接</p><p>4. 看到绿色成功提示后开始管理内容</p><p>5. 修改后点击「发布所有更改」→ 约1分钟生效</p></div></div></div>
+
+            <!-- 站点 -->
+            <div class="pn" id="pn-site"><div class="ph"><h2 class="pt">🏠 站点设置</h2></div><div class="box"><div class="fr"><div class="fg"><label class="fl">当前版本号</label><input type="text" class="fi" id="sV" placeholder="0.15.0"></div><div class="fg"><label class="fl">公告状态</label><select class="fs" id="sAO"><option value="true">开启</option><option value="false">关闭</option></select></div></div><div class="fg"><label class="fl">公告内容</label><textarea class="fta" id="sAT" rows="2" placeholder="版本更新公告..."></textarea></div><div class="fg"><label class="fl">热门搜索词（逗号分隔）</label><input type="text" class="fi" id="sHS" placeholder="海关地图,M4A1配装"></div><button class="btn btn-g" onclick="saveSite()">💾 保存站点设置</button></div></div>
+
+            <!-- 文章 -->
+            <div class="pn" id="pn-articles"><div class="ph"><h2 class="pt">📝 文章管理</h2><button class="btn btn-g btn-s" onclick="openArt()">➕ 新增文章</button></div><div class="dl" id="artL"></div></div>
+            <!-- 弹药 -->
+            <div class="pn" id="pn-ammo"><div class="ph"><h2 class="pt">💊 弹药数据</h2><button class="btn btn-g btn-s" onclick="openAm()">➕ 新增弹药</button></div><div class="dl" id="amL"></div></div>
+            <!-- 任务 -->
+            <div class="pn" id="pn-quests"><div class="ph"><h2 class="pt">📋 任务攻略</h2><button class="btn btn-g btn-s" onclick="openQu()">➕ 新增任务</button></div><div class="dl" id="quL"></div></div>
+            <!-- 地图 -->
+            <div class="pn" id="pn-maps"><div class="ph"><h2 class="pt">🗺️ 地图数据</h2><button class="btn btn-g btn-s" onclick="openMa()">➕ 新增地图</button></div><div class="dl" id="maL"></div></div>
+            <!-- 配装 -->
+            <div class="pn" id="pn-loadouts"><div class="ph"><h2 class="pt">🔫 配装方案</h2><button class="btn btn-g btn-s" onclick="openLo()">➕ 新增配装</button></div><div class="dl" id="loL"></div></div>
+            <!-- JSON -->
+            <div class="pn" id="pn-json"><div class="ph"><h2 class="pt">🔧 JSON 编辑器</h2></div><div style="margin-bottom:10px"><select class="fs" id="jSel" onchange="loadJ()" style="max-width:240px"><option value="articles">articles.json</option><option value="ammo">ammo.json</option><option value="maps">maps.json</option><option value="quests">quests.json</option><option value="loadouts">loadouts.json</option><option value="prices">prices.json</option><option value="site">site.json</option></select><button class="btn btn-o btn-s" onclick="fmtJ()" style="margin-left:6px">📐 格式化</button><button class="btn btn-g btn-s" onclick="saveJ()" style="margin-left:6px">💾 保存</button></div><textarea class="fta" id="jEd" style="min-height:460px"></textarea></div>
+        </div>
+    </div>
+
+    <!-- 文章弹窗 -->
+    <div class="mo" id="moArt"><div class="md"><div class="md-h"><span class="md-t" id="moArtT">新增文章</span><button class="md-x" onclick="cm('moArt')">×</button></div><input type="hidden" id="aI" value="-1"><div class="fg"><label class="fl">标题 *</label><input type="text" class="fi" id="aT" placeholder="文章标题"></div><div class="fr"><div class="fg"><label class="fl">分类</label><select class="fs" id="aC"><option value="weapon">🔫 武器攻略</option><option value="map">🗺️ 地图攻略</option><option value="guide">📖 通用攻略</option><option value="economy">💰 经济攻略</option><option value="newbie">🎮 新手必看</option></select></div><div class="fg"><label class="fl">徽章</label><select class="fs" id="aB"><option value="">无</option><option value="hot">🔥 HOT</option><option value="new">✨ NEW</option></select></div></div><div class="fr"><div class="fg"><label class="fl">状态</label><select class="fs" id="aP"><option value="true">已发布</option><option value="false">草稿</option></select></div><div class="fg"><label class="fl">时间显示</label><input type="text" class="fi" id="aTA" value="刚刚"></div></div><div class="fg"><label class="fl">标签（逗号分隔）</label><input type="text" class="fi" id="aTG" placeholder="M4A1,配装,PVP"></div><div class="fg"><label class="fl">摘要</label><textarea class="fta" id="aS" rows="2" placeholder="简短描述..."></textarea></div><div class="fg"><label class="fl">正文（Markdown）</label><textarea class="fta" id="aCO" rows="6" placeholder="文章正文..."></textarea></div><div class="md-f"><button class="btn btn-o" onclick="cm('moArt')">取消</button><button class="btn btn-g" onclick="saveArt()">💾 保存</button></div></div></div>
+    <!-- 弹药弹窗 -->
+    <div class="mo" id="moAm"><div class="md"><div class="md-h"><span class="md-t" id="moAmT">新增弹药</span><button class="md-x" onclick="cm('moAm')">×</button></div><input type="hidden" id="amI" value="-1"><div class="fr"><div class="fg"><label class="fl">名称 *</label><input type="text" class="fi" id="amN" placeholder="7N40"></div><div class="fg"><label class="fl">口径</label><select class="fs" id="amCA"><option>5.45×39</option><option>5.56×45</option><option>7.62×39</option><option>7.62×51</option><option>9×19</option><option>.45 ACP</option><option>12号霰弹</option></select></div></div><div class="fr3"><div class="fg"><label class="fl">穿透力</label><input type="number" class="fi" id="amP" placeholder="58"></div><div class="fg"><label class="fl">伤害</label><input type="number" class="fi" id="amD" placeholder="47"></div><div class="fg"><label class="fl">护甲伤害%</label><input type="number" class="fi" id="amAD" placeholder="54"></div></div><div class="fr"><div class="fg"><label class="fl">价格</label><input type="text" class="fi" id="amPR" placeholder="960₽"></div><div class="fg"><label class="fl">获取方式</label><input type="text" class="fi" id="amSR" placeholder="跳蚤/商人"></div></div><div class="fg"><label class="fl">可穿甲级（yes/no/maybe 逗号分隔）</label><input type="text" class="fi" id="amAC" placeholder="yes,yes,yes,yes,yes,maybe"></div><div class="md-f"><button class="btn btn-o" onclick="cm('moAm')">取消</button><button class="btn btn-g" onclick="saveAm()">💾 保存</button></div></div></div>
+    <!-- 任务弹窗 -->
+    <div class="mo" id="moQu"><div class="md"><div class="md-h"><span class="md-t" id="moQuT">新增任务</span><button class="md-x" onclick="cm('moQu')">×</button></div><input type="hidden" id="quI" value="-1"><div class="fr"><div class="fg"><label class="fl">任务名称 *</label><input type="text" class="fi" id="quN" placeholder="任务名"></div><div class="fg"><label class="fl">难度</label><select class="fs" id="quDF"><option value="easy">简单</option><option value="medium">中等</option><option value="hard">困难</option><option value="extreme">极难</option></select></div></div><div class="fg"><label class="fl">所属商人</label><input type="text" class="fi" id="quME" placeholder="帕帕"></div><div class="fg"><label class="fl">描述</label><textarea class="fta" id="quDE" rows="2" placeholder="任务目标..."></textarea></div><div class="fr3"><div class="fg"><label class="fl">经验</label><input type="text" class="fi" id="quEX" placeholder="7,800 EXP"></div><div class="fg"><label class="fl">声望</label><input type="text" class="fi" id="quRE" placeholder="+0.02"></div><div class="fg"><label class="fl">物品奖励</label><input type="text" class="fi" id="quIT" placeholder="AK-74N"></div></div><div class="md-f"><button class="btn btn-o" onclick="cm('moQu')">取消</button><button class="btn btn-g" onclick="saveQu()">💾 保存</button></div></div></div>
+    <!-- 地图弹窗 -->
+    <div class="mo" id="moMa"><div class="md"><div class="md-h"><span class="md-t" id="moMaT">新增地图</span><button class="md-x" onclick="cm('moMa')">×</button></div><input type="hidden" id="maI" value="-1"><div class="fr"><div class="fg"><label class="fl">地图名称 *</label><input type="text" class="fi" id="maN" placeholder="海关 Customs"></div><div class="fg"><label class="fl">难度</label><select class="fs" id="maDF"><option value="easy">新手友好</option><option value="medium">中等</option><option value="hard">困难</option><option value="extreme">极难</option></select></div></div><div class="fr3"><div class="fg"><label class="fl">时间(分钟)</label><input type="number" class="fi" id="maTI" placeholder="45"></div><div class="fg"><label class="fl">人数</label><input type="number" class="fi" id="maPL" placeholder="12"></div><div class="fg"><label class="fl">出口数</label><input type="number" class="fi" id="maEX" placeholder="7"></div></div><div class="fg"><label class="fl">标签（逗号分隔）</label><input type="text" class="fi" id="maTG" placeholder="新手推荐,任务丰富"></div><div class="fg"><label class="fl">标识emoji</label><input type="text" class="fi" id="maIC" value="🗺️"></div><div class="md-f"><button class="btn btn-o" onclick="cm('moMa')">取消</button><button class="btn btn-g" onclick="saveMa()">💾 保存</button></div></div></div>
+    <!-- 配装弹窗 -->
+    <div class="mo" id="moLo"><div class="md"><div class="md-h"><span class="md-t" id="moLoT">新增配装</span><button class="md-x" onclick="cm('moLo')">×</button></div><input type="hidden" id="loI" value="-1"><div class="fr"><div class="fg"><label class="fl">武器名称 *</label><input type="text" class="fi" id="loN" placeholder="AK-74N"></div><div class="fg"><label class="fl">价格</label><input type="text" class="fi" id="loPR" placeholder="～38,000₽"></div></div><div class="fr3"><div class="fg"><label class="fl">后坐力</label><input type="text" class="fi" id="loRC" placeholder="47"></div><div class="fg"><label class="fl">人机精度</label><input type="text" class="fi" id="loER" placeholder="3.2"></div><div class="fg"><label class="fl">重量</label><input type="text" class="fi" id="loWT" placeholder="3.8kg"></div></div><div class="fg"><label class="fl">标识emoji</label><input type="text" class="fi" id="loIC" value="🔫"></div><div class="md-f"><button class="btn btn-o" onclick="cm('moLo')">取消</button><button class="btn btn-g" onclick="saveLo()">💾 保存</button></div></div></div>
+
+    <div class="tc" id="tc"></div>
+
+    <script>
+    const SK='tarkov_admin';let C={articles:null,ammo:null,maps:null,quests:null,loadouts:null,prices:null,site:null},SH={};
+    function gc(){try{return JSON.parse(localStorage.getItem(SK))||{}}catch{return{}}}
+    function saveCfg(){const c={owner:$('cO').value.trim(),repo:$('cR').value.trim(),token:$('cT').value.trim(),branch:$('cB').value.trim()||'main'};localStorage.setItem(SK,JSON.stringify(c));toast('✅ 配置已保存','ok');testC()}
+    function lc(){const c=gc();if(c.owner)$('cO').value=c.owner;if(c.repo)$('cR').value=c.repo;if(c.token)$('cT').value=c.token;if(c.branch)$('cB').value=c.branch}
+    function $(id){return document.getElementById(id)}
+    async function ghGet(p){const c=gc();const r=await fetch(`https://api.github.com/repos/${c.owner}/${c.repo}/contents/${p}?ref=${c.branch}`,{headers:{'Authorization':`token ${c.token}`,'Accept':'application/vnd.github.v3+json'}});if(!r.ok)throw new Error(r.status);return r.json()}
+    async function ghPut(p,content,sha,msg){const c=gc();const b={message:msg,content:btoa(unescape(encodeURIComponent(content))),branch:c.branch};if(sha)b.sha=sha;const r=await fetch(`https://api.github.com/repos/${c.owner}/${c.repo}/contents/${p}?ref=${c.branch}`,{method:'PUT',headers:{'Authorization':`token ${c.token}`,'Accept':'application/vnd.github.v3+json'},body:JSON.stringify(b)});if(!r.ok){const e=await r.json().catch(()=>({}));throw new Error(e.message||'写入失败')}return r.json()}
+    async function testC(){const d=$('sDot'),t=$('sTxt'),c=gc();if(!c.token||!c.owner||!c.repo){d.className='sd sd-err';t.textContent='请先配置';return}try{d.className='sd';t.textContent='连接中...';const r=await fetch(`https://api.github.com/repos/${c.owner}/${c.repo}`,{headers:{'Authorization':`token ${c.token}`,'Accept':'application/vnd.github.v3+json'}});if(r.ok){d.className='sd sd-ok';t.textContent=`${c.owner}/${c.repo}`;loadAll()}else{d.className='sd sd-err';t.textContent='连接失败'}}catch(e){d.className='sd sd-err';t.textContent=e.message}}
+    async function readJ(n){try{const d=await ghGet(`data/${n}.json`);return{data:JSON.parse(atob(d.content)),sha:d.sha}}catch{return null}}
+    async function writeJ(n,o,sha){return ghPut(`data/${n}.json`,JSON.stringify(o,null,2),sha,`更新 ${n}.json - ${new Date().toLocaleString('zh-CN')}`)}
+    async function loadAll(){for(const k of['articles','ammo','maps','quests','loadouts','prices','site']){const r=await readJ(k);if(r){C[k]=r.data;SH[k]=r.sha}}rArt();rAm();rQu();rMa();rLo();rSite();uc()}
+    function uc(){$('cA').textContent=C.articles?.articles?.length||0;$('cAm').textContent=C.ammo?.ammo?.length||0;$('cQ').textContent=C.quests?.quests?.length||0;$('cM').textContent=C.maps?.maps?.length||0;$('cL').textContent=C.loadouts?.loadouts?.length||0}
+    function sp(n,el){document.querySelectorAll('.si').forEach(i=>i.classList.remove('on'));if(el)el.classList.add('on');document.querySelectorAll('.pn').forEach(p=>p.classList.remove('on'));$(`pn-${n}`).classList.add('on');if(n==='json')loadJ()}
+    function om(id){$(id).classList.add('on')}function cm(id){$(id).classList.remove('on')}
+    const CM={weapon:{icon:'🔫',label:'武器攻略'},map:{icon:'🗺️',label:'地图攻略'},guide:{icon:'📖',label:'通用攻略'},economy:{icon:'💰',label:'经济攻略'},newbie:{icon:'🎮',label:'新手必看'}};
+    function rArt(){const el=$('artL'),l=C.articles?.articles;if(!l||!l.length){el.innerHTML='<div class="empty"><div class="eic">📝</div><p>暂无文章，点击右上角添加</p></div>';return}el.innerHTML=l.map((a,i)=>`<div class="di"><span class="di-ic">${a.icon||'📄'}</span><div class="di-b"><div class="di-t">${a.title}</div><div class="di-m">${a.categoryLabel||''} · ${a.date||''} · 👁 ${(a.views||0).toLocaleString()}</div></div><span class="di-bd ${a.published?'bd-on':'bd-off'}">${a.published?'已发布':'草稿'}</span><div class="di-a"><button class="btn btn-o btn-s" onclick="eArt(${i})">✏️</button><button class="btn btn-r btn-s" onclick="dArt(${i})">🗑</button></div></div>`).join('')}
+    function openArt(idx){$('aI').value=idx??-1;$('moArtT').textContent=idx>=0?'编辑文章':'新增文章';if(idx>=0){const a=C.articles.articles[idx];$('aT').value=a.title||'';$('aC').value=a.category||'weapon';$('aB').value=a.badge||'';$('aP').value=a.published?'true':'false';$('aTA').value=a.timeAgo||'刚刚';$('aTG').value=(a.tags||[]).join(',');$('aS').value=a.summary||'';$('aCO').value=a.content||''}else['aT','aTG','aS','aCO'].forEach(id=>$(id).value='');$('aB').value='';$('aP').value='true';$('aTA').value='刚刚';om('moArt')}
+    function eArt(i){openArt(i)}
+    function dArt(i){if(!confirm('确定删除？'))return;C.articles.articles.splice(i,1);rArt();uc();toast('🗑 已删除','info')}
+    function saveArt(){const t=$('aT').value.trim();if(!t){toast('❌ 请输入标题','er');return}const idx=parseInt($('aI').value),cat=$('aC').value,ci=CM[cat]||{icon:'📄',label:'攻略'};const a={id:idx>=0?C.articles.articles[idx].id:`${cat}-${Date.now()}`,title:t,category:cat,categoryLabel:ci.label,icon:ci.icon,views:idx>=0?C.articles.articles[idx].views:0,comments:idx>=0?C.articles.articles[idx].comments:0,date:new Date().toISOString().split('T')[0],timeAgo:$('aTA').value||'刚刚',badge:$('aB').value||'',content:$('aCO').value,summary:$('aS').value,tags:$('aTG').value.split(',').map(t=>t.trim()).filter(Boolean),published:$('aP').value==='true'};if(!C.articles)C.articles={articles:[]};if(idx>=0)C.articles.articles[idx]=a;else C.articles.articles.unshift(a);cm('moArt');rArt();uc();toast('✅ 文章已保存','ok')}
+    function rAm(){const el=$('amL'),l=C.ammo?.ammo;if(!l||!l.length){el.innerHTML='<div class="empty"><div class="eic">💊</div><p>暂无弹药数据</p></div>';return}el.innerHTML=l.map((a,i)=>`<div class="di"><span class="di-ic" style="color:${a.color||'#c8a96e'}">●</span><div class="di-b"><div class="di-t">${a.name} <span style="color:var(--txt3);font-weight:400;font-size:11px">${a.caliber}</span></div><div class="di-m">穿透 ${a.penetration} · 伤害 ${a.damage} · ${a.price}</div></div><div class="di-a"><button class="btn btn-o btn-s" onclick="eAm(${i})">✏️</button><button class="btn btn-r btn-s" onclick="dAm(${i})">🗑</button></div></div>`).join('')}
+    function openAm(idx){$('amI').value=idx??-1;$('moAmT').textContent=idx>=0?'编辑弹药':'新增弹药';if(idx>=0){const a=C.ammo.ammo[idx];$('amN').value=a.name||'';$('amCA').value=a.caliber||'5.45×39';$('amP').value=a.penetration||'';$('amD').value=a.damage||'';$('amAD').value=a.armorDamage||'';$('amPR').value=a.price||'';$('amSR').value=a.source||'';$('amAC').value=(a.armorClass||[]).join(',')}else['amN','amP','amD','amAD','amPR','amSR','amAC'].forEach(id=>$(id).value='');om('moAm')}
+    function eAm(i){openAm(i)}function dAm(i){if(!confirm('确定删除？'))return;C.ammo.ammo.splice(i,1);rAm();uc();toast('🗑 已删除','info')}
+    function saveAm(){const n=$('amN').value.trim();if(!n){toast('❌ 请输入名称','er');return}const idx=parseInt($('amI').value),p=parseInt($('amP').value)||0,d=parseInt($('amD').value)||0;const a={name:n,caliber:$('amCA').value,penetration:p,damage:d,armorDamage:parseInt($('amAD').value)||0,penBar:Math.min(p,65)/65*100,armorClass:$('amAC').value.split(',').map(s=>s.trim()).filter(Boolean),price:$('amPR').value||'—',source:$('amSR').value||'—',color:idx>=0?C.ammo.ammo[idx].color:`hsl(${Math.random()*360},70%,60%)`,filter:$('amCA').value.replace('×','x')};if(!C.ammo)C.ammo={ammo:[]};if(idx>=0)C.ammo.ammo[idx]=a;else C.ammo.ammo.unshift(a);cm('moAm');rAm();uc();toast('✅ 已保存','ok')}
+    function rQu(){const el=$('quL'),l=C.quests?.quests;if(!l||!l.length){el.innerHTML='<div class="empty"><div class="eic">📋</div><p>暂无任务</p></div>';return}const dl={easy:'简单',medium:'中等',hard:'困难',extreme:'极难'};el.innerHTML=l.map((q,i)=>`<div class="di"><span class="di-ic">📋</span><div class="di-b"><div class="di-t">${q.name}</div><div class="di-m">${q.merchant||''} · ${dl[q.difficulty]||''} · ${q.exp||''}</div></div><div class="di-a"><button class="btn btn-o btn-s" onclick="eQu(${i})">✏️</button><button class="btn btn-r btn-s" onclick="dQu(${i})">🗑</button></div></div>`).join('')}
+    function openQu(idx){$('quI').value=idx??-1;$('moQuT').textContent=idx>=0?'编辑任务':'新增任务';if(idx>=0){const q=C.quests.quests[idx];$('quN').value=q.name||'';$('quDF').value=q.difficulty||'easy';$('quME').value=q.merchant||'';$('quDE').value=q.description||'';$('quEX').value=q.exp||'';$('quRE').value=q.rep||'';$('quIT').value=q.itemReward||''}else['quN','quDE','quEX','quRE','quIT','quME'].forEach(id=>$(id).value='');om('moQu')}
+    function eQu(i){openQu(i)}function dQu(i){if(!confirm('确定删除？'))return;C.quests.quests.splice(i,1);rQu();uc();toast('🗑 已删除','info')}
+    function saveQu(){const n=$('quN').value.trim();if(!n){toast('❌ 请输入名称','er');return}const idx=parseInt($('quI').value);const dl={easy:'简单',medium:'中等',hard:'困难',extreme:'极难'};const q={name:n,difficulty:$('quDF').value,diffLabel:dl[$('quDF').value],merchant:$('quME').value||'其他',description:$('quDE').value,exp:$('quEX').value,rep:$('quRE').value,itemReward:$('quIT').value};if(!C.quests)C.quests={quests:[]};if(idx>=0)C.quests.quests[idx]=q;else C.quests.quests.unshift(q);cm('moQu');rQu();uc();toast('✅ 已保存','ok')}
+    function rMa(){const el=$('maL'),l=C.maps?.maps;if(!l||!l.length){el.innerHTML='<div class="empty"><div class="eic">🗺️</div><p>暂无地图</p></div>';return}const dl={easy:'新手友好',medium:'中等',hard:'困难',extreme:'极难'};el.innerHTML=l.map((m,i)=>`<div class="di"><span class="di-ic">${m.icon||'🗺️'}</span><div class="di-b"><div class="di-t">${m.name}</div><div class="di-m">${dl[m.difficulty]||''} · ⏱${m.time||0}分钟 · 👥${m.players||0}人</div></div><div class="di-a"><button class="btn btn-o btn-s" onclick="eMa(${i})">✏️</button><button class="btn btn-r btn-s" onclick="dMa(${i})">🗑</button></div></div>`).join('')}
+    function openMa(idx){$('maI').value=idx??-1;$('moMaT').textContent=idx>=0?'编辑地图':'新增地图';if(idx>=0){const m=C.maps.maps[idx];$('maN').value=m.name||'';$('maDF').value=m.difficulty||'easy';$('maTI').value=m.time||'';$('maPL').value=m.players||'';$('maEX').value=m.exits||'';$('maTG').value=(m.tags||[]).join(',');$('maIC').value=m.icon||'🗺️'}else['maN','maTI','maPL','maEX','maTG'].forEach(id=>$(id).value='');$('maIC').value='🗺️';om('moMa')}
+    function eMa(i){openMa(i)}function dMa(i){if(!confirm('确定删除？'))return;C.maps.maps.splice(i,1);rMa();uc();toast('🗑 已删除','info')}
+    function saveMa(){const n=$('maN').value.trim();if(!n){toast('❌ 请输入名称','er');return}const idx=parseInt($('maI').value);const m={id:n.toLowerCase().replace(/\s/g,''),name:n,difficulty:$('maDF').value,time:parseInt($('maTI').value)||0,players:parseInt($('maPL').value)||0,exits:parseInt($('maEX').value)||0,tags:$('maTG').value.split(',').map(t=>t.trim()).filter(Boolean),icon:$('maIC').value||'🗺️'};if(!C.maps)C.maps={maps:[]};if(idx>=0)C.maps.maps[idx]=m;else C.maps.maps.unshift(m);cm('moMa');rMa();uc();toast('✅ 已保存','ok')}
+    function rLo(){const el=$('loL'),l=C.loadouts?.loadouts;if(!l||!l.length){el.innerHTML='<div class="empty"><div class="eic">🔫</div><p>暂无配装</p></div>';return}el.innerHTML=l.map((lo,i)=>`<div class="di"><span class="di-ic">${lo.icon||'🔫'}</span><div class="di-b"><div class="di-t">${lo.name}</div><div class="di-m">${lo.price} · 后坐力 ${lo.recoil||'-'}</div></div><div class="di-a"><button class="btn btn-o btn-s" onclick="eLo(${i})">✏️</button><button class="btn btn-r btn-s" onclick="dLo(${i})">🗑</button></div></div>`).join('')}
+    function openLo(idx){$('loI').value=idx??-1;$('moLoT').textContent=idx>=0?'编辑配装':'新增配装';if(idx>=0){const lo=C.loadouts.loadouts[idx];$('loN').value=lo.name||'';$('loPR').value=lo.price||'';$('loRC').value=lo.recoil||'';$('loER').value=lo.ergo||'';$('loWT').value=lo.weight||'';$('loIC').value=lo.icon||'🔫'}else['loN','loPR','loRC','loER','loWT'].forEach(id=>$(id).value='');$('loIC').value='🔫';om('moLo')}
+    function eLo(i){openLo(i)}function dLo(i){if(!confirm('确定删除？'))return;C.loadouts.loadouts.splice(i,1);rLo();uc();toast('🗑 已删除','info')}
+    function saveLo(){const n=$('loN').value.trim();if(!n){toast('❌ 请输入名称','er');return}const idx=parseInt($('loI').value);const lo={name:n,price:$('loPR').value||'—',recoil:$('loRC').value||'-',ergo:$('loER').value||'-',weight:$('loWT').value||'-',icon:$('loIC').value||'🔫',tags:[{text:'推荐',cls:'lt-r'}]};if(!C.loadouts)C.loadouts={loadouts:[]};if(idx>=0)C.loadouts.loadouts[idx]=lo;else C.loadouts.loadouts.unshift(lo);cm('moLo');rLo();uc();toast('✅ 已保存','ok')}
+    function rSite(){if(!C.site)return;$('sV').value=C.site.version||'';$('sAT').value=C.site.alert?.text||'';$('sAO').value=C.site.alert?.active?'true':'false';$('sHS').value=(C.site.hotSearches||[]).join(',')}
+    function saveSite(){if(!C.site)C.site={};C.site.version=$('sV').value.trim();C.site.alert={text:$('sAT').value.trim(),active:$('sAO').value==='true'};C.site.hotSearches=$('sHS').value.split(',').map(s=>s.trim()).filter(Boolean);toast('✅ 站点设置已保存','ok')}
+    function loadJ(){const n=$('jSel').value;$('jEd').value=C[n]?JSON.stringify(C[n],null,2):'// 无数据'}
+    function fmtJ(){try{$('jEd').value=JSON.stringify(JSON.parse($('jEd').value),null,2);toast('✅ 已格式化','ok')}catch{toast('❌ JSON格式错误','er')}}
+    async function saveJ(){const n=$('jSel').value;try{C[n]=JSON.parse($('jEd').value);await writeJ(n,C[n],SH[n]);const r=await readJ(n);if(r)SH[n]=r.sha;toast(`✅ ${n}.json 已发布`,'ok')}catch(e){toast(`❌ ${e.message}`,'er')}}
+    async function publishAll(){const c=gc();if(!c.token){toast('❌ 请先配置','er');return}let ok=0,fail=0;for(const[k,v]of Object.entries(C)){if(!v)continue;try{await writeJ(k,v,SH[k]);const r=await readJ(k);if(r)SH[k]=r.sha;ok++}catch{fail++}}if(!fail)toast(`🚀 全部 ${ok} 个文件已发布！约1分钟生效`,'ok');else toast(`⚠️ ${ok}成功 ${fail}失败`,'er')}
+    function toast(msg,type='info'){const el=document.createElement('div');el.className=`toast ${type}`;el.textContent=msg;$('tc').appendChild(el);requestAnimationFrame(()=>el.classList.add('show'));setTimeout(()=>{el.classList.remove('show');setTimeout(()=>el.remove(),300)},3500)}
+    document.addEventListener('DOMContentLoaded',()=>{lc();const c=gc();if(c.token&&c.owner&&c.repo)testC()});
+    </script>
+</body>
+</html>
