@@ -1,1166 +1,1067 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="逃离塔科夫最专业的中文攻略站 - 地图攻略、武器配装、弹药数据、任务攻略、价格查询全面覆盖。">
-    <meta name="keywords" content="逃离塔科夫,塔科夫攻略,塔科夫地图,塔科夫武器,塔科夫弹药,EFT攻略">
-    <meta property="og:title" content="塔科夫攻略站 - 逃离塔科夫最专业中文攻略">
-    <meta property="og:description" content="地图、武器、弹药、任务全攻略，实时数据，助你称霸塔科夫">
-    <meta property="og:type" content="website">
-    <title>塔科夫攻略站 | 逃离塔科夫最专业中文攻略</title>
-    <script type="application/ld+json">
-    {"@context":"https://schema.org","@type":"WebSite","name":"塔科夫攻略站","description":"逃离塔科夫最专业的中文攻略站"}
-    </script>
-    <style>
-        :root {
-            --bg0: #0a0c0e;
-            --bg1: #111518;
-            --bg2: #161b20;
-            --bg3: #1c2329;
-            --bd: #2a3540;
-            --gold: #c8a96e;
-            --gold-d: #8a6030;
-            --txt: #e8dcc8;
-            --txt2: #8a9ba8;
-            --txt3: #4a5a68;
-            --green: #4a7c59;
-            --green-l: #6aaa79;
-            --red: #8b3a3a;
-            --red-l: #c05555;
-            --blue: #2a4a6a;
-            --blue-l: #4a7aaa;
-            --ok: #44aa66;
-            --warn: #ffaa00;
-            --err: #ff4444;
-            --mono: 'Courier New', monospace;
-            --font: 'Segoe UI', 'Microsoft YaHei', sans-serif;
-            --glow: 0 0 20px rgba(200,169,110,.15);
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="逃离塔科夫最专业的中文攻略站 - 地图攻略、武器配装、弹药数据、任务攻略全覆盖">
+<meta name="keywords" content="逃离塔科夫,塔科夫攻略,塔科夫地图,EFT攻略,塔科夫任务">
+<title>塔科夫攻略站 | 逃离塔科夫最专业中文攻略</title>
+<style>
+:root{
+  --bg0:#07090b;--bg1:#0a0c0f;--bg2:#111418;--bg3:#161b21;--bg4:#1c232b;
+  --border:#2a3540;--gold:#c8a96e;--gold2:#e8c98e;--gold3:#a07840;
+  --text1:#eae0cc;--text2:#9aabb8;--text3:#5a7080;
+  --green2:#6aaa7a;--red2:#c05050;--blue2:#4a80b0;
+  --orange2:#e09050;--purple2:#9060d0;
+  --font:'Segoe UI','Microsoft YaHei',sans-serif;
+  --mono:'Courier New',monospace;
+  --r:4px;--r2:8px;--glow:0 0 24px rgba(200,169,110,0.12);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg1);color:var(--text1);font-family:var(--font);line-height:1.6;overflow-x:hidden}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--bg2)}
+::-webkit-scrollbar-thumb{background:var(--gold3);border-radius:3px}
+a{text-decoration:none;color:inherit;transition:all .2s}
+button{font-family:var(--font);cursor:pointer}
 
-        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body { background: var(--bg0); color: var(--txt); font-family: var(--font); line-height: 1.6; overflow-x: hidden; }
-        a { text-decoration: none; color: inherit; transition: .3s; }
-        ::-webkit-scrollbar { width: 6px; height: 6px; }
-        ::-webkit-scrollbar-track { background: var(--bg1); }
-        ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+/* 顶部公告 */
+.top-bar{background:linear-gradient(90deg,#120a00,#1e1200,#120a00);border-bottom:1px solid rgba(200,169,110,.25);padding:7px 20px;text-align:center;font-size:12px;color:var(--gold);position:relative;overflow:hidden}
+.top-bar .dot{display:inline-block;width:7px;height:7px;background:var(--red2);border-radius:50%;margin-right:8px;vertical-align:middle;animation:blink 1.5s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
 
-        /* ===== 公告条 ===== */
-        .alert-bar {
-            background: linear-gradient(90deg, #1a0e00, #2a1800, #1a0e00);
-            border-bottom: 1px solid rgba(200,169,110,.4);
-            padding: 8px 20px;
-            text-align: center;
-            font-size: 13px;
-            color: var(--gold);
-            letter-spacing: .5px;
-            position: relative;
-            overflow: hidden;
-        }
-        .alert-bar::before {
-            content: '';
-            position: absolute;
-            top: 0; left: -100%;
-            width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(200,169,110,.1), transparent);
-            animation: alertScan 3s infinite;
-        }
-        @keyframes alertScan { 0% { left: -100%; } 100% { left: 100%; } }
-        .alert-dot {
-            display: inline-block;
-            width: 8px; height: 8px;
-            background: var(--err);
-            border-radius: 50%;
-            margin-right: 8px;
-            vertical-align: middle;
-            animation: alertPulse 1.5s infinite;
-        }
-        @keyframes alertPulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: .5; transform: scale(.8); }
-        }
+/* 导航 */
+.nav{position:sticky;top:0;z-index:1000;height:60px;background:rgba(10,12,15,.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 32px;gap:16px}
+.nav-logo{display:flex;align-items:center;gap:10px;cursor:pointer;flex-shrink:0;text-decoration:none;color:inherit}
+.nav-logo .mark{width:32px;height:32px;background:linear-gradient(135deg,var(--gold),var(--gold3));border-radius:var(--r);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;color:var(--bg0)}
+.logo-name{font-size:17px;font-weight:800;letter-spacing:2px;color:var(--text1)}
+.logo-name span{color:var(--gold)}
+.ver{font-size:10px;color:var(--text3);background:var(--bg3);border:1px solid var(--border);padding:2px 6px;border-radius:3px;font-family:var(--mono)}
+.nav-links{display:flex;gap:2px;list-style:none;flex:1;justify-content:center}
+.nav-links a{padding:7px 12px;border-radius:var(--r);font-size:13px;color:var(--text2);font-weight:500;display:flex;align-items:center;gap:5px;white-space:nowrap}
+.nav-links a:hover{color:var(--text1);background:var(--bg3)}
+.nav-links a.active{color:var(--gold);background:rgba(200,169,110,.07)}
+.nbadge{font-size:9px;background:var(--red2);color:#fff;padding:1px 5px;border-radius:8px;font-weight:700}
+.nav-right{display:flex;gap:8px;align-items:center;flex-shrink:0}
+.nav-search-btn{display:flex;align-items:center;gap:8px;background:var(--bg3);border:1px solid var(--border);color:var(--text2);padding:7px 14px;border-radius:var(--r);font-size:12px;transition:all .2s;white-space:nowrap}
+.nav-search-btn:hover{border-color:var(--gold);color:var(--gold)}
+.nav-burger{display:none;flex-direction:column;gap:5px;background:transparent;border:none;padding:4px}
+.nav-burger span{display:block;width:22px;height:2px;background:var(--text2);border-radius:2px}
+.mobile-menu{display:none;position:fixed;top:60px;left:0;right:0;background:rgba(10,12,15,.98);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);z-index:999;padding:12px 0}
+.mobile-menu.open{display:block}
+.mobile-menu a{display:flex;align-items:center;gap:10px;padding:12px 24px;font-size:14px;color:var(--text2);border-bottom:1px solid rgba(255,255,255,.03)}
+.mobile-menu a:hover{color:var(--gold);background:rgba(200,169,110,.05)}
 
-        /* ===== 导航 ===== */
-        .nav {
-            position: sticky; top: 0; z-index: 1000;
-            background: rgba(10,12,14,.95);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--bd);
-            padding: 0 32px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            height: 58px;
-        }
-        .nav-logo { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
-        .nav-ico {
-            width: 32px; height: 32px;
-            background: linear-gradient(135deg, var(--gold), var(--gold-d));
-            border-radius: 4px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 16px; font-weight: 700; color: var(--bg0);
-        }
-        .nav-txt { font-size: 16px; font-weight: 700; letter-spacing: 1.5px; white-space: nowrap; }
-        .nav-txt b { color: var(--gold); }
-        .nav-ver {
-            font-size: 10px; color: var(--txt3); font-family: var(--mono);
-            background: var(--bg2); padding: 2px 6px; border-radius: 2px;
-            border: 1px solid var(--bd);
-        }
-        .nav-menu { display: flex; gap: 2px; list-style: none; }
-        .nav-menu a {
-            padding: 7px 12px; border-radius: 4px; font-size: 13px;
-            color: var(--txt2); font-weight: 500;
-            display: flex; align-items: center; gap: 4px; transition: .2s;
-            white-space: nowrap;
-        }
-        .nav-menu a:hover { color: var(--txt); background: var(--bg2); }
-        .nav-menu a.on { color: var(--gold); background: rgba(200,169,110,.08); }
-        .nav-badge {
-            font-size: 9px; background: var(--err); color: #fff;
-            padding: 1px 5px; border-radius: 10px; font-weight: 700;
-        }
-        .nav-act { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
-        .btn-srch {
-            background: var(--bg2); border: 1px solid var(--bd);
-            color: var(--txt2); padding: 7px 12px; border-radius: 4px;
-            font-size: 12px; cursor: pointer; display: flex; align-items: center; gap: 6px;
-            transition: .2s; font-family: var(--font); white-space: nowrap;
-        }
-        .btn-srch:hover { border-color: var(--gold); color: var(--gold); }
-        .btn-srch kbd {
-            font-size: 10px; background: var(--bg1); border: 1px solid var(--bd);
-            padding: 1px 4px; border-radius: 2px; font-family: var(--mono);
-        }
+/* 英雄区 */
+.hero{min-height:540px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;background:radial-gradient(ellipse at 30% 50%,rgba(42,80,112,.18) 0%,transparent 60%),radial-gradient(ellipse at 70% 50%,rgba(74,140,92,.10) 0%,transparent 60%)}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(200,169,110,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(200,169,110,.025) 1px,transparent 1px);background-size:48px 48px;animation:gridScroll 25s linear infinite}
+@keyframes gridScroll{0%{transform:translateY(0)}100%{transform:translateY(48px)}}
+.hero-corner{position:absolute;width:50px;height:50px;border-color:var(--gold);border-style:solid;opacity:.3;pointer-events:none}
+.hero-corner.tl{top:24px;left:24px;border-width:2px 0 0 2px}
+.hero-corner.tr{top:24px;right:24px;border-width:2px 2px 0 0}
+.hero-corner.bl{bottom:40px;left:24px;border-width:0 0 2px 2px}
+.hero-corner.br{bottom:40px;right:24px;border-width:0 2px 2px 0}
+.hero-body{position:relative;z-index:2;text-align:center;max-width:860px;padding:40px 24px;width:100%;animation:fadeUp .7s ease forwards}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(200,169,110,.08);border:1px solid rgba(200,169,110,.25);color:var(--gold);padding:5px 16px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:22px}
+.hero-h1{font-size:clamp(28px,5vw,62px);font-weight:900;line-height:1.1;margin-bottom:16px;letter-spacing:-1px}
+.hero-h1 .l1{display:block;color:var(--text1)}
+.hero-h1 .l2{display:block;color:var(--gold);text-shadow:0 0 40px rgba(200,169,110,.35)}
+.hero-sub{font-size:15px;color:var(--text2);margin-bottom:36px;line-height:1.8;max-width:560px;margin-left:auto;margin-right:auto}
+.hero-search{position:relative;max-width:660px;margin:0 auto 28px}
+.hero-search input{width:100%;background:rgba(22,27,33,.92);border:2px solid var(--border);border-radius:var(--r2);padding:16px 140px 16px 52px;font-size:15px;color:var(--text1);outline:none;transition:all .3s;font-family:var(--font);cursor:pointer}
+.hero-search input::placeholder{color:var(--text3)}
+.hero-search input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(200,169,110,.1)}
+.hero-search .si{position:absolute;left:17px;top:50%;transform:translateY(-50%);color:var(--text3);font-size:18px;pointer-events:none}
+.hero-search .sb{position:absolute;right:7px;top:50%;transform:translateY(-50%);background:linear-gradient(135deg,var(--gold),var(--gold3));color:var(--bg0);border:none;padding:9px 20px;border-radius:var(--r);font-size:13px;font-weight:800;letter-spacing:.5px;white-space:nowrap}
+.hero-search .sb:hover{box-shadow:0 4px 16px rgba(200,169,110,.3)}
+.hot-tags{display:flex;align-items:center;justify-content:center;gap:6px;flex-wrap:wrap;margin-bottom:44px}
+.hot-tags .hl{font-size:11px;color:var(--text3)}
+.hot-tag{background:var(--bg3);border:1px solid var(--border);color:var(--text2);padding:4px 12px;border-radius:16px;font-size:11px;cursor:pointer;transition:all .2s}
+.hot-tag:hover{border-color:var(--gold);color:var(--gold)}
+.hero-nums{display:flex;align-items:center;justify-content:center;gap:32px;flex-wrap:wrap}
+.hero-num .n{display:block;font-size:26px;font-weight:900;color:var(--gold);font-family:var(--mono)}
+.hero-num .l{font-size:11px;color:var(--text3);letter-spacing:1px}
+.hero-div{width:1px;height:36px;background:var(--border)}
 
-        /* ===== 英雄区 ===== */
-        .hero {
-            position: relative;
-            min-height: 520px;
-            display: flex; align-items: center; justify-content: center;
-            overflow: hidden;
-            background:
-                linear-gradient(180deg, rgba(10,12,14,0) 0%, rgba(10,12,14,.6) 50%, var(--bg0) 100%),
-                linear-gradient(135deg, rgba(42,74,106,.25) 0%, transparent 50%, rgba(74,124,89,.15) 100%);
-        }
-        .hero::before {
-            content: '';
-            position: absolute; inset: 0;
-            background-image:
-                linear-gradient(rgba(200,169,110,.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(200,169,110,.03) 1px, transparent 1px);
-            background-size: 50px 50px;
-            animation: heroGrid 20s linear infinite;
-        }
-        @keyframes heroGrid { 0% { transform: translateY(0); } 100% { transform: translateY(50px); } }
-        .hero::after {
-            content: '';
-            position: absolute; inset: 0;
-            background: linear-gradient(transparent, rgba(200,169,110,.02) 50%, transparent);
-            background-size: 100% 4px;
-            pointer-events: none;
-        }
-        .hcorner { position: absolute; width: 48px; height: 48px; border-color: var(--gold); border-style: solid; opacity: .35; }
-        .hcorner.tl { top: 20px; left: 20px; border-width: 2px 0 0 2px; }
-        .hcorner.tr { top: 20px; right: 20px; border-width: 2px 2px 0 0; }
-        .hcorner.bl { bottom: 40px; left: 20px; border-width: 0 0 2px 2px; }
-        .hcorner.br { bottom: 40px; right: 20px; border-width: 0 2px 2px 0; }
-        .hero-c { position: relative; z-index: 2; text-align: center; max-width: 860px; padding: 40px 20px; }
-        .hero-badge {
-            display: inline-flex; align-items: center; gap: 8px;
-            background: rgba(200,169,110,.1); border: 1px solid rgba(200,169,110,.3);
-            color: var(--gold); padding: 5px 16px; border-radius: 20px;
-            font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
-            margin-bottom: 20px;
-        }
-        .hero-t { font-size: clamp(28px, 5vw, 56px); font-weight: 900; line-height: 1.1; margin-bottom: 14px; letter-spacing: -1px; }
-        .hero-t .l1 { color: var(--txt); display: block; }
-        .hero-t .l2 { color: var(--gold); display: block; text-shadow: 0 0 40px rgba(200,169,110,.4); }
-        .hero-sub { font-size: 15px; color: var(--txt2); margin-bottom: 32px; max-width: 560px; margin-left: auto; margin-right: auto; line-height: 1.8; }
+/* 工具栏 */
+.tools-bar{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);overflow-x:auto}
+.tools-bar::-webkit-scrollbar{height:3px}
+.tools-bar::-webkit-scrollbar-thumb{background:var(--gold3)}
+.tools-inner{display:flex;min-width:max-content;max-width:1400px;margin:0 auto;padding:0 32px}
+.tool-item{display:flex;align-items:center;gap:9px;padding:14px 22px;border-right:1px solid var(--border);cursor:pointer;transition:background .2s;position:relative;white-space:nowrap;flex-shrink:0}
+.tool-item:first-child{border-left:1px solid var(--border)}
+.tool-item:hover{background:rgba(200,169,110,.04)}
+.tool-item:hover .t-icon{color:var(--gold)}
+.tool-chip{position:absolute;top:6px;right:6px;font-size:8px;padding:1px 5px;border-radius:3px;font-weight:800}
+.chip-hot{background:var(--red2);color:#fff}
+.chip-new{background:#4a8c5c;color:#fff}
+.t-icon{font-size:20px;color:var(--text2);transition:color .2s}
+.t-name{font-size:13px;font-weight:600;color:var(--text1);display:block}
+.t-desc{font-size:10px;color:var(--text3);display:block}
 
-        /* 搜索框 */
-        .hero-search {
-            max-width: 640px;
-            margin: 0 auto 28px;
-            display: flex;
-            gap: 8px;
-            align-items: stretch;
-        }
-        .hero-search-in { flex: 1; position: relative; }
-        .hero-search-in input {
-            width: 100%;
-            background: rgba(22,27,32,.9);
-            border: 2px solid var(--bd);
-            border-radius: 6px;
-            padding: 14px 16px 14px 44px;
-            font-size: 14px;
-            color: var(--txt);
-            outline: none;
-            transition: .3s;
-            font-family: var(--font);
-            backdrop-filter: blur(10px);
-            height: 100%;
-        }
-        .hero-search-in input::placeholder { color: var(--txt3); }
-        .hero-search-in input:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(200,169,110,.1); }
-        .hero-search-in .si { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--txt3); font-size: 16px; pointer-events: none; }
-        .hero-search .sb {
-            background: linear-gradient(135deg, var(--gold), var(--gold-d));
-            color: var(--bg0); border: none;
-            padding: 14px 22px; border-radius: 6px;
-            font-size: 13px; font-weight: 700; cursor: pointer;
-            letter-spacing: .5px; transition: .3s; white-space: nowrap;
-            font-family: var(--font);
-        }
-        .hero-search .sb:hover { box-shadow: 0 4px 20px rgba(200,169,110,.3); }
+/* 主容器 */
+.wrap{max-width:1400px;margin:0 auto;padding:52px 32px}
+.sec-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+.sec-title{display:flex;align-items:center;gap:10px;font-size:18px;font-weight:700;color:var(--text1)}
+.sec-title::before{content:'';width:4px;height:22px;background:linear-gradient(180deg,var(--gold),transparent);border-radius:2px;flex-shrink:0}
+.sec-tag{font-size:10px;background:rgba(200,169,110,.1);border:1px solid rgba(200,169,110,.25);color:var(--gold);padding:2px 8px;border-radius:3px;letter-spacing:1px}
+.sec-more{font-size:12px;color:var(--text3);display:flex;align-items:center;gap:3px;transition:color .2s;white-space:nowrap}
+.sec-more:hover{color:var(--gold)}
 
-        .hot-tags { display: flex; align-items: center; justify-content: center; gap: 6px; flex-wrap: wrap; margin-bottom: 36px; }
-        .hot-tags .label { font-size: 12px; color: var(--txt3); letter-spacing: .5px; }
-        .htag {
-            background: var(--bg2); border: 1px solid var(--bd);
-            color: var(--txt2); padding: 4px 12px; border-radius: 20px;
-            font-size: 12px; cursor: pointer; transition: .2s;
-        }
-        .htag:hover { border-color: var(--gold); color: var(--gold); }
+/* 版本横幅 */
+.update-bar{background:linear-gradient(135deg,rgba(26,18,0,.9),rgba(22,27,33,.9));border:1px solid rgba(200,169,110,.25);border-radius:var(--r2);padding:18px 24px;margin-bottom:44px;display:flex;align-items:center;gap:16px;position:relative;overflow:hidden;flex-wrap:wrap}
+.update-bar::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--gold),transparent)}
+.u-tag{background:linear-gradient(135deg,var(--gold),var(--gold3));color:var(--bg0);padding:4px 12px;border-radius:var(--r);font-size:10px;font-weight:800;letter-spacing:2px;white-space:nowrap;flex-shrink:0}
+.u-body{flex:1;min-width:200px}
+.u-title{font-size:14px;font-weight:600;color:var(--text1);margin-bottom:3px}
+.u-desc{font-size:12px;color:var(--text2)}
+.u-desc em{color:var(--gold);font-style:normal}
+.u-time{font-size:11px;color:var(--text3);font-family:var(--mono);white-space:nowrap}
+.u-btn{background:transparent;border:1px solid rgba(200,169,110,.25);color:var(--gold);padding:7px 14px;border-radius:var(--r);font-size:11px;white-space:nowrap;transition:all .2s;flex-shrink:0}
+.u-btn:hover{background:rgba(200,169,110,.08)}
 
-        .hero-stats { display: flex; align-items: center; justify-content: center; gap: 32px; flex-wrap: wrap; }
-        .hst { text-align: center; }
-        .hst-n { font-size: 24px; font-weight: 800; color: var(--gold); font-family: var(--mono); display: block; }
-        .hst-l { font-size: 11px; color: var(--txt3); letter-spacing: .5px; }
-        .hsd { width: 1px; height: 32px; background: var(--bd); flex-shrink: 0; }
+/* 两栏 */
+.layout{display:grid;grid-template-columns:1fr 340px;gap:28px;align-items:start}
 
-        /* ===== 快捷工具 ===== */
-        .qtools {
-            background: var(--bg1);
-            border-top: 1px solid var(--bd);
-            border-bottom: 1px solid var(--bd);
-            overflow-x: auto;
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-        .qtools::-webkit-scrollbar { display: none; }
-        .qtools-in {
-            display: flex;
-            min-width: max-content;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-        .qt {
-            display: flex; align-items: center; gap: 10px;
-            padding: 13px 22px;
-            border-right: 1px solid var(--bd);
-            cursor: pointer; transition: .2s;
-            position: relative; white-space: nowrap;
-        }
-        .qt:first-child { border-left: 1px solid var(--bd); }
-        .qt:hover { background: rgba(200,169,110,.04); }
-        .qt:hover .qi { color: var(--gold); }
-        .qt.hot::after, .qt.new::after {
-            position: absolute; top: 5px; right: 5px;
-            font-size: 8px; padding: 1px 4px; border-radius: 2px; font-weight: 700;
-        }
-        .qt.hot::after { content: 'HOT'; background: var(--err); color: #fff; }
-        .qt.new::after { content: 'NEW'; background: var(--ok); color: #fff; }
-        .qi { font-size: 18px; color: var(--txt2); transition: .2s; }
-        .qt-info .qn { font-size: 13px; font-weight: 600; color: var(--txt); }
-        .qt-info .qd { font-size: 10px; color: var(--txt3); }
+/* 新手卡片 */
+.newbie-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:44px}
+.nb-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:18px;cursor:pointer;transition:all .3s;position:relative;overflow:hidden;text-decoration:none;display:block;color:inherit}
+.nb-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),transparent);opacity:0;transition:opacity .3s}
+.nb-card:hover{border-color:var(--gold);transform:translateY(-2px);box-shadow:var(--glow)}
+.nb-card:hover::after{opacity:1}
+.nb-emoji{font-size:28px;margin-bottom:10px;display:block}
+.nb-title{font-size:13px;font-weight:700;color:var(--text1);margin-bottom:6px}
+.nb-desc{font-size:11px;color:var(--text3);line-height:1.6}
 
-        /* ===== 主体 ===== */
-        .main { max-width: 1400px; margin: 0 auto; padding: 44px 32px; }
+/* 地图卡片 */
+.maps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:44px}
+.map-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);overflow:hidden;cursor:pointer;transition:all .3s;text-decoration:none;display:block;color:inherit}
+.map-card:hover{border-color:var(--gold);transform:translateY(-2px);box-shadow:var(--glow)}
+.map-img{width:100%;height:110px;display:flex;align-items:center;justify-content:center;font-size:36px;position:relative}
+.map-diff{position:absolute;top:7px;right:7px;padding:2px 8px;border-radius:3px;font-size:9px;font-weight:800}
+.d-easy{background:rgba(74,140,92,.85);color:#fff}
+.d-mid{background:rgba(192,112,48,.85);color:#fff}
+.d-hard{background:rgba(192,80,80,.85);color:#fff}
+.d-ex{background:rgba(144,48,200,.85);color:#fff}
+.map-body{padding:12px 14px}
+.map-name{font-size:14px;font-weight:700;margin-bottom:5px;color:var(--text1)}
+.map-name-en{font-size:11px;color:var(--text3);font-weight:400;margin-left:4px}
+.map-meta{display:flex;gap:10px;margin-bottom:8px;flex-wrap:wrap}
+.map-meta span{font-size:10px;color:var(--text3)}
+.map-tags{display:flex;gap:5px;flex-wrap:wrap}
+.map-tag{font-size:9px;background:rgba(255,255,255,.04);border:1px solid var(--border);color:var(--text3);padding:2px 7px;border-radius:3px}
 
-        /* 区块标题 */
-        .sec-h { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; flex-wrap: wrap; gap: 8px; }
-        .sec-t { display: flex; align-items: center; gap: 10px; font-size: 18px; font-weight: 700; }
-        .sec-t::before { content: ''; width: 4px; height: 20px; background: linear-gradient(180deg, var(--gold), transparent); border-radius: 2px; flex-shrink: 0; }
-        .sec-tag { font-size: 10px; background: rgba(200,169,110,.1); border: 1px solid rgba(200,169,110,.3); color: var(--gold); padding: 2px 8px; border-radius: 3px; letter-spacing: 1px; }
-        .sec-m { font-size: 12px; color: var(--txt3); display: flex; align-items: center; gap: 4px; transition: .2s; white-space: nowrap; }
-        .sec-m:hover { color: var(--gold); }
+/* 弹药表格 */
+.ammo-sec{margin-bottom:44px}
+.filter-row{display:flex;gap:7px;margin-bottom:14px;flex-wrap:wrap}
+.f-btn{background:var(--bg3);border:1px solid var(--border);color:var(--text2);padding:5px 13px;border-radius:16px;font-size:11px;cursor:pointer;transition:all .2s}
+.f-btn:hover,.f-btn.on{background:rgba(200,169,110,.08);border-color:var(--gold);color:var(--gold)}
+.table-wrap{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);overflow:hidden;overflow-x:auto}
+.ammo-table{width:100%;min-width:700px;border-collapse:collapse;font-size:12px}
+.ammo-table thead{background:var(--bg2);border-bottom:1px solid var(--border)}
+.ammo-table th{padding:10px 14px;text-align:left;font-size:10px;font-weight:700;color:var(--text3);letter-spacing:1px;text-transform:uppercase;white-space:nowrap;cursor:pointer;user-select:none}
+.ammo-table th:hover{color:var(--gold)}
+.ammo-table th.sort-asc::after{content:' ↑';color:var(--gold)}
+.ammo-table th.sort-desc::after{content:' ↓';color:var(--gold)}
+.ammo-table th.sortable::after{content:' ↕';opacity:.4}
+.ammo-table tbody tr{border-bottom:1px solid rgba(255,255,255,.03);transition:background .15s}
+.ammo-table tbody tr:hover{background:rgba(200,169,110,.03)}
+.ammo-table tbody tr:last-child{border-bottom:none}
+.ammo-table td{padding:11px 14px;color:var(--text2);white-space:nowrap}
+.td-name{font-weight:600;color:var(--text1)!important;display:flex;align-items:center;gap:7px}
+.cal-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.v-hi{color:var(--green2)!important;font-weight:700}
+.v-md{color:var(--orange2)!important;font-weight:700}
+.v-lo{color:var(--red2)!important;font-weight:700}
+.pen-wrap{display:flex;align-items:center;gap:7px}
+.pen-track{width:72px;height:5px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden;flex-shrink:0}
+.pen-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--green2),var(--gold))}
+.armc-wrap{display:flex;gap:2px}
+.armc{width:17px;height:17px;border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:800}
+.armc-y{background:rgba(74,140,92,.25);color:var(--green2);border:1px solid rgba(74,140,92,.3)}
+.armc-n{background:rgba(192,80,80,.10);color:var(--red2);border:1px solid rgba(192,80,80,.15)}
+.armc-m{background:rgba(192,112,48,.20);color:var(--orange2);border:1px solid rgba(192,112,48,.25)}
 
-        /* ===== 更新横幅 ===== */
-        .upd {
-            background: linear-gradient(135deg, rgba(26,20,0,.8), rgba(22,27,32,.8));
-            border: 1px solid rgba(200,169,110,.3);
-            border-radius: 8px;
-            padding: 16px 22px;
-            margin-bottom: 36px;
-            display: flex; align-items: center; gap: 16px;
-            position: relative; overflow: hidden;
-            flex-wrap: wrap;
-        }
-        .upd::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: linear-gradient(180deg, var(--gold), transparent); }
-        .upd-tag {
-            background: linear-gradient(135deg, var(--gold), var(--gold-d));
-            color: var(--bg0); padding: 4px 12px; border-radius: 4px;
-            font-size: 11px; font-weight: 700; letter-spacing: 1.5px; white-space: nowrap;
-            flex-shrink: 0;
-        }
-        .upd-c { flex: 1; min-width: 200px; }
-        .upd-ct { font-size: 14px; font-weight: 600; margin-bottom: 2px; }
-        .upd-cd { font-size: 12px; color: var(--txt2); }
-        .upd-cd span { color: var(--gold); }
-        .upd-right { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
-        .upd-time { font-size: 11px; color: var(--txt3); font-family: var(--mono); white-space: nowrap; }
-        .upd-btn {
-            background: none; border: 1px solid rgba(200,169,110,.3); color: var(--gold);
-            padding: 6px 14px; border-radius: 4px; font-size: 12px; cursor: pointer;
-            white-space: nowrap; transition: .2s; font-family: var(--font);
-        }
-        .upd-btn:hover { background: rgba(200,169,110,.1); }
+/* 配装 */
+.loadout-sec{margin-bottom:44px}
+.tab-row{display:flex;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2) var(--r2) 0 0;overflow:hidden;border-bottom:none;overflow-x:auto}
+.ltab{padding:11px 18px;font-size:12px;font-weight:600;cursor:pointer;color:var(--text3);border-right:1px solid var(--border);display:flex;align-items:center;gap:7px;transition:all .2s;white-space:nowrap;flex-shrink:0}
+.ltab:last-child{border-right:none}
+.ltab.on{background:rgba(200,169,110,.07);color:var(--gold);box-shadow:inset 0 -2px 0 var(--gold)}
+.bgt{font-size:9px;padding:1px 5px;border-radius:3px;font-weight:800}
+.bg-low{background:rgba(74,140,92,.2);color:var(--green2)}
+.bg-mid{background:rgba(192,112,48,.2);color:var(--orange2)}
+.bg-hi{background:rgba(200,169,110,.2);color:var(--gold)}
+.tab-body{background:var(--bg3);border:1px solid var(--border);border-radius:0 0 var(--r2) var(--r2);padding:20px}
+.loadout-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.lc-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);padding:18px;cursor:pointer;transition:all .3s}
+.lc-card:hover{border-color:var(--gold);box-shadow:var(--glow)}
+.lc-hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.lc-name{font-size:15px;font-weight:700;color:var(--text1)}
+.lc-price{font-size:12px;color:var(--gold);font-family:var(--mono);font-weight:700}
+.lc-img{width:100%;height:64px;background:var(--bg3);border-radius:var(--r);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:32px;margin-bottom:10px}
+.lc-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-bottom:10px}
+.lc-stat{background:var(--bg3);border-radius:var(--r);padding:7px;text-align:center}
+.lc-stat-v{font-size:17px;font-weight:800;color:var(--gold);font-family:var(--mono);display:block}
+.lc-stat-l{font-size:9px;color:var(--text3)}
+.lc-tags{display:flex;gap:5px;flex-wrap:wrap}
+.lt{font-size:9px;padding:2px 7px;border-radius:3px;font-weight:700}
+.lt-rec{background:rgba(200,169,110,.12);color:var(--gold);border:1px solid rgba(200,169,110,.2)}
+.lt-pvp{background:rgba(192,80,80,.12);color:var(--red2);border:1px solid rgba(192,80,80,.2)}
+.lt-pve{background:rgba(74,140,92,.12);color:var(--green2);border:1px solid rgba(74,140,92,.2)}
+.lt-bgt{background:rgba(42,80,112,.25);color:var(--blue2);border:1px solid rgba(74,128,176,.2)}
 
-        /* ===== 两栏 ===== */
-        .grid2 { display: grid; grid-template-columns: 1fr 320px; gap: 28px; }
+/* 任务 */
+.quest-sec{margin-bottom:44px}
+.m-tabs{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px}
+.m-tab{display:flex;align-items:center;gap:5px;padding:7px 14px;background:var(--bg3);border:1px solid var(--border);border-radius:16px;font-size:11px;font-weight:600;cursor:pointer;transition:all .2s;color:var(--text2)}
+.m-tab.on,.m-tab:hover{background:rgba(200,169,110,.07);border-color:var(--gold);color:var(--gold)}
+.quest-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.qc-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:14px;cursor:pointer;transition:all .3s}
+.qc-card:hover{border-color:var(--gold);box-shadow:var(--glow)}
+.qc-hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:7px;gap:8px}
+.qc-name{font-size:13px;font-weight:700;color:var(--text1)}
+.qc-diff{font-size:9px;font-weight:800;padding:2px 7px;border-radius:3px;white-space:nowrap;flex-shrink:0}
+.qc-desc{font-size:11px;color:var(--text2);margin-bottom:9px;line-height:1.5}
+.qc-rewards{display:flex;gap:6px;flex-wrap:wrap}
+.qc-reward{font-size:10px;background:var(--bg2);padding:3px 8px;border-radius:3px;display:flex;align-items:center;gap:3px}
+.qr-exp{color:var(--gold)}
+.qr-rep{color:var(--blue2)}
+.qr-item{color:var(--green2)}
 
-        /* ===== 新手引导 ===== */
-        .nb-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 40px; }
-        .nb {
-            background: var(--bg2); border: 1px solid var(--bd); border-radius: 8px;
-            padding: 20px 16px; text-align: center; cursor: pointer; transition: .3s;
-            position: relative; overflow: hidden;
-        }
-        .nb:hover { border-color: var(--gold); transform: translateY(-2px); box-shadow: var(--glow); }
-        .nb::after {
-            content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
-            background: linear-gradient(90deg, var(--gold), transparent);
-            opacity: 0; transition: .3s;
-        }
-        .nb:hover::after { opacity: 1; }
-        .nb .em { font-size: 28px; margin-bottom: 10px; display: block; }
-        .nb .nt { font-size: 13px; font-weight: 700; margin-bottom: 6px; }
-        .nb .nd { font-size: 11px; color: var(--txt3); line-height: 1.5; }
+/* 文章列表 */
+.art-list{display:flex;flex-direction:column;gap:10px;margin-bottom:44px}
+.art-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:16px;display:flex;gap:14px;cursor:pointer;transition:all .25s;text-decoration:none;color:inherit}
+.art-card:hover{border-color:var(--gold);transform:translateX(3px)}
+.art-icon{width:44px;height:44px;border-radius:var(--r);background:var(--bg2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.art-body{flex:1;min-width:0}
+.art-cat{font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:3px}
+.cat-guide{color:var(--gold)}
+.cat-weapon{color:var(--blue2)}
+.cat-map{color:var(--green2)}
+.cat-economy{color:var(--orange2)}
+.cat-newbie{color:var(--purple2)}
+.art-title{font-size:14px;font-weight:600;color:var(--text1);margin-bottom:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.art-card:hover .art-title{color:var(--gold)}
+.art-meta{display:flex;gap:10px;font-size:10px;color:var(--text3);flex-wrap:wrap}
+.art-right{display:flex;flex-direction:column;align-items:flex-end;justify-content:space-between;flex-shrink:0;gap:8px}
+.badge-hot{font-size:9px;background:rgba(192,80,80,.15);color:var(--red2);border:1px solid rgba(192,80,80,.2);padding:2px 7px;border-radius:3px;font-weight:800}
+.badge-new{font-size:9px;background:rgba(74,140,92,.15);color:var(--green2);border:1px solid rgba(74,140,92,.2);padding:2px 7px;border-radius:3px;font-weight:800}
+.art-arr{color:var(--text3);font-size:18px;transition:all .2s;margin-top:auto}
+.art-card:hover .art-arr{color:var(--gold);transform:translateX(3px)}
 
-        /* ===== 地图卡片 ===== */
-        .maps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 40px; }
-        .mc {
-            background: var(--bg2); border: 1px solid var(--bd); border-radius: 8px;
-            overflow: hidden; cursor: pointer; transition: .3s;
-            display: flex; flex-direction: column;
-        }
-        .mc:hover { border-color: var(--gold); transform: translateY(-2px); box-shadow: var(--glow); }
-        .mc-top {
-            height: 100px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 34px; position: relative;
-        }
-        .mc-diff {
-            position: absolute; top: 6px; right: 6px;
-            padding: 2px 7px; border-radius: 3px;
-            font-size: 9px; font-weight: 700; letter-spacing: .5px;
-        }
-        .de { background: rgba(68,170,102,.85); color: #fff; }
-        .dm { background: rgba(255,170,0,.85); color: #000; }
-        .dh { background: rgba(255,68,68,.85); color: #fff; }
-        .dx { background: rgba(150,0,200,.85); color: #fff; }
-        .mc-body { padding: 12px 14px; flex: 1; }
-        .mc-name { font-size: 14px; font-weight: 700; margin-bottom: 5px; }
-        .mc-meta { display: flex; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
-        .mc-meta span { font-size: 10px; color: var(--txt3); white-space: nowrap; }
-        .mc-tags { display: flex; gap: 4px; flex-wrap: wrap; }
-        .mc-tags span { font-size: 9px; background: rgba(255,255,255,.05); border: 1px solid var(--bd); color: var(--txt3); padding: 2px 7px; border-radius: 3px; }
+/* 数据横幅 */
+.data-banner{background:linear-gradient(135deg,var(--bg3),var(--bg2));border:1px solid var(--border);border-radius:var(--r2);padding:28px;margin-bottom:44px;position:relative;overflow:hidden}
+.data-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.data-block{text-align:center;padding:16px;background:rgba(255,255,255,.02);border-radius:var(--r2);border:1px solid rgba(255,255,255,.04)}
+.data-num{font-size:32px;font-weight:900;color:var(--gold);font-family:var(--mono);display:block;margin-bottom:3px}
+.data-label{font-size:11px;color:var(--text3);letter-spacing:1px}
 
-        /* ===== 弹药表格 ===== */
-        .ammo-filters { display: flex; gap: 6px; margin-bottom: 14px; flex-wrap: wrap; }
-        .afbtn {
-            background: var(--bg2); border: 1px solid var(--bd);
-            color: var(--txt2); padding: 5px 12px; border-radius: 20px;
-            font-size: 12px; cursor: pointer; transition: .2s; font-family: var(--font);
-        }
-        .afbtn:hover, .afbtn.on { background: rgba(200,169,110,.1); border-color: var(--gold); color: var(--gold); }
-        .atbl-wrap {
-            background: var(--bg2); border: 1px solid var(--bd); border-radius: 8px;
-            overflow-x: auto; -webkit-overflow-scrolling: touch;
-        }
-        .atbl { width: 100%; border-collapse: collapse; font-size: 12px; min-width: 720px; }
-        .atbl thead { background: var(--bg1); border-bottom: 1px solid var(--bd); }
-        .atbl th {
-            padding: 10px 12px; text-align: left; font-size: 10px; font-weight: 600;
-            color: var(--txt3); letter-spacing: .5px; text-transform: uppercase;
-            cursor: pointer; white-space: nowrap;
-        }
-        .atbl th:hover { color: var(--gold); }
-        .atbl tbody tr { border-bottom: 1px solid rgba(255,255,255,.03); transition: .15s; }
-        .atbl tbody tr:hover { background: rgba(200,169,110,.04); }
-        .atbl tbody tr:last-child { border-bottom: none; }
-        .atbl td { padding: 10px 12px; color: var(--txt2); white-space: nowrap; }
-        .an { font-weight: 600; color: var(--txt) !important; display: flex; align-items: center; gap: 7px; }
-        .an .adot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
-        .vh { color: var(--ok) !important; font-weight: 600; }
-        .vm { color: var(--warn) !important; font-weight: 600; }
-        .vl { color: var(--txt3) !important; }
-        .pb { display: flex; align-items: center; gap: 7px; }
-        .pb-t { width: 64px; height: 5px; background: rgba(255,255,255,.05); border-radius: 3px; overflow: hidden; flex-shrink: 0; }
-        .pb-f { height: 100%; border-radius: 3px; background: linear-gradient(90deg, var(--green-l), var(--gold)); }
-        .acb { display: flex; gap: 2px; }
-        .ac {
-            width: 16px; height: 16px; border-radius: 2px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 8px; font-weight: 700;
-        }
-        .ac-y { background: rgba(68,170,102,.25); color: var(--ok); border: 1px solid rgba(68,170,102,.3); }
-        .ac-n { background: rgba(255,68,68,.1); color: var(--err); border: 1px solid rgba(255,68,68,.15); }
-        .ac-m { background: rgba(255,170,0,.15); color: var(--warn); border: 1px solid rgba(255,170,0,.25); }
+/* 侧边栏 */
+.sidebar{display:flex;flex-direction:column;gap:20px}
+.sc{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);overflow:hidden}
+.sc-hd{padding:12px 14px;border-bottom:1px solid var(--border);background:var(--bg2);display:flex;align-items:center;justify-content:space-between}
+.sc-title{font-size:12px;font-weight:700;display:flex;align-items:center;gap:7px;color:var(--text1)}
+.sc-body{padding:14px}
+.srv-list{display:flex;flex-direction:column;gap:7px}
+.srv-item{display:flex;align-items:center;justify-content:space-between;padding:7px 10px;background:var(--bg2);border-radius:var(--r)}
+.srv-name{font-size:11px;color:var(--text2);display:flex;align-items:center;gap:7px}
+.srv-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.dot-on{background:var(--green2);box-shadow:0 0 5px rgba(106,170,122,.5)}
+.dot-busy{background:var(--orange2)}
+.dot-off{background:var(--red2)}
+.srv-ping{font-size:10px;color:var(--text3);font-family:var(--mono)}
+.rank-list{display:flex;flex-direction:column}
+.ri{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.04)}
+.ri:last-child{border-bottom:none;padding-bottom:0}
+.ri-rank{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;flex-shrink:0}
+.r1{background:linear-gradient(135deg,#ffd700,#ff8c00);color:#000}
+.r2{background:linear-gradient(135deg,#c0c0c0,#808080);color:#000}
+.r3{background:linear-gradient(135deg,#cd7f32,#8b4513);color:#fff}
+.r-other{background:var(--bg2);color:var(--text3);border:1px solid var(--border)}
+.ri-info{flex:1;min-width:0}
+.ri-name{font-size:12px;font-weight:600;color:var(--text1);margin-bottom:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ri-src{font-size:10px;color:var(--text3)}
+.ri-price{font-size:12px;font-weight:800;color:var(--gold);font-family:var(--mono);white-space:nowrap}
+.price-input-wrap{position:relative;margin-bottom:10px}
+.pi-icon{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--text3);font-size:13px;pointer-events:none}
+.price-input{width:100%;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:9px 12px 9px 32px;font-size:12px;color:var(--text1);outline:none;font-family:var(--font);transition:border-color .2s}
+.price-input:focus{border-color:var(--gold)}
+.price-items{display:flex;flex-direction:column;gap:6px}
+.pr-item{display:flex;align-items:center;justify-content:space-between;padding:7px 10px;background:var(--bg2);border-radius:var(--r)}
+.pr-name{font-size:11px;color:var(--text1)}
+.pr-right{display:flex;align-items:center;gap:5px}
+.pr-trend{font-size:9px;padding:1px 5px;border-radius:2px}
+.t-up{background:rgba(74,140,92,.2);color:var(--green2)}
+.t-down{background:rgba(192,80,80,.15);color:var(--red2)}
+.t-flat{background:rgba(255,255,255,.05);color:var(--text3)}
+.pr-val{font-size:11px;color:var(--gold);font-family:var(--mono);font-weight:700}
+.path-list{display:flex;flex-direction:column}
+.path-item{display:flex;gap:10px;padding-bottom:14px;position:relative}
+.path-item:not(:last-child)::before{content:'';position:absolute;left:13px;top:30px;bottom:0;width:1px;background:linear-gradient(180deg,var(--border),transparent)}
+.path-num{width:28px;height:28px;border-radius:50%;background:var(--bg2);border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:var(--gold);flex-shrink:0;position:relative;z-index:1}
+.path-num.done{background:rgba(74,140,92,.15);border-color:var(--green2);color:var(--green2)}
+.path-info{padding-top:3px}
+.pi-title{font-size:12px;font-weight:600;color:var(--text1);margin-bottom:2px}
+.pi-desc{font-size:10px;color:var(--text3);line-height:1.5}
 
-        /* ===== 配装 */
-        .lo-wrap { margin-bottom: 40px; }
-        .lo-tabs {
-            display: flex;
-            background: var(--bg2);
-            border: 1px solid var(--bd);
-            border-bottom: none;
-            border-radius: 8px 8px 0 0;
-            overflow: hidden;
-        }
-        .lo-tab {
-            padding: 10px 18px; font-size: 12px; font-weight: 600;
-            cursor: pointer; transition: .2s; color: var(--txt3);
-            border-right: 1px solid var(--bd);
-            display: flex; align-items: center; gap: 7px;
-        }
-        .lo-tab:last-child { border-right: none; }
-        .lo-tab.on { background: rgba(200,169,110,.08); color: var(--gold); }
-        .lo-tab:hover { color: var(--gold); }
-        .lo-tab .bt { font-size: 9px; padding: 1px 5px; border-radius: 3px; font-weight: 700; }
-        .bt-l { background: rgba(68,170,102,.2); color: var(--ok); }
-        .bt-m { background: rgba(255,170,0,.2); color: var(--warn); }
-        .bt-h { background: rgba(200,169,110,.2); color: var(--gold); }
-        .lo-body {
-            background: var(--bg2);
-            border: 1px solid var(--bd);
-            border-radius: 0 0 8px 8px;
-            padding: 18px;
-        }
-        .lo-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
-        .lo-card {
-            background: var(--bg1); border: 1px solid var(--bd); border-radius: 8px;
-            padding: 16px; transition: .3s; cursor: pointer;
-        }
-        .lo-card:hover { border-color: var(--gold); box-shadow: var(--glow); }
-        .lo-h { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; gap: 8px; }
-        .lo-name { font-size: 15px; font-weight: 700; }
-        .lo-price { font-size: 12px; color: var(--gold); font-family: var(--mono); font-weight: 600; white-space: nowrap; }
-        .lo-img {
-            width: 100%; height: 56px;
-            background: var(--bg2); border-radius: 4px;
-            margin-bottom: 10px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 30px; border: 1px solid var(--bd);
-        }
-        .lo-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 10px; }
-        .lo-st { background: var(--bg2); border-radius: 4px; padding: 6px; text-align: center; }
-        .lo-sv { font-size: 15px; font-weight: 800; color: var(--gold); font-family: var(--mono); display: block; }
-        .lo-sl { font-size: 9px; color: var(--txt3); }
-        .lo-tags { display: flex; gap: 4px; flex-wrap: wrap; }
-        .lt { font-size: 9px; padding: 2px 7px; border-radius: 3px; font-weight: 600; }
-        .lt-r { background: rgba(200,169,110,.15); color: var(--gold); border: 1px solid rgba(200,169,110,.2); }
-        .lt-p { background: rgba(255,68,68,.12); color: var(--red-l); border: 1px solid rgba(255,68,68,.2); }
-        .lt-e { background: rgba(68,170,102,.12); color: var(--ok); border: 1px solid rgba(68,170,102,.2); }
-        .lt-b { background: rgba(42,74,106,.25); color: var(--blue-l); border: 1px solid rgba(74,122,170,.2); }
+/* 搜索弹窗 */
+.search-ov{position:fixed;inset:0;background:rgba(0,0,0,.88);backdrop-filter:blur(8px);z-index:9999;display:flex;align-items:flex-start;justify-content:center;padding:80px 20px 20px;opacity:0;visibility:hidden;transition:all .25s}
+.search-ov.on{opacity:1;visibility:visible}
+.search-box{width:100%;max-width:640px}
+.sm-wrap{position:relative;margin-bottom:14px}
+.sm-icon{position:absolute;left:16px;top:50%;transform:translateY(-50%);font-size:20px;color:var(--gold);pointer-events:none}
+.sm-input{width:100%;background:var(--bg3);border:2px solid var(--gold);border-radius:var(--r2);padding:16px 52px;font-size:16px;color:var(--text1);outline:none;font-family:var(--font);box-shadow:0 0 32px rgba(200,169,110,.15)}
+.sm-input::placeholder{color:var(--text3)}
+.sm-esc{position:absolute;right:14px;top:50%;transform:translateY(-50%);background:var(--bg2);border:1px solid var(--border);color:var(--text2);width:36px;height:28px;border-radius:var(--r);display:flex;align-items:center;justify-content:center;font-size:10px;cursor:pointer;font-family:var(--mono)}
+.sm-sug{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);overflow:hidden}
+.sug-sec{padding:10px 14px;border-bottom:1px solid var(--border)}
+.sug-sec:last-child{border-bottom:none}
+.sug-title{font-size:9px;font-weight:800;color:var(--text3);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px}
+.sug-tags{display:flex;gap:5px;flex-wrap:wrap}
+.sug-tag{background:var(--bg2);border:1px solid var(--border);color:var(--text2);padding:4px 11px;border-radius:14px;font-size:11px;cursor:pointer;transition:all .2s}
+.sug-tag:hover{border-color:var(--gold);color:var(--gold)}
 
-        /* ===== 任务 ===== */
-        .q-tabs { display: flex; gap: 6px; margin-bottom: 14px; flex-wrap: wrap; }
-        .q-tab {
-            display: flex; align-items: center; gap: 5px;
-            padding: 7px 14px; background: var(--bg2); border: 1px solid var(--bd);
-            border-radius: 20px; font-size: 12px; font-weight: 600;
-            cursor: pointer; transition: .2s; color: var(--txt2);
-        }
-        .q-tab.on, .q-tab:hover { background: rgba(200,169,110,.08); border-color: var(--gold); color: var(--gold); }
-        .q-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-        .qc {
-            background: var(--bg2); border: 1px solid var(--bd); border-radius: 8px;
-            padding: 14px; cursor: pointer; transition: .3s;
-        }
-        .qc:hover { border-color: var(--gold); box-shadow: var(--glow); }
-        .qc-h { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; gap: 8px; }
-        .qc-name { font-size: 13px; font-weight: 700; }
-        .qc-diff { font-size: 9px; font-weight: 700; padding: 2px 7px; border-radius: 3px; white-space: nowrap; }
-        .qc-desc { font-size: 11px; color: var(--txt2); margin-bottom: 8px; line-height: 1.5; }
-        .qc-rew { display: flex; gap: 6px; flex-wrap: wrap; }
-        .qc-r { display: flex; align-items: center; gap: 3px; font-size: 10px; color: var(--txt3); background: var(--bg1); padding: 2px 7px; border-radius: 3px; }
-        .qc-r.exp { color: var(--gold); }
-        .qc-r.rep { color: var(--blue-l); }
-        .qc-r.item { color: var(--green-l); }
+/* 搜索结果 */
+.search-results{display:flex;flex-direction:column;gap:6px;max-height:300px;overflow-y:auto;margin-top:8px}
+.sr-item{display:flex;align-items:center;gap:12px;padding:10px 14px;background:var(--bg2);border-radius:var(--r);cursor:pointer;transition:all .2s;text-decoration:none;color:inherit}
+.sr-item:hover{background:var(--bg4);border-left:2px solid var(--gold)}
+.sr-icon{font-size:18px;flex-shrink:0}
+.sr-body{flex:1;min-width:0}
+.sr-title{font-size:13px;font-weight:600;color:var(--text1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sr-cat{font-size:10px;color:var(--text3)}
+.sr-empty{text-align:center;padding:24px;color:var(--text3);font-size:13px}
 
-        /* ===== 文章 ===== */
-        .art-list { display: flex; flex-direction: column; gap: 8px; }
-        .art {
-            background: var(--bg2); border: 1px solid var(--bd); border-radius: 8px;
-            padding: 14px 16px; display: flex; gap: 14px; cursor: pointer; transition: .2s;
-            align-items: center;
-        }
-        .art:hover { border-color: var(--gold); }
-        .art-ic {
-            width: 42px; height: 42px; border-radius: 4px;
-            background: var(--bg1); border: 1px solid var(--bd);
-            display: flex; align-items: center; justify-content: center;
-            font-size: 18px; flex-shrink: 0;
-        }
-        .art-body { flex: 1; min-width: 0; }
-        .art-cat { font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 3px; }
-        .c-guide { color: var(--gold); }
-        .c-weapon { color: var(--blue-l); }
-        .c-map { color: var(--green-l); }
-        .c-economy { color: var(--warn); }
-        .c-newbie { color: #aa88ff; }
-        .art-title {
-            font-size: 14px; font-weight: 600; margin-bottom: 3px; line-height: 1.4;
-            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-            transition: .2s;
-        }
-        .art:hover .art-title { color: var(--gold); }
-        .art-meta { display: flex; align-items: center; gap: 10px; font-size: 10px; color: var(--txt3); flex-wrap: wrap; }
-        .art-right { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
-        .art-badge { font-size: 9px; padding: 2px 7px; border-radius: 3px; font-weight: 700; white-space: nowrap; }
-        .ab-hot { background: rgba(255,68,68,.12); color: var(--err); border: 1px solid rgba(255,68,68,.2); }
-        .ab-new { background: rgba(68,170,102,.12); color: var(--ok); border: 1px solid rgba(68,170,102,.2); }
-        .art-arrow { color: var(--txt3); font-size: 16px; transition: .2s; }
-        .art:hover .art-arrow { color: var(--gold); transform: translateX(3px); }
+/* 页脚 */
+.footer{background:var(--bg2);border-top:1px solid var(--border);padding:44px 32px 20px;margin-top:80px}
+.footer-inner{max-width:1400px;margin:0 auto}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:36px;margin-bottom:36px}
+.fb-name{font-size:17px;font-weight:800;color:var(--gold);letter-spacing:2px;margin-bottom:10px}
+.fb-desc{font-size:12px;color:var(--text3);line-height:1.8;margin-bottom:16px}
+.fb-chips{display:flex;gap:8px;flex-wrap:wrap}
+.fb-chip{font-size:11px;color:var(--text3);background:var(--bg3);padding:3px 10px;border-radius:3px;border:1px solid var(--border)}
+.fl-title{font-size:10px;font-weight:800;color:var(--text2);letter-spacing:2px;text-transform:uppercase;margin-bottom:14px}
+.fl{list-style:none;display:flex;flex-direction:column;gap:8px}
+.fl a{font-size:12px;color:var(--text3);transition:color .2s}
+.fl a:hover{color:var(--gold)}
+.footer-btm{padding-top:20px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;font-size:11px;color:var(--text3);flex-wrap:wrap;gap:8px}
 
-        /* ===== 统计 ===== */
-        .stats-box {
-            background: linear-gradient(135deg, var(--bg2), var(--bg1));
-            border: 1px solid var(--bd); border-radius: 8px;
-            padding: 28px; margin-bottom: 40px;
-            position: relative; overflow: hidden;
-        }
-        .stats-box::before {
-            content: ''; position: absolute; top: -50%; right: -10%;
-            width: 400px; height: 400px;
-            background: radial-gradient(circle, rgba(200,169,110,.04) 0%, transparent 70%);
-        }
-        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; position: relative; z-index: 1; }
-        .stb {
-            text-align: center; padding: 16px 8px;
-            background: rgba(255,255,255,.02); border-radius: 8px;
-            border: 1px solid rgba(255,255,255,.04);
-        }
-        .stb-n { font-size: 30px; font-weight: 900; color: var(--gold); font-family: var(--mono); display: block; margin-bottom: 2px; }
-        .stb-l { font-size: 11px; color: var(--txt3); letter-spacing: .5px; }
-
-        /* ===== 侧栏 ===== */
-        .side { display: flex; flex-direction: column; gap: 16px; }
-        .sc { background: var(--bg2); border: 1px solid var(--bd); border-radius: 8px; overflow: hidden; }
-        .sc-h {
-            padding: 10px 14px; border-bottom: 1px solid var(--bd);
-            background: var(--bg1);
-            display: flex; align-items: center; justify-content: space-between;
-        }
-        .sc-t { font-size: 12px; font-weight: 700; display: flex; align-items: center; gap: 6px; }
-        .sc-t .i { font-size: 14px; }
-        .sc-b { padding: 12px 14px; }
-
-        .sv-item { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,.04); }
-        .sv-item:last-child { border-bottom: none; padding-bottom: 0; }
-        .sv-rank {
-            width: 22px; height: 22px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 10px; font-weight: 800; flex-shrink: 0;
-        }
-        .rk1 { background: linear-gradient(135deg, #ffd700, #ff8c00); color: #000; }
-        .rk2 { background: linear-gradient(135deg, #c0c0c0, #808080); color: #000; }
-        .rk3 { background: linear-gradient(135deg, #cd7f32, #8b4513); color: #fff; }
-        .rko { background: var(--bg1); color: var(--txt3); border: 1px solid var(--bd); }
-        .sv-info { flex: 1; min-width: 0; }
-        .sv-name { font-size: 12px; font-weight: 600; margin-bottom: 1px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .sv-desc { font-size: 10px; color: var(--txt3); }
-        .sv-price { font-size: 12px; font-weight: 700; color: var(--gold); font-family: var(--mono); white-space: nowrap; }
-
-        .srv-item {
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 6px 10px; background: var(--bg1); border-radius: 4px; margin-bottom: 5px;
-        }
-        .srv-item:last-child { margin-bottom: 0; }
-        .srv-name { font-size: 11px; color: var(--txt2); display: flex; align-items: center; gap: 6px; }
-        .srv-dot {
-            width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0;
-            background: var(--txt3);
-        }
-        .srv-dot.on { background: var(--ok); box-shadow: 0 0 5px rgba(68,170,102,.6); }
-        .srv-dot.busy { background: var(--warn); box-shadow: 0 0 5px rgba(255,170,0,.6); }
-        .srv-dot.off { background: var(--err); }
-        .srv-ping { font-size: 10px; font-family: var(--mono); color: var(--txt3); }
-
-        .ps { display: flex; gap: 10px; margin-bottom: 12px; position: relative; }
-        .ps:not(:last-child)::before {
-            content: ''; position: absolute; left: 14px; top: 28px; bottom: -4px;
-            width: 2px; background: linear-gradient(180deg, var(--bd), transparent);
-        }
-        .ps-n {
-            width: 28px; height: 28px; border-radius: 50%;
-            background: var(--bg1); border: 2px solid var(--bd);
-            display: flex; align-items: center; justify-content: center;
-            font-size: 10px; font-weight: 700; color: var(--gold);
-            flex-shrink: 0; position: relative; z-index: 1;
-        }
-        .ps-done .ps-n { background: rgba(68,170,102,.2); border-color: var(--ok); color: var(--ok); }
-        .ps-c .ps-t { font-size: 12px; font-weight: 600; margin-bottom: 1px; }
-        .ps-c .ps-d { font-size: 10px; color: var(--txt3); line-height: 1.5; }
-
-        /* ===== 底部 ===== */
-        .footer { background: var(--bg1); border-top: 1px solid var(--bd); padding: 40px 32px 20px; margin-top: 60px; }
-        .ft-grid { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 32px; margin-bottom: 32px; }
-        .ft-brand .fbn { font-size: 16px; font-weight: 700; color: var(--gold); margin-bottom: 10px; letter-spacing: 2px; }
-        .ft-brand .fbd { font-size: 12px; color: var(--txt3); line-height: 1.8; margin-bottom: 14px; }
-        .ft-tt { font-size: 11px; font-weight: 700; color: var(--txt2); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 10px; }
-        .ft-ll { list-style: none; display: flex; flex-direction: column; gap: 5px; }
-        .ft-ll a { font-size: 12px; color: var(--txt3); transition: .2s; display: flex; align-items: center; gap: 4px; }
-        .ft-ll a:hover { color: var(--gold); }
-        .ft-bot {
-            max-width: 1400px; margin: 0 auto;
-            padding-top: 18px; border-top: 1px solid var(--bd);
-            display: flex; align-items: center; justify-content: space-between;
-            font-size: 11px; color: var(--txt3);
-            flex-wrap: wrap; gap: 12px;
-        }
-
-        /* ===== 搜索弹窗 ===== */
-        .so {
-            position: fixed; inset: 0;
-            background: rgba(0,0,0,.85);
-            backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
-            z-index: 9999;
-            display: flex; align-items: flex-start; justify-content: center;
-            padding-top: 12vh;
-            opacity: 0; visibility: hidden; transition: .25s;
-        }
-        .so.on { opacity: 1; visibility: visible; }
-        .sm { width: 100%; max-width: 640px; padding: 0 16px; }
-        .sm-in { position: relative; margin-bottom: 12px; }
-        .sm-in input {
-            width: 100%;
-            background: var(--bg2); border: 2px solid var(--gold); border-radius: 8px;
-            padding: 16px 52px 16px 46px;
-            font-size: 16px; color: var(--txt); outline: none;
-            font-family: var(--font);
-            box-shadow: 0 0 40px rgba(200,169,110,.2);
-        }
-        .sm-in input::placeholder { color: var(--txt3); }
-        .sm-i { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); font-size: 18px; color: var(--gold); }
-        .sm-x {
-            position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
-            background: var(--bg1); border: 1px solid var(--bd); color: var(--txt3);
-            min-width: 32px; height: 28px; border-radius: 4px;
-            display: flex; align-items: center; justify-content: center;
-            cursor: pointer; font-size: 11px; font-family: var(--mono);
-            padding: 0 6px;
-        }
-        .sm-sug { background: var(--bg2); border: 1px solid var(--bd); border-radius: 8px; overflow: hidden; }
-        .sm-sec { padding: 10px 14px; border-bottom: 1px solid var(--bd); }
-        .sm-sec:last-child { border-bottom: none; }
-        .sm-st { font-size: 9px; font-weight: 700; color: var(--txt3); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; }
-        .sm-tags { display: flex; gap: 5px; flex-wrap: wrap; }
-        .sm-tag { background: var(--bg1); border: 1px solid var(--bd); color: var(--txt2); padding: 3px 10px; border-radius: 20px; font-size: 11px; cursor: pointer; transition: .2s; }
-        .sm-tag:hover { border-color: var(--gold); color: var(--gold); }
-
-        /* 加载态 */
-        .loading { text-align: center; padding: 40px; color: var(--txt3); font-size: 13px; }
-        .spinner { display: inline-block; width: 18px; height: 18px; border: 2px solid var(--bd); border-top-color: var(--gold); border-radius: 50%; animation: spin .8s linear infinite; margin-right: 6px; vertical-align: middle; }
-        @keyframes spin { to { transform: rotate(360deg); } }
-
-        /* ===== 响应式 ===== */
-        @media (max-width: 1200px) {
-            .grid2 { grid-template-columns: 1fr; }
-            .side { display: grid; grid-template-columns: repeat(2, 1fr); }
-        }
-        @media (max-width: 960px) {
-            .nav { padding: 0 16px; }
-            .nav-menu { display: none; }
-            .main { padding: 28px 16px; }
-            .maps-grid { grid-template-columns: repeat(2, 1fr); }
-            .nb-grid { grid-template-columns: repeat(2, 1fr); }
-            .lo-grid { grid-template-columns: 1fr; }
-            .q-list { grid-template-columns: 1fr; }
-            .stats-grid { grid-template-columns: repeat(2, 1fr); }
-            .ft-grid { grid-template-columns: 1fr 1fr; }
-            .side { grid-template-columns: 1fr; }
-        }
-        @media (max-width: 600px) {
-            .maps-grid { grid-template-columns: 1fr; }
-            .nb-grid { grid-template-columns: 1fr; }
-            .stats-grid { grid-template-columns: 1fr 1fr; }
-            .ft-grid { grid-template-columns: 1fr; }
-            .hero-search { flex-direction: column; }
-            .hero-search .sb { width: 100%; text-align: center; }
-            .upd { flex-direction: column; align-items: flex-start; gap: 10px; }
-            .upd-right { flex-wrap: wrap; }
-        }
-
-        .fade-in { animation: fi .5s ease forwards; }
-        @keyframes fi { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
-    </style>
+/* 响应式 */
+@media(max-width:1100px){.layout{grid-template-columns:1fr}.sidebar{display:grid;grid-template-columns:repeat(2,1fr)}.data-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:900px){.nav{padding:0 16px}.nav-links{display:none}.nav-burger{display:flex}.wrap{padding:32px 16px}.tools-inner{padding:0 16px}.maps-grid{grid-template-columns:repeat(2,1fr)}.newbie-grid{grid-template-columns:repeat(2,1fr)}.loadout-grid{grid-template-columns:1fr}.quest-grid{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr 1fr}.sidebar{grid-template-columns:1fr}}
+@media(max-width:620px){.hero-search input{padding:14px 110px 14px 44px;font-size:14px}.hero-search .sb{padding:8px 14px;font-size:12px}.maps-grid{grid-template-columns:1fr}.newbie-grid{grid-template-columns:1fr}.data-grid{grid-template-columns:repeat(2,1fr)}.footer-grid{grid-template-columns:1fr}.footer{padding:32px 16px 16px}.hero-nums{gap:16px}.update-bar{flex-direction:column;align-items:flex-start}}
+</style>
 </head>
 <body>
 
-    <!-- 公告条 -->
-    <div class="alert-bar" id="alertBar">
-        <span class="alert-dot"></span>
-        <span id="alertText">加载中...</span>
+<div class="top-bar"><span class="dot"></span><span id="topBarText">加载中...</span></div>
+
+<nav class="nav">
+  <a class="nav-logo" href="index.html">
+    <div class="mark">⚔</div>
+    <span class="logo-name">TARKOV<span>GUIDE</span></span>
+    <span class="ver" id="navVer">v0.15.0</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">🏠 首页</a></li>
+    <li><a href="maps.html">🗺️ 地图</a></li>
+    <li><a href="ammo.html">💊 弹药</a></li>
+    <li><a href="loadouts.html">🔫 武器</a></li>
+    <li><a href="quests.html">📋 任务</a></li>
+    <li><a href="articles.html">📰 攻略 <span class="nbadge" id="articleCount">0</span></a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="nav-search-btn" onclick="openSearch()">🔍 搜索 <kbd>Ctrl+K</kbd></button>
+    <button class="nav-burger" onclick="toggleMenu()" id="burgerBtn">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">🏠 首页</a>
+  <a href="maps.html">🗺️ 地图攻略</a>
+  <a href="ammo.html">💊 弹药数据</a>
+  <a href="loadouts.html">🔫 武器配装</a>
+  <a href="quests.html">📋 任务攻略</a>
+  <a href="articles.html">📰 全部攻略</a>
+</div>
+
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-corner tl"></div><div class="hero-corner tr"></div>
+  <div class="hero-corner bl"></div><div class="hero-corner br"></div>
+  <div class="hero-body">
+    <div class="hero-badge">⚡ 每日更新 · 版本 <span id="heroBadgeVer">0.15.0</span> · 中文最全</div>
+    <h1 class="hero-h1">
+      <span class="l1" id="heroL1">不是每一次撤离</span>
+      <span class="l2" id="heroL2">都靠运气</span>
+    </h1>
+    <p class="hero-sub" id="heroSub">专为塔科夫玩家打造 · 地图/武器/弹药/任务一站搞定<br>实时数据 · 深度攻略 · 让你每局都有胜算</p>
+    <div class="hero-search">
+      <span class="si">🔍</span>
+      <input type="text" placeholder="搜索地图、武器、任务、弹药..." onclick="openSearch()" readonly>
+      <button class="sb" onclick="openSearch()">立即搜索</button>
+    </div>
+    <div class="hot-tags">
+      <span class="hl">🔥 热门：</span>
+      <span class="hot-tag" onclick="searchFor('海关地图')">海关地图</span>
+      <span class="hot-tag" onclick="searchFor('M4A1配装')">M4A1配装</span>
+      <span class="hot-tag" onclick="searchFor('弹药推荐')">弹药推荐</span>
+      <span class="hot-tag" onclick="searchFor('新手入门')">新手入门</span>
+      <span class="hot-tag" onclick="searchFor('卢布刷取')">卢布刷取</span>
+    </div>
+    <div class="hero-nums">
+      <div class="hero-num"><span class="n" id="statArticles">0</span><span class="l">攻略文章</span></div>
+      <div class="hero-div"></div>
+      <div class="hero-num"><span class="n" id="statMaps">0</span><span class="l">完整地图</span></div>
+      <div class="hero-div"></div>
+      <div class="hero-num"><span class="n" id="statAmmo">0</span><span class="l">弹药数据</span></div>
+      <div class="hero-div"></div>
+      <div class="hero-num"><span class="n" id="statQuests">0</span><span class="l">任务攻略</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="tools-bar">
+  <div class="tools-inner">
+    <div class="tool-item" onclick="location.href='maps.html'"><span class="t-icon">🗺️</span><div><span class="t-name">互动地图</span><span class="t-desc">标注/出口/Boss</span></div><span class="tool-chip chip-hot">HOT</span></div>
+    <div class="tool-item" onclick="location.href='ammo.html'"><span class="t-icon">💊</span><div><span class="t-name">弹药速查</span><span class="t-desc">穿透伤害对比</span></div><span class="tool-chip chip-hot">HOT</span></div>
+    <div class="tool-item" onclick="location.href='loadouts.html'"><span class="t-icon">🔫</span><div><span class="t-name">配装推荐</span><span class="t-desc">预算最优方案</span></div></div>
+    <div class="tool-item" onclick="location.href='quests.html'"><span class="t-icon">📋</span><div><span class="t-name">任务追踪</span><span class="t-desc">商人任务全览</span></div></div>
+    <div class="tool-item" onclick="location.href='articles.html'"><span class="t-icon">📰</span><div><span class="t-name">攻略文章</span><span class="t-desc">深度内容</span></div><span class="tool-chip chip-new">NEW</span></div>
+    <div class="tool-item"><span class="t-icon">🏠</span><div><span class="t-name">藏匿处</span><span class="t-desc">升级材料清单</span></div><span class="tool-chip chip-new">NEW</span></div>
+    <div class="tool-item"><span class="t-icon">🧪</span><div><span class="t-name">医疗指南</span><span class="t-desc">伤势处理方案</span></div></div>
+    <div class="tool-item"><span class="t-icon">📊</span><div><span class="t-name">护甲数据</span><span class="t-desc">防护等级对比</span></div></div>
+  </div>
+</div>
+
+<main class="wrap">
+  <div class="update-bar">
+    <span class="u-tag" id="uTag">VER 0.15.0</span>
+    <div class="u-body">
+      <div class="u-title" id="uTitle">🔥 最新版本已上线，点击查看更新内容</div>
+      <div class="u-desc" id="uDesc">加载中...</div>
+    </div>
+    <div class="u-time" id="uTime"></div>
+    <button class="u-btn" onclick="location.href='articles.html'">查看完整日志 →</button>
+  </div>
+
+  <div class="layout">
+    <div class="main-col">
+
+      <div class="sec-hd">
+        <h2 class="sec-title">🎯 新手入门路线 <span class="sec-tag">STARTER</span></h2>
+        <a href="articles.html?cat=newbie" class="sec-more">完整手册 →</a>
+      </div>
+      <div class="newbie-grid">
+        <a href="articles.html?cat=newbie" class="nb-card"><span class="nb-emoji">🎮</span><div class="nb-title">了解基础机制</div><div class="nb-desc">保险、藏匿处、商人、技能——弄懂这些少死一半</div></a>
+        <a href="maps.html?id=customs" class="nb-card"><span class="nb-emoji">🗺️</span><div class="nb-title">先玩海关地图</div><div class="nb-desc">新手最友好的地图，资源丰富出口多，地形清晰</div></a>
+        <a href="ammo.html" class="nb-card"><span class="nb-emoji">💊</span><div class="nb-title">学会选弹药</div><div class="nb-desc">用对弹药比换武器更重要，穿透力才是关键</div></a>
+        <a href="articles.html?cat=economy" class="nb-card"><span class="nb-emoji">💰</span><div class="nb-title">建立经济循环</div><div class="nb-desc">先做任务升级藏匿处，经济才能真正滚起来</div></a>
+      </div>
+
+      <div class="sec-hd">
+        <h2 class="sec-title">🗺️ 地图攻略 <span class="sec-tag" id="mapCountTag">加载中</span></h2>
+        <a href="maps.html" class="sec-more">全部地图 →</a>
+      </div>
+      <div class="maps-grid" id="mapsGrid"></div>
+
+      <div class="ammo-sec">
+        <div class="sec-hd">
+          <h2 class="sec-title">💊 弹药速查 <span class="sec-tag">实时数据</span></h2>
+          <a href="ammo.html" class="sec-more">完整数据库 →</a>
+        </div>
+        <div class="filter-row">
+          <button class="f-btn on" onclick="filterAmmo(this,'')">全部</button>
+          <button class="f-btn" onclick="filterAmmo(this,'5.45×39')">5.45×39</button>
+          <button class="f-btn" onclick="filterAmmo(this,'5.56×45')">5.56×45</button>
+          <button class="f-btn" onclick="filterAmmo(this,'7.62×39')">7.62×39</button>
+          <button class="f-btn" onclick="filterAmmo(this,'7.62×51')">7.62×51</button>
+          <button class="f-btn" onclick="filterAmmo(this,'9×19')">9×19</button>
+          <button class="f-btn" onclick="filterAmmo(this,'.45 ACP')">.45 ACP</button>
+        </div>
+        <div class="table-wrap">
+          <table class="ammo-table">
+            <thead><tr>
+              <th class="sortable" onclick="sortAmmo('name')">弹药名称</th>
+              <th>口径</th>
+              <th class="sortable" onclick="sortAmmo('penetration')">穿透力</th>
+              <th class="sortable" onclick="sortAmmo('damage')">伤害</th>
+              <th>护甲伤害</th>
+              <th>可穿甲级</th>
+              <th class="sortable" onclick="sortAmmo('priceNum')">参考价格</th>
+              <th>获取方式</th>
+            </tr></thead>
+            <tbody id="ammoTbody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="loadout-sec">
+        <div class="sec-hd">
+          <h2 class="sec-title">🔫 武器配装推荐 <span class="sec-tag">本版本最优</span></h2>
+          <a href="loadouts.html" class="sec-more">全部方案 →</a>
+        </div>
+        <div class="tab-row">
+          <div class="ltab on" onclick="switchLoadout(this,'low')">💚 低预算 <span class="bgt bg-low">&lt;50K</span></div>
+          <div class="ltab" onclick="switchLoadout(this,'mid')">💛 中等 <span class="bgt bg-mid">50-150K</span></div>
+          <div class="ltab" onclick="switchLoadout(this,'high')">👑 高端 <span class="bgt bg-hi">&gt;150K</span></div>
+          <div class="ltab" onclick="switchLoadout(this,'pvp')">🎯 PVP专精</div>
+          <div class="ltab" onclick="switchLoadout(this,'pve')">🌿 PVE稳定</div>
+        </div>
+        <div class="tab-body"><div class="loadout-grid" id="loadoutGrid"></div></div>
+      </div>
+
+      <div class="quest-sec">
+        <div class="sec-hd">
+          <h2 class="sec-title">📋 任务攻略 <span class="sec-tag">商人任务</span></h2>
+          <a href="quests.html" class="sec-more">完整数据库 →</a>
+        </div>
+        <div class="m-tabs">
+          <div class="m-tab on" onclick="filterQuests(this,'')">全部</div>
+          <div class="m-tab" onclick="filterQuests(this,'帕帕')">🦔 帕帕</div>
+          <div class="m-tab" onclick="filterQuests(this,'机修工')">🔧 机修工</div>
+          <div class="m-tab" onclick="filterQuests(this,'治疗者')">🩺 治疗者</div>
+          <div class="m-tab" onclick="filterQuests(this,'和平卫士')">🎖️ 和平卫士</div>
+          <div class="m-tab" onclick="filterQuests(this,'铁路员')">🚂 铁路员</div>
+        </div>
+        <div class="quest-grid" id="questGrid"></div>
+      </div>
+
+      <div class="data-banner">
+        <div class="sec-hd" style="margin-bottom:20px"><h2 class="sec-title">📊 本站数据覆盖</h2></div>
+        <div class="data-grid">
+          <div class="data-block"><span class="data-num" id="db1">-</span><span class="data-label">完整地图攻略</span></div>
+          <div class="data-block"><span class="data-num" id="db2">-</span><span class="data-label">弹药数据条目</span></div>
+          <div class="data-block"><span class="data-num" id="db3">-</span><span class="data-label">武器配装方案</span></div>
+          <div class="data-block"><span class="data-num" id="db4">-</span><span class="data-label">任务详细攻略</span></div>
+        </div>
+      </div>
+
+      <div class="sec-hd">
+        <h2 class="sec-title">📰 最新攻略 <span class="sec-tag">每日更新</span></h2>
+        <a href="articles.html" class="sec-more">全部文章 →</a>
+      </div>
+      <div class="art-list" id="articleList"></div>
+
     </div>
 
-    <!-- 导航 -->
-    <nav class="nav">
-        <div class="nav-logo">
-            <div class="nav-ico">⚔</div>
-            <span class="nav-txt">TARKOV<b>GUIDE</b></span>
-            <span class="nav-ver" id="navVer">v0.15.0</span>
+    <aside class="sidebar">
+      <div class="sc">
+        <div class="sc-hd"><span class="sc-title">🖥️ 服务器状态</span><span style="font-size:10px;color:var(--text3)">实时</span></div>
+        <div class="sc-body"><div class="srv-list" id="srvList">
+          <div class="srv-item"><span class="srv-name"><span class="srv-dot dot-on"></span>亚洲-香港</span><span class="srv-ping">28ms · 正常</span></div>
+          <div class="srv-item"><span class="srv-name"><span class="srv-dot dot-on"></span>亚洲-首尔</span><span class="srv-ping">42ms · 正常</span></div>
+          <div class="srv-item"><span class="srv-name"><span class="srv-dot dot-busy"></span>亚洲-东京</span><span class="srv-ping">65ms · 繁忙</span></div>
+          <div class="srv-item"><span class="srv-name"><span class="srv-dot dot-on"></span>欧洲-法兰克福</span><span class="srv-ping">148ms · 正常</span></div>
+        </div></div>
+      </div>
+      <div class="sc">
+        <div class="sc-hd"><span class="sc-title">💰 今日最值钱物品</span><span style="font-size:10px;color:var(--gold)">每日更新</span></div>
+        <div class="sc-body"><div class="rank-list" id="priceRankList"></div></div>
+      </div>
+      <div class="sc">
+        <div class="sc-hd"><span class="sc-title">🔍 快速查价</span></div>
+        <div class="sc-body">
+          <div class="price-input-wrap"><span class="pi-icon">🔍</span><input type="text" class="price-input" placeholder="输入物品名称..." oninput="searchPrice(this.value)"></div>
+          <div class="price-items" id="priceItems"></div>
         </div>
-        <ul class="nav-menu">
-            <li><a href="#" class="on">🏠 首页</a></li>
-            <li><a href="#">🗺️ 地图</a></li>
-            <li><a href="#">🔫 武器</a></li>
-            <li><a href="#">💊 弹药</a></li>
-            <li><a href="#">📋 任务</a></li>
-            <li><a href="#">💰 价格</a></li>
-            <li><a href="#">🏠 藏匿处</a></li>
-            <li><a href="#">📰 资讯 <span class="nav-badge">3</span></a></li>
+      </div>
+      <div class="sc">
+        <div class="sc-hd"><span class="sc-title">🎯 新手成长路线</span></div>
+        <div class="sc-body">
+          <div class="path-list">
+            <div class="path-item"><div class="path-num done">✓</div><div class="path-info"><div class="pi-title">了解基础机制</div><div class="pi-desc">保险 · 藏匿处 · 商人 · 技能</div></div></div>
+            <div class="path-item"><div class="path-num">2</div><div class="path-info"><div class="pi-title">熟悉海关地图</div><div class="pi-desc">出口 · 物资点 · Boss位置</div></div></div>
+            <div class="path-item"><div class="path-num">3</div><div class="path-info"><div class="pi-title">完成前30个任务</div><div class="pi-desc">解锁更多商人和物资</div></div></div>
+            <div class="path-item"><div class="path-num">4</div><div class="path-info"><div class="pi-title">升级藏匿处至L2</div><div class="pi-desc">开启比特币被动收入</div></div></div>
+            <div class="path-item" style="padding-bottom:0"><div class="path-num">5</div><div class="path-info"><div class="pi-title">挑战实验室地图</div><div class="pi-desc">顶级装备 · 最高风险</div></div></div>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <div class="fb-name">⚔ TARKOVGUIDE</div>
+        <p class="fb-desc">逃离塔科夫最专业的中文攻略站。<br>由玩家驱动，为玩家服务。<br>版本同步更新，数据持续优化。</p>
+        <div class="fb-chips"><span class="fb-chip">📱 移动端适配</span><span class="fb-chip">🔄 实时更新</span><span class="fb-chip">🆓 完全免费</span></div>
+      </div>
+      <div>
+        <div class="fl-title">地图攻略</div>
+        <ul class="fl">
+          <li><a href="maps.html?id=customs">海关 Customs</a></li>
+          <li><a href="maps.html?id=woods">森林 Woods</a></li>
+          <li><a href="maps.html?id=interchange">互换 Interchange</a></li>
+          <li><a href="maps.html?id=reserve">储备基地 Reserve</a></li>
+          <li><a href="maps.html?id=shoreline">海岸线 Shoreline</a></li>
+          <li><a href="maps.html?id=labs">实验室 The Lab</a></li>
         </ul>
-        <div class="nav-act">
-            <button class="btn-srch" onclick="toggleSearch()">🔍 搜索 <kbd>Ctrl+K</kbd></button>
-        </div>
-    </nav>
-
-    <!-- 英雄区 -->
-    <section class="hero">
-        <div class="hcorner tl"></div>
-        <div class="hcorner tr"></div>
-        <div class="hcorner bl"></div>
-        <div class="hcorner br"></div>
-        <div class="hero-c fade-in">
-            <div class="hero-badge">⚡ 每日更新 · 中文最全攻略站</div>
-            <h1 class="hero-t"><span class="l1">不是每一次撤离</span><span class="l2">都靠运气</span></h1>
-            <p class="hero-sub">专为塔科夫玩家打造 · 地图/武器/弹药/任务一站搞定<br>实时数据 · 深度攻略 · 让你每局都有胜算</p>
-            <div class="hero-search">
-                <div class="hero-search-in">
-                    <span class="si">🔍</span>
-                    <input type="text" placeholder="搜索地图、武器、任务、弹药..." readonly onclick="toggleSearch()">
-                </div>
-                <button class="sb" onclick="toggleSearch()">立即搜索</button>
-            </div>
-            <div class="hot-tags" id="hotTags">
-                <span class="label">🔥 热门：</span>
-                <span class="htag">海关地图</span>
-                <span class="htag">M4A1配装</span>
-                <span class="htag">7.62x39弹药</span>
-            </div>
-            <div class="hero-stats">
-                <div class="hst"><span class="hst-n" id="statArt">200+</span><span class="hst-l">攻略文章</span></div>
-                <div class="hsd"></div>
-                <div class="hst"><span class="hst-n" id="statMap">9</span><span class="hst-l">完整地图</span></div>
-                <div class="hsd"></div>
-                <div class="hst"><span class="hst-n" id="statAmmo">500+</span><span class="hst-l">弹药数据</span></div>
-                <div class="hsd"></div>
-                <div class="hst"><span class="hst-n">每日</span><span class="hst-l">价格更新</span></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 快捷工具 -->
-    <div class="qtools">
-        <div class="qtools-in">
-            <div class="qt hot"><span class="qi">🗺️</span><div class="qt-info"><span class="qn">互动地图</span><span class="qd">点击查看标注</span></div></div>
-            <div class="qt hot"><span class="qi">💊</span><div class="qt-info"><span class="qn">弹药速查</span><span class="qd">穿透伤害对比</span></div></div>
-            <div class="qt"><span class="qi">🔫</span><div class="qt-info"><span class="qn">配装模拟器</span><span class="qd">预算最优配置</span></div></div>
-            <div class="qt"><span class="qi">💰</span><div class="qt-info"><span class="qn">价格查询</span><span class="qd">跳蚤市场实时价</span></div></div>
-            <div class="qt new"><span class="qi">🏠</span><div class="qt-info"><span class="qn">藏匿处计算</span><span class="qd">升级材料清单</span></div></div>
-            <div class="qt"><span class="qi">📋</span><div class="qt-info"><span class="qn">任务追踪</span><span class="qd">进度记录</span></div></div>
-            <div class="qt"><span class="qi">🧪</span><div class="qt-info"><span class="qn">医疗指南</span><span class="qd">伤势处理方案</span></div></div>
-            <div class="qt new"><span class="qi">📊</span><div class="qt-info"><span class="qn">护甲数据</span><span class="qd">防护等级对比</span></div></div>
-        </div>
+      </div>
+      <div>
+        <div class="fl-title">工具资源</div>
+        <ul class="fl">
+          <li><a href="ammo.html">弹药数据库</a></li>
+          <li><a href="loadouts.html">武器配装推荐</a></li>
+          <li><a href="quests.html">任务攻略</a></li>
+          <li><a href="articles.html">攻略文章</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="fl-title">新手专区</div>
+        <ul class="fl">
+          <li><a href="articles.html?cat=newbie">新手完全指南</a></li>
+          <li><a href="quests.html">商人解锁路线</a></li>
+          <li><a href="articles.html?cat=economy">经济入门教程</a></li>
+          <li><a href="articles.html">常见问题FAQ</a></li>
+        </ul>
+      </div>
     </div>
-
-    <!-- 主体 -->
-    <main class="main">
-
-        <!-- 更新横幅 -->
-        <div class="upd" id="updBanner">
-            <span class="upd-tag" id="updTag">VER 0.15.0</span>
-            <div class="upd-c">
-                <div class="upd-ct" id="updTitle">🔥 重大更新：全新地图「黑暗之角」正式上线</div>
-                <div class="upd-cd">新增 <span>3把武器</span>、<span>弹道系统重做</span>、护甲穿透公式调整、<span>15个新任务</span></div>
-            </div>
-            <div class="upd-right">
-                <span class="upd-time">2024-01-15 · 3小时前</span>
-                <button class="upd-btn">查看完整日志 →</button>
-            </div>
-        </div>
-
-        <div class="grid2">
-            <div>
-                <!-- 新手 -->
-                <div style="margin-bottom:40px">
-                    <div class="sec-h"><h2 class="sec-t">🎯 新手入门路线 <span class="sec-tag">STARTER</span></h2><a href="#" class="sec-m">查看完整新手手册 →</a></div>
-                    <div class="nb-grid">
-                        <div class="nb"><span class="em">🎮</span><div class="nt">了解基础机制</div><div class="nd">保险、藏匿处、商人、技能系统</div></div>
-                        <div class="nb"><span class="em">🗺️</span><div class="nt">先玩海关地图</div><div class="nd">资源丰富、撤离点多、地形清晰</div></div>
-                        <div class="nb"><span class="em">💊</span><div class="nt">学会选弹药</div><div class="nd">穿透力比武器本身更重要</div></div>
-                        <div class="nb"><span class="em">💰</span><div class="nt">建立经济循环</div><div class="nd">任务+藏匿处，经济才能滚起来</div></div>
-                    </div>
-                </div>
-
-                <!-- 地图 -->
-                <div style="margin-bottom:40px">
-                    <div class="sec-h"><h2 class="sec-t">🗺️ 地图攻略 <span class="sec-tag" id="mapCount">9张地图</span></h2><a href="#" class="sec-m">查看所有地图 →</a></div>
-                    <div class="maps-grid" id="mapsGrid"><div class="loading"><span class="spinner"></span>加载地图数据...</div></div>
-                </div>
-
-                <!-- 弹药 -->
-                <div style="margin-bottom:40px">
-                    <div class="sec-h"><h2 class="sec-t">💊 弹药数据速查 <span class="sec-tag">实时更新</span></h2><a href="#" class="sec-m">查看完整弹药数据库 →</a></div>
-                    <div class="ammo-filters" id="ammoFilters"></div>
-                    <div class="atbl-wrap">
-                        <table class="atbl">
-                            <thead><tr><th>弹药名称 ↕</th><th>口径</th><th>穿透力 ↕</th><th>伤害 ↕</th><th>护甲伤害</th><th>可穿甲级</th><th>参考价格</th><th>获取方式</th></tr></thead>
-                            <tbody id="ammoBody"><tr><td colspan="8" class="loading"><span class="spinner"></span>加载弹药数据...</td></tr></tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <!-- 配装 -->
-                <div class="lo-wrap">
-                    <div class="sec-h"><h2 class="sec-t">🔫 武器配装推荐 <span class="sec-tag">本版本最优</span></h2><a href="#" class="sec-m">查看所有配装方案 →</a></div>
-                    <div class="lo-tabs">
-                        <div class="lo-tab on">💰 低预算 <span class="bt bt-l">&lt;50K</span></div>
-                        <div class="lo-tab">💳 中等 <span class="bt bt-m">50-150K</span></div>
-                        <div class="lo-tab">👑 高端 <span class="bt bt-h">&gt;150K</span></div>
-                        <div class="lo-tab">🎯 PVP专精</div>
-                    </div>
-                    <div class="lo-body">
-                        <div class="lo-grid" id="loadoutGrid"><div class="loading"><span class="spinner"></span>加载配装数据...</div></div>
-                    </div>
-                </div>
-
-                <!-- 任务 -->
-                <div style="margin-bottom:40px">
-                    <div class="sec-h"><h2 class="sec-t">📋 热门任务攻略 <span class="sec-tag">商人任务</span></h2><a href="#" class="sec-m">查看完整任务数据库 →</a></div>
-                    <div class="q-tabs" id="questTabs"></div>
-                    <div class="q-list" id="questList"><div class="loading"><span class="spinner"></span>加载任务数据...</div></div>
-                </div>
-
-                <!-- 统计 -->
-                <div class="stats-box">
-                    <div class="sec-h" style="margin-bottom:18px"><h2 class="sec-t">📊 本站数据覆盖</h2></div>
-                    <div class="stats-grid">
-                        <div class="stb"><span class="stb-n" id="s1">9</span><span class="stb-l">完整地图攻略</span></div>
-                        <div class="stb"><span class="stb-n" id="s2">580+</span><span class="stb-l">弹药数据条目</span></div>
-                        <div class="stb"><span class="stb-n" id="s3">320+</span><span class="stb-l">武器配装方案</span></div>
-                        <div class="stb"><span class="stb-n" id="s4">200+</span><span class="stb-l">任务详细攻略</span></div>
-                    </div>
-                </div>
-
-                <!-- 文章 -->
-                <div style="margin-bottom:40px">
-                    <div class="sec-h"><h2 class="sec-t">📰 最新攻略 <span class="sec-tag">每日更新</span></h2><a href="#" class="sec-m">查看全部文章 →</a></div>
-                    <div class="art-list" id="artList"><div class="loading"><span class="spinner"></span>加载文章数据...</div></div>
-                </div>
-            </div>
-
-            <!-- 侧栏 -->
-            <aside class="side">
-                <div class="sc">
-                    <div class="sc-h"><span class="sc-t"><span class="i">🖥️</span> 服务器状态</span><span style="font-size:10px;color:var(--txt3)">实时</span></div>
-                    <div class="sc-b" id="serverList"><div class="loading"><span class="spinner"></span>加载中...</div></div>
-                </div>
-                <div class="sc">
-                    <div class="sc-h"><span class="sc-t"><span class="i">💰</span> 今日最值钱物品</span><span style="font-size:10px;color:var(--gold)">每日更新</span></div>
-                    <div class="sc-b" id="priceList"><div class="loading"><span class="spinner"></span>加载中...</div></div>
-                </div>
-                <div class="sc">
-                    <div class="sc-h"><span class="sc-t"><span class="i">🎯</span> 新手成长路线</span></div>
-                    <div class="sc-b">
-                        <div class="ps ps-done"><div class="ps-n">✓</div><div class="ps-c"><div class="ps-t">了解基础机制</div><div class="ps-d">保险·藏匿处·商人·技能</div></div></div>
-                        <div class="ps"><div class="ps-n">2</div><div class="ps-c"><div class="ps-t">熟悉海关地图</div><div class="ps-d">出口·物资点·Boss位置</div></div></div>
-                        <div class="ps"><div class="ps-n">3</div><div class="ps-c"><div class="ps-t">完成前30个任务</div><div class="ps-d">解锁更多商人和物资</div></div></div>
-                        <div class="ps"><div class="ps-n">4</div><div class="ps-c"><div class="ps-t">升级藏匿处至L2</div><div class="ps-d">开启比特币被动收入</div></div></div>
-                        <div class="ps"><div class="ps-n">5</div><div class="ps-c"><div class="ps-t">挑战实验室地图</div><div class="ps-d">顶级装备·最高风险</div></div></div>
-                    </div>
-                </div>
-            </aside>
-        </div>
-    </main>
-
-    <!-- 底部 -->
-    <footer class="footer">
-        <div class="ft-grid">
-            <div class="ft-brand">
-                <div class="fbn">⚔ TARKOVGUIDE</div>
-                <p class="fbd">逃离塔科夫最专业的中文攻略站。<br>由玩家驱动，为玩家服务。版本同步更新，数据持续优化。</p>
-                <div style="display:flex;gap:6px;flex-wrap:wrap">
-                    <span style="font-size:10px;color:var(--txt3);background:var(--bg2);padding:3px 10px;border-radius:3px;border:1px solid var(--bd)">📱 移动端适配</span>
-                    <span style="font-size:10px;color:var(--txt3);background:var(--bg2);padding:3px 10px;border-radius:3px;border:1px solid var(--bd)">🔄 实时更新</span>
-                    <span style="font-size:10px;color:var(--txt3);background:var(--bg2);padding:3px 10px;border-radius:3px;border:1px solid var(--bd)">🆓 完全免费</span>
-                </div>
-            </div>
-            <div>
-                <div class="ft-tt">地图攻略</div>
-                <ul class="ft-ll"><li><a href="#">海关 Customs</a></li><li><a href="#">森林 Woods</a></li><li><a href="#">互换 Interchange</a></li><li><a href="#">储备基地 Reserve</a></li><li><a href="#">海岸线 Shoreline</a></li><li><a href="#">实验室 The Lab</a></li><li><a href="#">黑暗之角 🆕</a></li></ul>
-            </div>
-            <div>
-                <div class="ft-tt">工具资源</div>
-                <ul class="ft-ll"><li><a href="#">弹药数据库</a></li><li><a href="#">武器配装器</a></li><li><a href="#">价格查询</a></li><li><a href="#">任务追踪</a></li><li><a href="#">藏匿处计算</a></li><li><a href="#">护甲数据</a></li></ul>
-            </div>
-            <div>
-                <div class="ft-tt">新手专区</div>
-                <ul class="ft-ll"><li><a href="#">新手完全指南</a></li><li><a href="#">商人解锁路线</a></li><li><a href="#">医疗系统详解</a></li><li><a href="#">经济入门教程</a></li><li><a href="#">游戏机制说明</a></li><li><a href="#">常见问题FAQ</a></li></ul>
-            </div>
-        </div>
-        <div class="ft-bot">
-            <span>© 2024 TarkovGuide · 本站为粉丝非官方攻略站</span>
-            <span>本站内容与 Battlestate Games 无关联 · 仅供学习参考</span>
-        </div>
-    </footer>
-
-    <!-- 搜索弹窗 -->
-    <div class="so" id="searchOv" onclick="if(event.target===this)toggleSearch()">
-        <div class="sm">
-            <div class="sm-in">
-                <span class="sm-i">🔍</span>
-                <input type="text" placeholder="搜索地图、武器、任务、弹药..." id="searchIn">
-                <div class="sm-x" onclick="toggleSearch()">ESC</div>
-            </div>
-            <div class="sm-sug">
-                <div class="sm-sec">
-                    <div class="sm-st">🔥 热门搜索</div>
-                    <div class="sm-tags" id="searchHot"></div>
-                </div>
-                <div class="sm-sec">
-                    <div class="sm-st">⚡ 快速跳转</div>
-                    <div class="sm-tags">
-                        <span class="sm-tag">🗺️ 互动地图</span>
-                        <span class="sm-tag">💊 弹药数据库</span>
-                        <span class="sm-tag">🔫 配装模拟器</span>
-                        <span class="sm-tag">💰 价格查询</span>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="footer-btm">
+      <span>© 2024 TarkovGuide · 非官方粉丝攻略站</span>
+      <span>本站内容与 Battlestate Games 无关联 · 仅供参考</span>
     </div>
+  </div>
+</footer>
 
-    <script>
-    /* ===== 数据加载 ===== */
-    async function loadJSON(name) {
-        try {
-            const r = await fetch('data/' + name + '.json?t=' + Date.now());
-            if (!r.ok) throw new Error(r.status);
-            return await r.json();
-        } catch (e) { console.warn('加载 ' + name + ' 失败:', e); return null; }
-    }
+<div class="search-ov" id="searchOv" onclick="closeSearchOv(event)">
+  <div class="search-box" onclick="event.stopPropagation()">
+    <div class="sm-wrap">
+      <span class="sm-icon">🔍</span>
+      <input class="sm-input" id="smInput" placeholder="搜索文章、地图、武器、弹药..." oninput="doSearch(this.value)">
+      <div class="sm-esc" onclick="closeSearch()">ESC</div>
+    </div>
+    <div class="sm-sug" id="smSug">
+      <div class="sug-sec">
+        <div class="sug-title">🔥 热门搜索</div>
+        <div class="sug-tags">
+          <span class="sug-tag" onclick="searchFor('海关地图')">海关地图</span>
+          <span class="sug-tag" onclick="searchFor('M4A1配装')">M4A1配装</span>
+          <span class="sug-tag" onclick="searchFor('新手入门')">新手入门指南</span>
+          <span class="sug-tag" onclick="searchFor('弹药推荐')">弹药穿透排行</span>
+          <span class="sug-tag" onclick="searchFor('卢布刷取')">卢布刷取攻略</span>
+        </div>
+      </div>
+      <div class="sug-sec">
+        <div class="sug-title">⚡ 快速跳转</div>
+        <div class="sug-tags">
+          <span class="sug-tag" onclick="location.href='maps.html'">🗺️ 互动地图</span>
+          <span class="sug-tag" onclick="location.href='ammo.html'">💊 弹药数据库</span>
+          <span class="sug-tag" onclick="location.href='loadouts.html'">🔫 配装推荐</span>
+          <span class="sug-tag" onclick="location.href='quests.html'">📋 任务追踪</span>
+        </div>
+      </div>
+    </div>
+    <div class="search-results" id="searchResults" style="display:none"></div>
+  </div>
+</div>
 
-    /* ===== 地图背景色映射 ===== */
-    var mapBgs = {
-        'customs':      'linear-gradient(135deg,#1a2a1a,#2a3a2a)',
-        'woods':        'linear-gradient(135deg,#1a2a15,#2a3a1a)',
-        'interchange':  'linear-gradient(135deg,#1a1a2a,#252535)',
-        'reserve':      'linear-gradient(135deg,#252525,#352525)',
-        'shoreline':    'linear-gradient(135deg,#15252a,#1a3040)',
-        'labs':         'linear-gradient(135deg,#0a1520,#102030)',
-        'darkcorner':   'linear-gradient(135deg,#1a0a20,#2a1030)',
-        'factory':      'linear-gradient(135deg,#202020,#303030)',
-        'lighthouse':   'linear-gradient(135deg,#1a2520,#1a3530)'
-    };
-    var defaultMapBg = 'linear-gradient(135deg,#1a2025,#252a30)';
+<script>
+/* ── 工具函数 ── */
+const BASE = (() => {
+  const p = location.pathname;
+  const parts = p.split('/');
+  parts.pop();
+  return parts.join('/');
+})();
 
-    /* ===== 站点配置 ===== */
-    async function initSite() {
-        var d = await loadJSON('site');
-        if (!d) return;
-        if (d.version) {
-            document.getElementById('navVer').textContent = 'v' + d.version;
-            document.getElementById('updTag').textContent = 'VER ' + d.version;
-        }
-        if (d.alert && d.alert.active) {
-            document.getElementById('alertText').innerHTML = d.alert.text + ' · <strong>点击查看完整更新日志 →</strong>';
-        } else {
-            document.getElementById('alertBar').style.display = 'none';
-        }
-        if (d.hotSearches && d.hotSearches.length) {
-            document.getElementById('hotTags').innerHTML =
-                '<span class="label">🔥 热门：</span>' +
-                d.hotSearches.map(function(t) { return '<span class="htag">' + t + '</span>'; }).join('');
-            document.getElementById('searchHot').innerHTML =
-                d.hotSearches.map(function(t) { return '<span class="sm-tag">' + t + '</span>'; }).join('');
-        }
-        if (d.servers) {
-            document.getElementById('serverList').innerHTML = d.servers.map(function(s) {
-                var dc = s.status === 'online' ? 'on' : s.status === 'busy' ? 'busy' : 'off';
-                return '<div class="srv-item"><span class="srv-name"><span class="srv-dot ' + dc + '"></span>' + s.name + '</span><span class="srv-ping">' + (s.ping || '') + '</span></div>';
-            }).join('');
-        }
-        if (d.topItems) {
-            document.getElementById('priceList').innerHTML = d.topItems.map(function(it, i) {
-                var rc = i === 0 ? 'rk1' : i === 1 ? 'rk2' : i === 2 ? 'rk3' : 'rko';
-                return '<div class="sv-item"><span class="sv-rank ' + rc + '">' + (i + 1) + '</span><div class="sv-info"><div class="sv-name">' + it.name + '</div><div class="sv-desc">' + (it.desc || '') + '</div></div><span class="sv-price">' + it.price + '</span></div>';
-            }).join('');
-        }
-    }
+// 读取JSON文件（带缓存）
+const cache = {};
+async function loadJSON(file) {
+  if (cache[file]) return cache[file];
+  try {
+    const url = BASE + '/data/' + file + '.json?t=' + Date.now();
+    const res = await fetch(url);
+    if (!res.ok) throw new Error(res.status);
+    const data = await res.json();
+    cache[file] = data;
+    return data;
+  } catch(e) {
+    console.warn('加载失败:', file, e);
+    return null;
+  }
+}
 
-    /* ===== 地图 ===== */
-    async function initMaps() {
-        var d = await loadJSON('maps');
-        if (!d || !d.maps) return;
-        document.getElementById('mapCount').textContent = d.maps.length + '张地图';
-        var diffCls = { easy: 'de', medium: 'dm', hard: 'dh', extreme: 'dx' };
-        var diffLabel = { easy: '新手友好', medium: '中等', hard: '困难', extreme: '极难' };
-        document.getElementById('mapsGrid').innerHTML = d.maps.map(function(m) {
-            var mid = (m.id || m.name).toLowerCase().replace(/\s+/g, '');
-            var bg = mapBgs[mid] || defaultMapBg;
-            var tags = (m.tags || []).map(function(t) { return '<span>' + t + '</span>'; }).join('');
-            return '<div class="mc">' +
-                '<div class="mc-top" style="background:' + bg + '">' + (m.icon || '🗺️') +
-                '<span class="mc-diff ' + (diffCls[m.difficulty] || 'dm') + '">' + (diffLabel[m.difficulty] || '中等') + '</span></div>' +
-                '<div class="mc-body"><div class="mc-name">' + m.name + '</div>' +
-                '<div class="mc-meta"><span>⏱ ' + m.time + '分钟</span><span>👥 ' + m.players + '人</span><span>🚪 ' + m.exits + '个出口</span></div>' +
-                '<div class="mc-tags">' + tags + '</div></div></div>';
-        }).join('');
-    }
+// 同时也读localStorage（admin写入的）
+function getLS(key) {
+  try {
+    const d = localStorage.getItem('tarkov_' + key);
+    return d ? JSON.parse(d) : null;
+  } catch { return null; }
+}
 
-    /* ===== 弹药 ===== */
-    async function initAmmo() {
-        var d = await loadJSON('ammo');
-        if (!d || !d.ammo) return;
-        var calibers = [];
-        var seen = {};
-        d.ammo.forEach(function(a) {
-            if (!seen[a.caliber]) { seen[a.caliber] = true; calibers.push(a.caliber); }
-        });
-        document.getElementById('ammoFilters').innerHTML =
-            '<button class="afbtn on" data-f="all">全部口径</button>' +
-            calibers.map(function(c) { return '<button class="afbtn" data-f="' + c + '">' + c + '</button>'; }).join('');
-        document.querySelectorAll('.afbtn').forEach(function(b) {
-            b.addEventListener('click', function() {
-                document.querySelectorAll('.afbtn').forEach(function(x) { x.classList.remove('on'); });
-                this.classList.add('on');
-                renderAmmo(d.ammo, this.dataset.f);
-            });
-        });
-        renderAmmo(d.ammo, 'all');
-    }
+// 优先用localStorage，其次用JSON文件，最后用默认
+async function getData(key, jsonFile, fallback) {
+  const ls = getLS(key);
+  if (ls && ls.length) return ls;
+  const j = await loadJSON(jsonFile);
+  if (j) {
+    // 提取数组
+    const arr = j[key] || j.articles || j.ammo || j.maps ||
+                j.quests || j.loadouts || j.prices || j;
+    if (Array.isArray(arr)) return arr;
+  }
+  return fallback || [];
+}
 
-    function renderAmmo(ammo, filter) {
-        var list = filter === 'all' ? ammo : ammo.filter(function(a) { return a.caliber === filter; });
-        document.getElementById('ammoBody').innerHTML = list.map(function(a) {
-            var acHtml = (a.armorClass || []).map(function(c, i) {
-                return '<span class="ac ac-' + (c === 'yes' ? 'y' : c === 'no' ? 'n' : 'm') + '">' + (i + 1) + '</span>';
-            }).join('');
-            var penCls = a.penetration >= 50 ? 'vh' : a.penetration >= 35 ? 'vm' : 'vl';
-            var dmgCls = a.damage >= 70 ? 'vh' : a.damage >= 50 ? 'vm' : 'vl';
-            var adCls = a.armorDamage >= 50 ? 'vh' : a.armorDamage >= 35 ? 'vm' : 'vl';
-            return '<tr>' +
-                '<td class="an"><span class="adot" style="background:' + (a.color || '#c8a96e') + '"></span>' + a.name + '</td>' +
-                '<td>' + a.caliber + '</td>' +
-                '<td><div class="pb"><div class="pb-t"><div class="pb-f" style="width:' + (a.penBar || 50) + '%"></div></div><span class="' + penCls + '">' + a.penetration + '</span></div></td>' +
-                '<td class="' + dmgCls + '">' + a.damage + '</td>' +
-                '<td class="' + adCls + '">' + a.armorDamage + '%</td>' +
-                '<td><div class="acb">' + acHtml + '</div></td>' +
-                '<td style="color:var(--gold);font-family:var(--mono)">' + a.price + '</td>' +
-                '<td style="color:var(--txt3);font-size:11px">' + a.source + '</td>' +
-                '</tr>';
-        }).join('');
-    }
+/* ── 默认数据 ── */
+const DEF_MAPS = [
+  {id:'customs',   name:'海关',    nameEn:'Customs',     icon:'🏭', difficulty:'新手友好', time:45, players:12, exits:7,  tags:['新手推荐','任务丰富','Boss·獾']},
+  {id:'woods',     name:'森林',    nameEn:'Woods',        icon:'🌲', difficulty:'中等',     time:50, players:14, exits:5,  tags:['远程狙击','Boss·沙皇','任务要地']},
+  {id:'interchange',name:'互换',   nameEn:'Interchange',  icon:'🏬', difficulty:'中等',     time:50, players:14, exits:4,  tags:['高价值物资','Boss·克莱格','近战激烈']},
+  {id:'reserve',   name:'储备基地',nameEn:'Reserve',      icon:'🏰', difficulty:'困难',     time:55, players:12, exits:6,  tags:['军事物资','Boss·格鲁特','撤离复杂']},
+  {id:'shoreline', name:'海岸线',  nameEn:'Shoreline',    icon:'🌊', difficulty:'困难',     time:50, players:12, exits:8,  tags:['医疗资源','Boss·桑塔','地图超大']},
+  {id:'labs',      name:'实验室',  nameEn:'The Lab',      icon:'🔬', difficulty:'极难',     time:35, players:10, exits:3,  tags:['需要通行证','顶级装备','Boss·狂人']}
+];
+const DEF_AMMO = [
+  {name:'7N40', caliber:'5.45×39', penetration:58, damage:47, armorDamage:54, price:'960₽',   priceNum:960,  source:'跳蚤/商人',   armorClass:5, color:'#ff6644'},
+  {name:'M995', caliber:'5.56×45', penetration:53, damage:40, armorDamage:57, price:'1,850₽', priceNum:1850, source:'跳蚤市场',    armorClass:5, color:'#44aaff'},
+  {name:'BP',   caliber:'7.62×39', penetration:46, damage:73, armorDamage:43, price:'380₽',   priceNum:380,  source:'帕帕商人',    armorClass:4, color:'#ffaa44'},
+  {name:'M61',  caliber:'7.62×51', penetration:61, damage:82, armorDamage:66, price:'3,200₽', priceNum:3200, source:'跳蚤/任务',   armorClass:6, color:'#aa44ff'},
+  {name:'PBP',  caliber:'9×19',    penetration:38, damage:52, armorDamage:38, price:'580₽',   priceNum:580,  source:'机修工/跳蚤', armorClass:3, color:'#44ffaa'},
+  {name:'RIP',  caliber:'.45 ACP', penetration:22, damage:79, armorDamage:25, price:'420₽',   priceNum:420,  source:'跳蚤市场',    armorClass:2, color:'#ff4488'}
+];
+const DEF_LOADOUTS = [
+  {name:'AK-74N',     price:'～38,000₽',  icon:'🔫', budget:'low',  type:'pvp', recoil:47, ergo:52, weight:'3.8', ammo:'7N40'},
+  {name:'SKS',        price:'～22,000₽',  icon:'🎯', budget:'low',  type:'pve', recoil:62, ergo:48, weight:'3.2', ammo:'BP'},
+  {name:'MP5',        price:'～65,000₽',  icon:'🔫', budget:'mid',  type:'pvp', recoil:38, ergo:74, weight:'2.8', ammo:'PBP'},
+  {name:'M4A1',       price:'～180,000₽', icon:'🔫', budget:'high', type:'pvp', recoil:32, ergo:68, weight:'4.2', ammo:'M995'},
+  {name:'RSASS',      price:'～220,000₽', icon:'🎯', budget:'high', type:'pvp', recoil:28, ergo:72, weight:'5.1', ammo:'M61'},
+  {name:'SA-58',      price:'～120,000₽', icon:'🎯', budget:'mid',  type:'pve', recoil:42, ergo:55, weight:'4.0', ammo:'M61'}
+];
+const DEF_QUESTS = [
+  {name:'肮脏的商业行为', merchant:'帕帕',   difficulty:'简单', exp:7800,  desc:'在海关地图找到3个电脑，带出指定数据存储设备', rewardItem:'AK-74N'},
+  {name:'工厂突袭',       merchant:'帕帕',   difficulty:'中等', exp:12400, desc:'在工厂地图击杀5名卫兵，不能死亡才算完成',     rewardItem:'防弹背心'},
+  {name:'关键情报',       merchant:'机修工', difficulty:'困难', exp:24800, desc:'从储备基地地下室找到情报文件，需要钥匙RB-AK',  rewardItem:'60发弹匣×4'},
+  {name:'最后的边界',     merchant:'犹大',   difficulty:'极难', exp:68000, desc:'在实验室击杀狂人Boss并带出其狗牌，生存撤离',  rewardItem:'顶级装备箱'},
+  {name:'医疗物资收集',   merchant:'治疗者', difficulty:'简单', exp:5200,  desc:'收集5个医疗包并成功撤离',                     rewardItem:'医疗箱×3'},
+  {name:'铁路巡逻',       merchant:'铁路员', difficulty:'中等', exp:15600, desc:'在储备基地标记3个铁路信号点',                 rewardItem:'弹药箱×2'}
+];
+const DEF_ARTICLES = [
+  {id:'m4a1-build', title:'0.15版本最强武器配装排行：M4A1完全改装指南', category:'weapon', categoryName:'武器攻略', icon:'🔫', date:'2024-01-15', hot:true,  isNew:false, views:24380},
+  {id:'dark-corner', title:'新地图「黑暗之角」完全攻略：出口/物资/Boss全标注', category:'map',    categoryName:'地图攻略', icon:'🗺️', date:'2024-01-15', hot:false, isNew:true,  views:18640},
+  {id:'ammo-rank',   title:'弹道系统重做后弹药重新排行：哪些弹药值得继续用？', category:'guide',  categoryName:'游戏指南', icon:'💊', date:'2024-01-15', hot:false, isNew:true,  views:15200},
+  {id:'money-guide', title:'2024最快刷卢布攻略：藏匿处比特币+海关资源线路', category:'economy',categoryName:'经济攻略', icon:'💰', date:'2024-01-14', hot:true,  isNew:false, views:32100},
+  {id:'newbie',      title:'逃离塔科夫2024新手完全入门指南：从第一局到稳定生存', category:'newbie', categoryName:'新手必看', icon:'🎮', date:'2024-01-12', hot:true,  isNew:false, views:88400}
+];
+const DEF_PRICES = [
+  {name:'GPU显卡',       value:490000, trend:'up',     source:'工作站柜/任务物资', rank:1},
+  {name:'比特币',         value:285000, trend:'stable', source:'藏匿处产出/掉落',   rank:2},
+  {name:'红钥匙卡',       value:180000, trend:'down',   source:'实验室专用',         rank:3},
+  {name:'LEDX皮肤传感器', value:165000, trend:'up',     source:'医疗/任务物资',     rank:4},
+  {name:'防弹头盔FAST',   value:98000,  trend:'stable', source:'Boss掉落/装备',     rank:5}
+];
 
-    /* ===== 配装 ===== */
-    async function initLoadouts() {
-        var d = await loadJSON('loadouts');
-        if (!d || !d.loadouts) return;
-        document.getElementById('loadoutGrid').innerHTML = d.loadouts.map(function(l) {
-            var tags = (l.tags || []).map(function(t) { return '<span class="lt ' + (t.cls || 'lt-r') + '">' + t.text + '</span>'; }).join('');
-            return '<div class="lo-card">' +
-                '<div class="lo-h"><span class="lo-name">' + l.name + '</span><span class="lo-price">' + l.price + '</span></div>' +
-                '<div class="lo-img">' + (l.icon || '🔫') + '</div>' +
-                '<div class="lo-stats">' +
-                '<div class="lo-st"><span class="lo-sv">' + (l.recoil || '-') + '</span><span class="lo-sl">后坐力</span></div>' +
-                '<div class="lo-st"><span class="lo-sv">' + (l.ergo || '-') + '</span><span class="lo-sl">人机</span></div>' +
-                '<div class="lo-st"><span class="lo-sv">' + (l.weight || '-') + '</span><span class="lo-sl">重量</span></div>' +
-                '</div><div class="lo-tags">' + tags + '</div></div>';
-        }).join('');
-    }
+/* ── 全局数据 ── */
+let G = { maps:[], ammo:[], loadouts:[], quests:[], articles:[], prices:[] };
+let ammoFilter = '', ammoSortKey = 'penetration', ammoSortDir = -1;
+let loadoutFilter = 'low', questFilter = '';
 
-    /* ===== 任务 ===== */
-    async function initQuests() {
-        var d = await loadJSON('quests');
-        if (!d || !d.quests) return;
-        var merchants = [];
-        var seen = {};
-        d.quests.forEach(function(q) {
-            var m = q.merchant || '其他';
-            if (!seen[m]) { seen[m] = true; merchants.push(m); }
-        });
-        document.getElementById('questTabs').innerHTML =
-            merchants.map(function(m, i) { return '<div class="q-tab' + (i === 0 ? ' on' : '') + '" data-m="' + m + '">' + m + '</div>'; }).join('');
-        document.querySelectorAll('.q-tab').forEach(function(t) {
-            t.addEventListener('click', function() {
-                document.querySelectorAll('.q-tab').forEach(function(x) { x.classList.remove('on'); });
-                this.classList.add('on');
-                renderQuests(d.quests, this.dataset.m);
-            });
-        });
-        renderQuests(d.quests, merchants[0]);
-    }
+/* ── 地图 ── */
+const mapBg = {customs:'linear-gradient(135deg,#1a2a1a,#2a3a2a)',woods:'linear-gradient(135deg,#1a2a15,#2a3a1a)',interchange:'linear-gradient(135deg,#1a1a2a,#252535)',reserve:'linear-gradient(135deg,#252525,#352525)',shoreline:'linear-gradient(135deg,#15252a,#1a3040)',labs:'linear-gradient(135deg,#0a1520,#102030)',darkcorner:'linear-gradient(135deg,#0d0d1a,#1a0a2a)',factory:'linear-gradient(135deg,#1a1510,#2a2018)',lighthouse:'linear-gradient(135deg,#101a20,#182535)'};
+const diffClass = {'新手友好':'d-easy','easy':'d-easy','中等':'d-mid','medium':'d-mid','困难':'d-hard','hard':'d-hard','极难':'d-ex','extreme':'d-ex'};
 
-    function renderQuests(quests, merchant) {
-        var list = quests.filter(function(q) { return (q.merchant || '其他') === merchant; });
-        var diffCls = { easy: 'de', medium: 'dm', hard: 'dh', extreme: 'dx' };
-        document.getElementById('questList').innerHTML = list.map(function(q) {
-            var rew = '';
-            if (q.exp) rew += '<span class="qc-r exp">⭐ ' + q.exp + '</span>';
-            if (q.rep) rew += '<span class="qc-r rep">📈 ' + q.rep + '</span>';
-            if (q.itemReward) rew += '<span class="qc-r item">🎁 ' + q.itemReward + '</span>';
-            return '<div class="qc">' +
-                '<div class="qc-h"><span class="qc-name">' + q.name + '</span><span class="qc-diff ' + (diffCls[q.difficulty] || 'dm') + '">' + (q.diffLabel || q.difficulty) + '</span></div>' +
-                '<div class="qc-desc">' + (q.description || '') + '</div>' +
-                '<div class="qc-rew">' + rew + '</div></div>';
-        }).join('');
-    }
+function renderMaps() {
+  const maps = G.maps.slice(0, 6);
+  document.getElementById('mapCountTag').textContent = G.maps.length + '张地图';
+  document.getElementById('mapsGrid').innerHTML = maps.map(m => {
+    const id = m.id || m.name;
+    const bg = mapBg[id] || mapBg[m.nameEn?.toLowerCase()] || 'linear-gradient(135deg,#1a2020,#202a2a)';
+    const dc = diffClass[m.difficulty] || 'd-mid';
+    const tags = Array.isArray(m.tags) ? m.tags : (m.tags||'').split(',').map(t=>t.trim());
+    return `<a href="maps.html?id=${id}" class="map-card">
+      <div class="map-img" style="background:${bg}">
+        <span>${m.icon||'🗺️'}</span>
+        <span class="map-diff ${dc}">${m.difficulty}</span>
+      </div>
+      <div class="map-body">
+        <div class="map-name">${m.name}<span class="map-name-en">${m.nameEn||''}</span></div>
+        <div class="map-meta"><span>⏱ ${m.time}分钟</span><span>👥 ${m.players}人</span><span>🚪 ${m.exits}个出口</span></div>
+        <div class="map-tags">${tags.map(t=>`<span class="map-tag">${t}</span>`).join('')}</div>
+      </div>
+    </a>`;
+  }).join('');
+}
 
-    /* ===== 文章 ===== */
-    async function initArticles() {
-        var d = await loadJSON('articles');
-        if (!d || !d.articles) return;
-        var catCls = { weapon: 'c-weapon', map: 'c-map', guide: 'c-guide', economy: 'c-economy', newbie: 'c-newbie' };
-        document.getElementById('artList').innerHTML = d.articles.filter(function(a) { return a.published; }).map(function(a) {
-            var badge = '';
-            if (a.badge === 'hot') badge = '<span class="art-badge ab-hot">🔥 HOT</span>';
-            else if (a.badge === 'new') badge = '<span class="art-badge ab-new">✨ NEW</span>';
-            return '<div class="art">' +
-                '<div class="art-ic">' + (a.icon || '📄') + '</div>' +
-                '<div class="art-body">' +
-                '<div class="art-cat ' + (catCls[a.category] || 'c-guide') + '">' + (a.categoryLabel || a.category) + '</div>' +
-                '<div class="art-title">' + a.title + '</div>' +
-                '<div class="art-meta"><span>👁 ' + (a.views || 0).toLocaleString() + '</span><span>💬 ' + (a.comments || 0) + '</span><span>🕐 ' + (a.timeAgo || '') + '</span></div>' +
-                '</div><div class="art-right">' + badge + '<span class="art-arrow">›</span></div></div>';
-        }).join('');
-    }
+/* ── 弹药 ── */
+function renderAmmo() {
+  let data = [...G.ammo];
+  if (ammoFilter) data = data.filter(a => a.caliber === ammoFilter);
+  data.sort((a,b) => {
+    const av = a[ammoSortKey], bv = b[ammoSortKey];
+    if (typeof av === 'string') return ammoSortDir * av.localeCompare(bv,'zh');
+    return ammoSortDir * ((av||0) - (bv||0));
+  });
+  if (!data.length) {
+    document.getElementById('ammoTbody').innerHTML = '<tr><td colspan="8" style="text-align:center;padding:24px;color:var(--text3)">暂无该口径弹药数据</td></tr>';
+    return;
+  }
+  const colors = ['#ff6644','#44aaff','#ffaa44','#aa44ff','#44ffaa','#ff4488','#ffcc44','#44ccff'];
+  document.getElementById('ammoTbody').innerHTML = data.map((a,i) => {
+    const pen = a.penetration || a.pen || 0;
+    const dmg = a.damage || 0;
+    const adm = a.armorDamage || a.armorDmg || 0;
+    const ac  = a.armorClass || 0;
+    const pct = Math.min(100, Math.round((pen/70)*100));
+    const pc  = pen>=50?'v-hi':pen>=35?'v-md':'v-lo';
+    const dc  = dmg>=70?'v-hi':dmg>=50?'v-md':'v-lo';
+    const acs = [1,2,3,4,5,6].map(n => {
+      const cls = n<=ac?'armc-y':n===ac+1?'armc-m':'armc-n';
+      return `<span class="armc ${cls}">${n}</span>`;
+    }).join('');
+    const pr = a.price || (a.priceNum ? a.priceNum.toLocaleString()+'₽' : '-');
+    return `<tr>
+      <td><div class="td-name"><span class="cal-dot" style="background:${a.color||colors[i%colors.length]}"></span>${a.name}</div></td>
+      <td><span style="font-size:10px;background:var(--bg2);border:1px solid var(--border);padding:2px 7px;border-radius:3px;color:var(--text2)">${a.caliber}</span></td>
+      <td><div class="pen-wrap"><div class="pen-track"><div class="pen-fill" style="width:${pct}%"></div></div><span class="${pc}">${pen}</span></div></td>
+      <td class="${dc}">${dmg}</td>
+      <td>${adm}%</td>
+      <td><div class="armc-wrap">${acs}</div></td>
+      <td style="color:var(--gold);font-family:var(--mono)">${pr}</td>
+      <td style="font-size:11px;color:var(--text3)">${a.source||'-'}</td>
+    </tr>`;
+  }).join('');
+}
 
-    /* ===== 搜索 ===== */
-    function toggleSearch() {
-        var ov = document.getElementById('searchOv');
-        ov.classList.toggle('on');
-        if (ov.classList.contains('on')) {
-            setTimeout(function() { document.getElementById('searchIn').focus(); }, 100);
-        }
-    }
-    document.addEventListener('keydown', function(e) {
-        if ((e.ctrlKey || e.metaKey) && e.key === 'k') { e.preventDefault(); toggleSearch(); }
-        if (e.key === 'Escape') document.getElementById('searchOv').classList.remove('on');
-    });
+function filterAmmo(btn, cal) {
+  ammoFilter = cal;
+  document.querySelectorAll('.f-btn').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  renderAmmo();
+}
 
-    /* ===== 配装标签 ===== */
-    document.querySelectorAll('.lo-tab').forEach(function(t) {
-        t.addEventListener('click', function() {
-            document.querySelectorAll('.lo-tab').forEach(function(x) { x.classList.remove('on'); });
-            this.classList.add('on');
-        });
-    });
+function sortAmmo(key) {
+  document.querySelectorAll('.ammo-table th').forEach(th=>{
+    th.classList.remove('sort-asc','sort-desc');
+    if(!th.classList.contains('sortable')) th.classList.add('sortable');
+  });
+  ammoSortDir = ammoSortKey===key ? ammoSortDir*-1 : -1;
+  ammoSortKey = key;
+  const ki = {name:0,penetration:2,damage:3,priceNum:6};
+  const idx = ki[key];
+  if(idx!==undefined){
+    const ths = document.querySelectorAll('.ammo-table th');
+    if(ths[idx]){ths[idx].classList.remove('sortable');ths[idx].classList.add(ammoSortDir===-1?'sort-desc':'sort-asc');}
+  }
+  renderAmmo();
+}
 
-    /* ===== 初始化 ===== */
-    document.addEventListener('DOMContentLoaded', function() {
-        initSite();
-        initMaps();
-        initAmmo();
-        initLoadouts();
-        initQuests();
-        initArticles();
-    });
-    </script>
+/* ── 配装 ── */
+function renderLoadouts() {
+  let data = G.loadouts.filter(l => loadoutFilter==='pvp'?l.type==='pvp':loadoutFilter==='pve'?l.type==='pve':l.budget===loadoutFilter);
+  if (!data.length) data = G.loadouts.slice(0,2);
+  const typeL = {pvp:'🔴 PVP',pve:'🟢 PVE',all:'🔵 全能'};
+  document.getElementById('loadoutGrid').innerHTML = data.map(l => `
+  <div class="lc-card" onclick="location.href='loadouts.html'">
+    <div class="lc-hd"><span class="lc-name">${l.icon||'🔫'} ${l.name}</span><span class="lc-price">${l.price}</span></div>
+    <div class="lc-img">${l.icon||'🔫'}</div>
+    <div class="lc-stats">
+      <div class="lc-stat"><span class="lc-stat-v">${l.recoil}</span><span class="lc-stat-l">后坐力</span></div>
+      <div class="lc-stat"><span class="lc-stat-v">${l.ergo}</span><span class="lc-stat-l">人机</span></div>
+      <div class="lc-stat"><span class="lc-stat-v">${l.weight}kg</span><span class="lc-stat-l">重量</span></div>
+    </div>
+    <div class="lc-tags">
+      <span class="lt lt-rec">推荐</span>
+      <span class="lt lt-pvp">${typeL[l.type]||l.type}</span>
+      ${l.ammo?`<span class="lt lt-bgt">弹药：${l.ammo}</span>`:''}
+    </div>
+  </div>`).join('') || '<div style="text-align:center;padding:24px;color:var(--text3)">暂无该分类配装</div>';
+}
+
+function switchLoadout(btn, b) {
+  loadoutFilter = b;
+  document.querySelectorAll('.ltab').forEach(t=>t.classList.remove('on'));
+  btn.classList.add('on');
+  renderLoadouts();
+}
+
+/* ── 任务 ── */
+const diffStyle = {'简单':'background:rgba(74,140,92,.2);color:#6aaa7a','中等':'background:rgba(192,112,48,.2);color:#e09050','困难':'background:rgba(192,80,80,.2);color:#c05050','极难':'background:rgba(144,48,200,.2);color:#9060d0','easy':'background:rgba(74,140,92,.2);color:#6aaa7a','medium':'background:rgba(192,112,48,.2);color:#e09050','hard':'background:rgba(192,80,80,.2);color:#c05050','extreme':'background:rgba(144,48,200,.2);color:#9060d0'};
+
+function renderQuests() {
+  let data = G.quests;
+  if (questFilter) data = data.filter(q => (q.merchant||'').includes(questFilter));
+  document.getElementById('questGrid').innerHTML = data.slice(0,6).map(q => `
+  <div class="qc-card" onclick="location.href='quests.html'">
+    <div class="qc-hd">
+      <span class="qc-name">${q.name}</span>
+      <span class="qc-diff" style="${diffStyle[q.difficulty]||''}">${q.diffLabel||q.difficulty}</span>
+    </div>
+    <div class="qc-desc">${q.description||q.desc||''}</div>
+    <div class="qc-rewards">
+      <span class="qc-reward qr-exp">⭐ ${q.exp?(q.exp).toLocaleString()+' EXP':q.exp||''}</span>
+      <span class="qc-reward qr-rep">📈 ${q.merchant}</span>
+      ${q.rewardItem||q.itemReward?`<span class="qc-reward qr-item">🎁 ${q.rewardItem||q.itemReward}</span>`:''}
+    </div>
+  </div>`).join('') || '<div style="grid-column:1/-1;text-align:center;padding:24px;color:var(--text3)">暂无任务数据</div>';
+}
+
+function filterQuests(btn, m) {
+  questFilter = m;
+  document.querySelectorAll('.m-tab').forEach(t=>t.classList.remove('on'));
+  btn.classList.add('on');
+  renderQuests();
+}
+
+/* ── 文章 ── */
+const catStyle = {guide:'cat-guide',weapon:'cat-weapon',map:'cat-map',economy:'cat-economy',newbie:'cat-newbie'};
+
+function renderArticles() {
+  document.getElementById('articleCount').textContent = G.articles.length;
+  document.getElementById('articleList').innerHTML = G.articles.slice(0,5).map(a => {
+    const id = a.id || encodeURIComponent(a.title);
+    return `<a href="article.html?id=${id}" class="art-card">
+      <div class="art-icon">${a.icon||'📄'}</div>
+      <div class="art-body">
+        <div class="art-cat ${catStyle[a.category]||'cat-guide'}">${a.categoryName||a.categoryLabel||''}</div>
+        <div class="art-title">${a.title}</div>
+        <div class="art-meta">
+          <span>👁 ${(a.views||0).toLocaleString()}次阅读</span>
+          <span>🕐 ${a.date||a.timeAgo||''}</span>
+        </div>
+      </div>
+      <div class="art-right">
+        ${a.hot||a.badge==='hot'?'<span class="badge-hot">🔥 HOT</span>':''}
+        ${a.isNew||a.badge==='new'?'<span class="badge-new">✨ NEW</span>':''}
+        <span class="art-arr">›</span>
+      </div>
+    </a>`;
+  }).join('');
+}
+
+/* ── 价格 ── */
+function renderPriceRank() {
+  const prices = [...G.prices].filter(p=>p.rank>0).sort((a,b)=>a.rank-b.rank);
+  const rc = ['r1','r2','r3','r-other','r-other'];
+  const tr = {up:'<span style="color:var(--green2);font-size:10px">▲</span>',down:'<span style="color:var(--red2);font-size:10px">▼</span>',stable:''};
+  document.getElementById('priceRankList').innerHTML = prices.length ? prices.map((p,i) =>
+    `<div class="ri"><span class="ri-rank ${rc[i]||'r-other'}">${i+1}</span>
+    <div class="ri-info"><div class="ri-name">${p.name}</div><div class="ri-src">${p.source||p.desc||''}</div></div>
+    <span class="ri-price">${tr[p.trend]||''}${(p.value||0).toLocaleString()}₽</span></div>`
+  ).join('') : '<div style="text-align:center;padding:16px;color:var(--text3);font-size:12px">暂无价格数据</div>';
+}
+
+function searchPrice(kw) {
+  const list = kw ? G.prices.filter(p=>p.name.includes(kw)) : G.prices.slice(0,3);
+  const tr = {up:'<span class="pr-trend t-up">▲</span>',down:'<span class="pr-trend t-down">▼</span>',stable:'<span class="pr-trend t-flat">—</span>'};
+  document.getElementById('priceItems').innerHTML = list.length ? list.map(p =>
+    `<div class="pr-item"><span class="pr-name">${p.name}</span>
+    <div class="pr-right">${tr[p.trend]||''}<span class="pr-val">${(p.value||0).toLocaleString()}₽</span></div></div>`
+  ).join('') : `<div style="text-align:center;padding:12px;color:var(--text3);font-size:11px">未找到"${kw}"</div>`;
+}
+
+/* ── 搜索 ── */
+function openSearch() {
+  document.getElementById('searchOv').classList.add('on');
+  document.getElementById('smSug').style.display='block';
+  document.getElementById('searchResults').style.display='none';
+  if(window.innerWidth>768) setTimeout(()=>document.getElementById('smInput').focus(),50);
+}
+function closeSearch(){ document.getElementById('searchOv').classList.remove('on'); }
+function closeSearchOv(e){ if(e.target===document.getElementById('searchOv')) closeSearch(); }
+function searchFor(kw){ document.getElementById('smInput').value=kw; doSearch(kw); openSearch(); }
+
+function doSearch(kw) {
+  const sug = document.getElementById('smSug');
+  const res = document.getElementById('searchResults');
+  if (!kw.trim()) { sug.style.display='block'; res.style.display='none'; return; }
+  sug.style.display='none'; res.style.display='flex';
+  const results = [];
+  // 搜文章
+  G.articles.filter(a=>a.title.includes(kw)||a.content?.includes(kw)).forEach(a=>{
+    results.push({title:a.title,icon:a.icon||'📄',cat:a.categoryName||'攻略',url:`article.html?id=${a.id||encodeURIComponent(a.title)}`});
+  });
+  // 搜地图
+  G.maps.filter(m=>m.name.includes(kw)||m.nameEn?.toLowerCase().includes(kw.toLowerCase())).forEach(m=>{
+    results.push({title:m.name+' '+m.nameEn,icon:m.icon||'🗺️',cat:'地图攻略',url:`maps.html?id=${m.id||m.name}`});
+  });
+  // 搜弹药
+  G.ammo.filter(a=>a.name.includes(kw)||a.caliber.includes(kw)).forEach(a=>{
+    results.push({title:a.name+' ('+a.caliber+')',icon:'💊',cat:'弹药数据',url:'ammo.html'});
+  });
+  // 搜任务
+  G.quests.filter(q=>q.name.includes(kw)||q.desc?.includes(kw)||q.description?.includes(kw)).forEach(q=>{
+    results.push({title:q.name,icon:'📋',cat:'任务攻略',url:'quests.html'});
+  });
+  res.innerHTML = results.length ? results.slice(0,8).map(r=>
+    `<a href="${r.url}" class="sr-item">
+      <span class="sr-icon">${r.icon}</span>
+      <div class="sr-body"><div class="sr-title">${r.title}</div><div class="sr-cat">${r.cat}</div></div>
+    </a>`
+  ).join('') : `<div class="sr-empty">未找到"${kw}"相关内容</div>`;
+}
+
+/* ── 站点信息 ── */
+async function renderSite() {
+  const ls = getLS('version');
+  const j = await loadJSON('site');
+  const v = ls || (j?.version ? j : null);
+  if (v) {
+    const ver = v.num || v.version || '0.15.0';
+    document.getElementById('navVer').textContent = 'v'+ver;
+    document.getElementById('heroBadgeVer').textContent = ver;
+    document.getElementById('uTag').textContent = 'VER '+ver;
+    const alert = v.alert?.text || v.alert || '版本 '+ver+' 已上线';
+    document.getElementById('topBarText').textContent = alert;
+    document.getElementById('uTitle').textContent = v.bannerTitle || '🔥 最新版本已上线';
+    document.getElementById('uDesc').innerHTML = v.bannerDesc || v.alert?.text || '';
+    document.getElementById('uTime').textContent = v.time || '';
+  }
+  const sv = getLS('site');
+  if (sv) {
+    if(sv.heroLine1) document.getElementById('heroL1').textContent = sv.heroLine1;
+    if(sv.heroLine2) document.getElementById('heroL2').textContent = sv.heroLine2;
+    if(sv.heroSubtitle) document.getElementById('heroSub').innerHTML = sv.heroSubtitle.split('\n').join('<br>');
+  }
+}
+
+/* ── 汉堡菜单 ── */
+function toggleMenu(){ document.getElementById('mobileMenu').classList.toggle('open'); }
+document.addEventListener('click', e => {
+  const m = document.getElementById('mobileMenu');
+  const b = document.getElementById('burgerBtn');
+  if(m.classList.contains('open')&&!m.contains(e.target)&&!b.contains(e.target)) m.classList.remove('open');
+});
+document.addEventListener('keydown', e => {
+  if((e.ctrlKey||e.metaKey)&&e.key==='k'){e.preventDefault();openSearch();}
+  if(e.key==='Escape'){closeSearch();document.getElementById('mobileMenu').classList.remove('open');}
+});
+
+/* ── 初始化 ── */
+async function init() {
+  await renderSite();
+  G.maps      = await getData('maps',      'maps',      DEF_MAPS);
+  G.ammo      = await getData('ammo',      'ammo',      DEF_AMMO);
+  G.loadouts  = await getData('loadouts',  'loadouts',  DEF_LOADOUTS);
+  G.quests    = await getData('quests',    'quests',    DEF_QUESTS);
+  G.articles  = await getData('articles',  'articles',  DEF_ARTICLES);
+  G.prices    = await getData('prices',    'prices',    DEF_PRICES);
+  renderMaps();
+  renderAmmo();
+  renderLoadouts();
+  renderQuests();
+  renderArticles();
+  renderPriceRank();
+  searchPrice('');
+  // 统计数字
+  document.getElementById('statArticles').textContent = G.articles.length + '+';
+  document.getElementById('statMaps').textContent     = G.maps.length;
+  document.getElementById('statAmmo').textContent     = G.ammo.length + '+';
+  document.getElementById('statQuests').textContent   = G.quests.length + '+';
+  document.getElementById('db1').textContent = G.maps.length;
+  document.getElementById('db2').textContent = G.ammo.length + '+';
+  document.getElementById('db3').textContent = G.loadouts.length + '+';
+  document.getElementById('db4').textContent = G.quests.length + '+';
+}
+
+init();
+</script>
 </body>
 </html>
