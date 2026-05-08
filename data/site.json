@@ -4,18 +4,61 @@
     "text": "最新版本 0.15.0 已上线 · 新增地图「黑暗之角」· 弹道系统全面优化",
     "active": true
   },
-  "hotSearches": ["海关地图", "M4A1配装", "7.62x39弹药", "新手入门", "卢布刷取", "藏匿处升级"],
+  "hotSearches": [
+    "海关地图",
+    "M4A1配装",
+    "7.62x39弹药",
+    "新手入门",
+    "卢布刷取",
+    "藏匿处升级"
+  ],
   "servers": [
-    { "name": "亚洲-香港", "status": "online", "ping": "28ms · 正常" },
-    { "name": "亚洲-首尔", "status": "online", "ping": "42ms · 正常" },
-    { "name": "亚洲-东京", "status": "busy", "ping": "65ms · 繁忙" },
-    { "name": "欧洲-法兰克福", "status": "online", "ping": "148ms · 正常" }
+    {
+      "name": "亚洲-香港",
+      "status": "online",
+      "ping": "28ms · 正常"
+    },
+    {
+      "name": "亚洲-首尔",
+      "status": "online",
+      "ping": "42ms · 正常"
+    },
+    {
+      "name": "亚洲-东京",
+      "status": "busy",
+      "ping": "65ms · 繁忙"
+    },
+    {
+      "name": "欧洲-法兰克福",
+      "status": "online",
+      "ping": "148ms · 正常"
+    }
   ],
   "topItems": [
-    { "name": "GPU显卡", "desc": "工作站柜/任务物资", "price": "490,000₽" },
-    { "name": "比特币", "desc": "藏匿处产出/掉落", "price": "285,000₽" },
-    { "name": "红钥匙卡", "desc": "实验室专用", "price": "180,000₽" },
-    { "name": "LEDX皮肤传感器", "desc": "医疗/任务物资", "price": "165,000₽" },
-    { "name": "防弹头盔FAST", "desc": "Boss掉落/装备", "price": "98,000₽" }
+    {
+      "name": "GPU显卡",
+      "desc": "工作站柜/任务物资",
+      "price": "490,000₽"
+    },
+    {
+      "name": "比特币",
+      "desc": "藏匿处产出/掉落",
+      "price": "285,000₽"
+    },
+    {
+      "name": "红钥匙卡",
+      "desc": "实验室专用",
+      "price": "180,000₽"
+    },
+    {
+      "name": "LEDX皮肤传感器",
+      "desc": "医疗/任务物资",
+      "price": "165,000₽"
+    },
+    {
+      "name": "防弹头盔FAST",
+      "desc": "Boss掉落/装备",
+      "price": "98,000₽"
+    }
   ]
 }
