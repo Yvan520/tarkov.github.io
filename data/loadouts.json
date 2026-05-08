@@ -1,84 +1,8 @@
 {
   "loadouts": [
-    {
-      "name": "AK-74N",
-      "price": "ï½38,000â½",
-      "icon": "ð«",
-      "recoil": "47",
-      "ergo": "3.2",
-      "weight": "3.8kg",
-      "tags": [
-        {
-          "text": "å¼ºçæ¨è",
-          "cls": "lt-r"
-        },
-        {
-          "text": "PVP",
-          "cls": "lt-p"
-        },
-        {
-          "text": "ä½é¢ç®",
-          "cls": "lt-b"
-        }
-      ]
-    },
-    {
-      "name": "SKS åèªå¨",
-      "price": "ï½22,000â½",
-      "icon": "ð¯",
-      "recoil": "62",
-      "ergo": "2.8",
-      "weight": "3.2kg",
-      "tags": [
-        {
-          "text": "PVEåå¥½",
-          "cls": "lt-e"
-        },
-        {
-          "text": "è¶ä½é¢ç®",
-          "cls": "lt-b"
-        }
-      ]
-    },
-    {
-      "name": "M4A1 æ¹è£ç",
-      "price": "ï½120,000â½",
-      "icon": "ð«",
-      "recoil": "32",
-      "ergo": "4.5",
-      "weight": "4.1kg",
-      "tags": [
-        {
-          "text": "çæ¬ç­æ¡",
-          "cls": "lt-r"
-        },
-        {
-          "text": "PVP",
-          "cls": "lt-p"
-        }
-      ]
-    },
-    {
-      "name": "VDL åçº¿å¥",
-      "price": "ï½280,000â½",
-      "icon": "ð",
-      "recoil": "28",
-      "ergo": "5.1",
-      "weight": "4.8kg",
-      "tags": [
-        {
-          "text": "é¡¶çº§éç½®",
-          "cls": "lt-r"
-        },
-        {
-          "text": "PVP",
-          "cls": "lt-p"
-        },
-        {
-          "text": "é«ç«¯",
-          "cls": "lt-b"
-        }
-      ]
-    }
+    { "name": "AK-74N", "price": "～38,000₽", "icon": "🔫", "recoil": "47", "ergo": "3.2", "weight": "3.8kg", "tags": [{"text": "强烈推荐", "cls": "lt-r"}, {"text": "PVP", "cls": "lt-p"}, {"text": "低预算", "cls": "lt-b"}] },
+    { "name": "SKS 半自动", "price": "～22,000₽", "icon": "🎯", "recoil": "62", "ergo": "2.8", "weight": "3.2kg", "tags": [{"text": "PVE友好", "cls": "lt-e"}, {"text": "超低预算", "cls": "lt-b"}] },
+    { "name": "M4A1 改装版", "price": "～120,000₽", "icon": "🔫", "recoil": "32", "ergo": "4.5", "weight": "4.1kg", "tags": [{"text": "版本答案", "cls": "lt-r"}, {"text": "PVP", "cls": "lt-p"}] },
+    { "name": "VDL 前线套", "price": "～280,000₽", "icon": "👑", "recoil": "28", "ergo": "5.1", "weight": "4.8kg", "tags": [{"text": "顶级配置", "cls": "lt-r"}, {"text": "PVP", "cls": "lt-p"}, {"text": "高端", "cls": "lt-b"}] }
   ]
 }
