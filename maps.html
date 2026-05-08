@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="逃离塔科夫全地图攻略，包含出口、物资点、Boss位置详细标注">
+<title>地图攻略 | 塔科夫攻略站</title>
+<style>
+:root{--bg1:#0a0c0f;--bg2:#111418;--bg3:#161b21;--bg4:#1c232b;--border:#2a3540;--gold:#c8a96e;--gold3:#a07840;--text1:#eae0cc;--text2:#9aabb8;--text3:#5a7080;--green2:#6aaa7a;--red2:#c05050;--blue2:#4a80b0;--orange2:#e09050;--font:'Segoe UI','Microsoft YaHei',sans-serif;--r:4px;--r2:8px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg1);color:var(--text1);font-family:var(--font);line-height:1.6}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--bg2)}::-webkit-scrollbar-thumb{background:var(--gold3);border-radius:3px}
+a{text-decoration:none;color:inherit;transition:all .2s}
+.nav{position:sticky;top:0;z-index:1000;height:60px;background:rgba(10,12,15,.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 32px;gap:16px}
+.nav-logo{display:flex;align-items:center;gap:10px;color:inherit}
+.mark{width:32px;height:32px;background:linear-gradient(135deg,var(--gold),var(--gold3));border-radius:var(--r);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;color:#07090b}
+.logo-name{font-size:17px;font-weight:800;letter-spacing:2px}.logo-name span{color:var(--gold)}
+.nav-links{display:flex;gap:2px;list-style:none;flex:1;justify-content:center}
+.nav-links a{padding:7px 12px;border-radius:var(--r);font-size:13px;color:var(--text2);font-weight:500;white-space:nowrap}
+.nav-links a:hover{color:var(--text1);background:var(--bg3)}
+.nav-links a.active{color:var(--gold);background:rgba(200,169,110,.07)}
+.page-hero{background:linear-gradient(135deg,rgba(42,80,112,.15),rgba(22,27,33,.9));border-bottom:1px solid var(--border);padding:48px 32px}
+.page-hero-inner{max-width:1200px;margin:0 auto}
+.page-hero h1{font-size:32px;font-weight:900;margin-bottom:8px}.page-hero h1 span{color:var(--gold)}
+.page-hero p{font-size:14px;color:var(--text2)}
+.wrap{max-width:1200px;margin:0 auto;padding:40px 32px}
+/* 难度筛选 */
+.diff-tabs{display:flex;gap:8px;margin-bottom:28px;flex-wrap:wrap}
+.d-tab{background:var(--bg3);border:1px solid var(--border);color:var(--text2);padding:6px 16px;border-radius:16px;font-size:12px;cursor:pointer;transition:all .2s}
+.d-tab:hover,.d-tab.on{background:rgba(200,169,110,.08);border-color:var(--gold);color:var(--gold)}
+/* 地图网格 */
+.maps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.map-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);overflow:hidden;transition:all .3s;cursor:pointer}
+.map-card:hover{border-color:var(--gold);transform:translateY(-3px);box-shadow:0 8px 32px rgba(0,0,0,.5)}
+.map-card.active-card{border-color:var(--gold);box-shadow:0 0 20px rgba(200,169,110,.2)}
+.map-img{width:100%;height:130px;display:flex;align-items:center;justify-content:center;font-size:44px;position:relative}
+.map-diff{position:absolute;top:8px;right:8px;padding:3px 9px;border-radius:3px;font-size:9px;font-weight:800}
+.d-easy{background:rgba(74,140,92,.85);color:#fff}
+.d-mid{background:rgba(192,112,48,.85);color:#fff}
+.d-hard{background:rgba(192,80,80,.85);color:#fff}
+.d-ex{background:rgba(144,48,200,.85);color:#fff}
+.map-body{padding:14px 16px}
+.map-name{font-size:15px;font-weight:700;margin-bottom:4px}
+.map-name-en{font-size:11px;color:var(--text3);font-weight:400;margin-left:4px}
+.map-meta{display:flex;gap:12px;margin-bottom:10px}
+.map-meta span{font-size:11px;color:var(--text3)}
+.map-tags{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px}
+.map-tag{font-size:9px;background:rgba(255,255,255,.04);border:1px solid var(--border);color:var(--text3);padding:2px 7px;border-radius:3px}
+.map-btn{display:block;width:100%;text-align:center;background:rgba(200,169,110,.08);border:1px solid rgba(200,169,110,.2);color:var(--gold);padding:8px;border-radius:var(--r);font-size:12px;font-weight:600;cursor:pointer;transition:all .2s;text-decoration:none}
+.map-btn:hover{background:rgba(200,169,110,.15)}
+/* 详情面板 */
+.detail-panel{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:28px;margin-top:28px;display:none}
+.detail-panel.show{display:block}
+.detail-header{display:flex;align-items:center;gap:16px;margin-bottom:24px;padding-bottom:20px;border-bottom:1px solid var(--border)}
+.detail-icon{font-size:48px}
+.detail-title{flex:1}
+.detail-title h2{font-size:24px;font-weight:900;margin-bottom:4px}
+.detail-title .sub{font-size:13px;color:var(--text3)}
+.close-btn{background:var(--bg2);border:1px solid var(--border);color:var(--text2);width:32px;height:32px;border-radius:var(--r);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;flex-shrink:0}
+.close-btn:hover{border-color:var(--red2);color:var(--red2)}
+.detail-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px}
+.ds-item{background:var(--bg2);border-radius:var(--r);padding:12px;text-align:center}
+.ds-val{font-size:22px;font-weight:800;color:var(--gold);font-family:'Courier New',monospace;display:block}
+.ds-label{font-size:10px;color:var(--text3);letter-spacing:1px}
+.detail-sections{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.ds-sec{background:var(--bg2);border-radius:var(--r);padding:16px}
+.ds-sec-title{font-size:12px;font-weight:700;color:var(--gold);margin-bottom:10px;letter-spacing:1px;text-transform:uppercase}
+.ds-list{list-style:none;display:flex;flex-direction:column;gap:6px}
+.ds-list li{font-size:12px;color:var(--text2);display:flex;align-items:flex-start;gap:6px}
+.ds-list li::before{content:'▸';color:var(--gold);flex-shrink:0;margin-top:1px}
+/* 空状态 */
+.empty{text-align:center;padding:60px;color:var(--text3);grid-column:1/-1}
+.footer{background:var(--bg2);border-top:1px solid var(--border);padding:24px 32px;margin-top:60px}
+.footer-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;font-size:12px;color:var(--text3);flex-wrap:wrap;gap:8px}
+.footer-inner a:hover{color:var(--gold)}
+@media(max-width:900px){.nav-links{display:none}.maps-grid{grid-template-columns:repeat(2,1fr)}.wrap{padding:32px 16px}.detail-stats{grid-template-columns:repeat(2,1fr)}.detail-sections{grid-template-columns:1fr}.page-hero{padding:32px 16px}}
+@media(max-width:500px){.maps-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <a class="nav-logo" href="index.html"><div class="mark">⚔</div><span class="logo-name">TARKOV<span>GUIDE</span></span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">🏠 首页</a></li>
+    <li><a href="maps.html" class="active">🗺️ 地图</a></li>
+    <li><a href="ammo.html">💊 弹药</a></li>
+    <li><a href="loadouts.html">🔫 武器</a></li>
+    <li><a href="quests.html">📋 任务</a></li>
+    <li><a href="articles.html">📰 攻略</a></li>
+  </ul>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <h1>🗺️ 地图<span>攻略</span></h1>
+    <p>全地图详细攻略 · 出口位置 · 物资刷新 · Boss信息 · 点击地图卡片查看详情</p>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="diff-tabs">
+    <button class="d-tab on" onclick="filterDiff(this,'')">全部</button>
+    <button class="d-tab" onclick="filterDiff(this,'新手友好')">🟢 新手友好</button>
+    <button class="d-tab" onclick="filterDiff(this,'中等')">🟡 中等难度</button>
+    <button class="d-tab" onclick="filterDiff(this,'困难')">🔴 困难</button>
+    <button class="d-tab" onclick="filterDiff(this,'极难')">💀 极难</button>
+  </div>
+  <div class="maps-grid" id="mapsGrid"></div>
+  <div class="detail-panel" id="detailPanel"></div>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span>© 2024 TarkovGuide · <a href="index.html">返回首页</a></span>
+    <span>非官方粉丝攻略站 · 仅供参考</span>
+  </div>
+</footer>
+
+<script>
+const DEF_MAPS=[
+  {id:'customs',name:'海关',nameEn:'Customs',icon:'🏭',difficulty:'新手友好',time:45,players:12,exits:7,boss:'獾',tags:['新手推荐','任务丰富','Boss·獾'],exits_list:['南方出口','工厂出口','铁路出口','ZB-1011','ZB-1012','老加油站','共检站'],loot:['三层宿舍（高价值）','工厂区储物柜','油罐区箱子','USEC营地'],tips:['白天光线好适合新手','三层宿舍竞争激烈','獾Boss在停车场附近出现','建议从南方出口撤离']},
+  {id:'woods',name:'森林',nameEn:'Woods',icon:'🌲',difficulty:'中等',time:50,players:14,exits:5,boss:'沙皇',tags:['远程狙击','Boss·沙皇','任务要地'],exits_list:['猎人小屋','河边出口','山顶出口','旧锯木厂','RUAF路堤'],loot:['锯木厂区域','地堡入口','SCAV据点'],tips:['开阔地带注意狙击手','沙皇有多名手下','任务物品多在林中小屋','建议带狙击枪']},
+  {id:'interchange',name:'互换',nameEn:'Interchange',icon:'🏬',difficulty:'中等',time:50,players:14,exits:4,boss:'克莱格',tags:['高价值物资','Boss·克莱格','近战激烈'],exits_list:['电力站','铁路停车场','OLI收货区','Kiba入口'],loot:['ULTRA商场中心','OLI仓库','KIBA武器店','Techlight'],tips:['关闭电力可激活出口','克莱格在KIBA或OLI附近','室内近战为主','电子设备价值高']},
+  {id:'reserve',name:'储备基地',nameEn:'Reserve',icon:'🏰',difficulty:'困难',time:55,players:12,exits:6,boss:'格鲁特',tags:['军事物资','Boss·格鲁特','撤离复杂'],exits_list:['装甲列车（信号弹）','地下停机坪','白色主教','黑色主教','D-2','V-Ex'],loot:['地下军事仓库','直升机停机坪','武器库'],tips:['装甲列车需信号弹激活','格鲁特防御能力极强','地下区域物资丰富','撤离点分散需提前规划']},
+  {id:'shoreline',name:'海岸线',nameEn:'Shoreline',icon:'🌊',difficulty:'困难',time:50,players:12,exits:8,boss:'桑塔',tags:['医疗资源','Boss·桑塔','地图超大'],exits_list:['码头','村庄北','村庄南','山坡出口','路障出口','温泉出口','岩石通道','破损围栏'],loot:['度假村（顶级医疗）','气象站','雷达基地','码头仓库'],tips:['地图巨大建议规划路线','桑塔在度假村内','医疗物资价值极高','需要钥匙解锁房间']},
+  {id:'labs',name:'实验室',nameEn:'The Lab',icon:'🔬',difficulty:'极难',time:35,players:10,exits:3,boss:'狂人',tags:['需要通行证','顶级装备','Boss·狂人'],exits_list:['飞机库（4个按钮）','停车场','技术出口'],loot:['研究室（顶级物资）','服务器房间','医疗实验室'],tips:['进入需要实验室通行证','狂人是最危险的Boss','出口需要多人配合激活','全员顶配才敢进']},
+  {id:'factory',name:'工厂',nameEn:'Factory',icon:'🏭',difficulty:'中等',time:25,players:6,exits:4,boss:'',tags:['近战激烈','节奏快','PVP热门'],exits_list:['办公楼出口','停车场','门3出口','沼泽地出口'],loot:['工厂内部箱子','保险箱室'],tips:['地图小节奏极快','近战武器优势明显','适合练习枪法','资源相对较少']},
+  {id:'lighthouse',name:'灯塔',nameEn:'Lighthouse',icon:'🗼',difficulty:'困难',time:50,players:12,exits:5,boss:'教徒',tags:['高价值','Boss·教徒','任务要地'],exits_list:['北岸出口','旧停车场','村庄出口','山顶信标','轮渡码头'],loot:['豪华别墅区','灯塔基地','水处理厂'],tips:['教徒AI极为精准','别墅区物资丰富','地图西侧危险区域','建议高配才进']},
+  {id:'darkcorner',name:'黑暗之角',nameEn:'Dark Corner',icon:'🌑',difficulty:'困难',time:45,players:12,exits:5,boss:'暗影',tags:['新地图','0.15新增','高价值'],exits_list:['北部仓库门','地下通道（需钥匙）','屋顶直升机（信号弹）','东侧围栏','南部停车场'],loot:['银行金库','医院顶层','警察局','地下室'],tips:['新地图请仔细探索','地下室物资丰富','暗影Boss较难击杀','建议组队进入']}
+];
+const mapBg={customs:'linear-gradient(135deg,#1a2a1a,#2a3a2a)',woods:'linear-gradient(135deg,#1a2a15,#2a3a1a)',interchange:'linear-gradient(135deg,#1a1a2a,#252535)',reserve:'linear-gradient(135deg,#252525,#352525)',shoreline:'linear-gradient(135deg,#15252a,#1a3040)',labs:'linear-gradient(135deg,#0a1520,#102030)',factory:'linear-gradient(135deg,#1a1510,#2a2018)',lighthouse:'linear-gradient(135deg,#101a20,#182535)',darkcorner:'linear-gradient(135deg,#0d0d1a,#1a0a2a)'};
+const diffClass={'新手友好':'d-easy','easy':'d-easy','中等':'d-mid','medium':'d-mid','困难':'d-hard','hard':'d-hard','极难':'d-ex','extreme':'d-ex'};
+let allMaps=[],diffFilter='',activeId='';
+
+function getLS(k){try{const d=localStorage.getItem('tarkov_'+k);return d?JSON.parse(d):null;}catch{return null;}}
+async function loadData(){
+  let data=getLS('maps');
+  if(!data||!data.length){
+    try{const r=await fetch('data/maps.json?t='+Date.now());if(r.ok){const j=await r.json();data=j.maps||j||[];}}catch(e){}
+  }
+  // 合并默认数据中的详细信息
+  allMaps=(data&&data.length?data:DEF_MAPS).map(m=>{
+    const def=DEF_MAPS.find(d=>d.id===m.id||d.name===m.name);
+    return def?{...def,...m}:m;
+  });
+  // URL参数
+  const p=new URLSearchParams(location.search);
+  const id=p.get('id');
+  renderMaps();
+  if(id){
+    const m=allMaps.find(m=>m.id===id||m.name===id);
+    if(m) showDetail(m);
+  }
+}
+
+function renderMaps(){
+  let data=[...allMaps];
+  if(diffFilter) data=data.filter(m=>m.difficulty===diffFilter||m.difficulty?.toLowerCase()===diffFilter.toLowerCase());
+  if(!data.length){document.getElementById('mapsGrid').innerHTML='<div class="empty">暂无符合条件的地图</div>';return;}
+  document.getElementById('mapsGrid').innerHTML=data.map(m=>{
+    const bg=mapBg[m.id]||mapBg[m.nameEn?.toLowerCase()]||'linear-gradient(135deg,#1a2020,#202a2a)';
+    const dc=diffClass[m.difficulty]||'d-mid';
+    const tags=Array.isArray(m.tags)?m.tags:(m.tags||'').split(',').map(t=>t.trim()).filter(Boolean);
+    return `<div class="map-card ${activeId===m.id?'active-card':''}" onclick="showDetail(${JSON.stringify(m).replace(/"/g,'&quot;')})">
+      <div class="map-img" style="background:${bg}"><span>${m.icon||'🗺️'}</span><span class="map-diff ${dc}">${m.difficulty}</span></div>
+      <div class="map-body">
+        <div class="map-name">${m.name}<span class="map-name-en">${m.nameEn||''}</span></div>
+        <div class="map-meta"><span>⏱ ${m.time}分钟</span><span>👥 ${m.players}人</span><span>🚪 ${m.exits}个出口</span>${m.boss?`<span>👹 ${m.boss}</span>`:''}</div>
+        <div class="map-tags">${tags.map(t=>`<span class="map-tag">${t}</span>`).join('')}</div>
+        <span class="map-btn">查看详情 →</span>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function showDetail(m){
+  if(typeof m==='string') m=JSON.parse(m);
+  activeId=m.id;
+  renderMaps();
+  const exits=m.exits_list||[];
+  const loot=m.loot||[];
+  const tips=m.tips||[];
+  document.getElementById('detailPanel').innerHTML=`
+    <div class="detail-header">
+      <div class="detail-icon">${m.icon||'🗺️'}</div>
+      <div class="detail-title">
+        <h2>${m.name} <span style="font-size:16px;color:var(--text3);font-weight:400">${m.nameEn||''}</span></h2>
+        <div class="sub">${m.desc||'点击下方信息了解详细攻略'}</div>
+      </div>
+      <div class="close-btn" onclick="closeDetail()">✕</div>
+    </div>
+    <div class="detail-stats">
+      <div class="ds-item"><span class="ds-val">${m.time}</span><span class="ds-label">分钟时长</span></div>
+      <div class="ds-item"><span class="ds-val">${m.players}</span><span class="ds-label">最大玩家</span></div>
+      <div class="ds-item"><span class="ds-val">${m.exits}</span><span class="ds-label">出口数量</span></div>
+      <div class="ds-item"><span class="ds-val">${m.boss||'无'}</span><span class="ds-label">Boss</span></div>
+    </div>
+    <div class="detail-sections">
+      ${exits.length?`<div class="ds-sec"><div class="ds-sec-title">🚪 出口列表</div><ul class="ds-list">${exits.map(e=>`<li>${e}</li>`).join('')}</ul></div>`:''}
+      ${loot.length?`<div class="ds-sec"><div class="ds-sec-title">💰 主要物资点</div><ul class="ds-list">${loot.map(e=>`<li>${e}</li>`).join('')}</ul></div>`:''}
+      ${tips.length?`<div class="ds-sec" style="grid-column:1/-1"><div class="ds-sec-title">💡 攻略要点</div><ul class="ds-list">${tips.map(e=>`<li>${e}</li>`).join('')}</ul></div>`:''}
+    </div>`;
+  document.getElementById('detailPanel').classList.add('show');
+  document.getElementById('detailPanel').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function closeDetail(){
+  activeId='';
+  document.getElementById('detailPanel').classList.remove('show');
+  renderMaps();
+}
+
+function filterDiff(btn,d){
+  diffFilter=d;
+  document.querySelectorAll('.d-tab').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  closeDetail();
+  renderMaps();
+}
+loadData();
+</script>
+</body>
+</html>
