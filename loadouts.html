@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="逃离塔科夫武器配装推荐，按预算分类的最优配装方案">
+<title>武器配装 | 塔科夫攻略站</title>
+<style>
+:root{--bg1:#0a0c0f;--bg2:#111418;--bg3:#161b21;--border:#2a3540;--gold:#c8a96e;--gold3:#a07840;--text1:#eae0cc;--text2:#9aabb8;--text3:#5a7080;--green2:#6aaa7a;--red2:#c05050;--blue2:#4a80b0;--orange2:#e09050;--font:'Segoe UI','Microsoft YaHei',sans-serif;--mono:'Courier New',monospace;--r:4px;--r2:8px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg1);color:var(--text1);font-family:var(--font);line-height:1.6}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--bg2)}::-webkit-scrollbar-thumb{background:var(--gold3);border-radius:3px}
+a{text-decoration:none;color:inherit}
+.nav{position:sticky;top:0;z-index:1000;height:60px;background:rgba(10,12,15,.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 32px;gap:16px}
+.nav-logo{display:flex;align-items:center;gap:10px}
+.mark{width:32px;height:32px;background:linear-gradient(135deg,var(--gold),var(--gold3));border-radius:var(--r);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;color:#07090b}
+.logo-name{font-size:17px;font-weight:800;letter-spacing:2px}.logo-name span{color:var(--gold)}
+.nav-links{display:flex;gap:2px;list-style:none;flex:1;justify-content:center}
+.nav-links a{padding:7px 12px;border-radius:var(--r);font-size:13px;color:var(--text2);white-space:nowrap}
+.nav-links a:hover{color:var(--text1);background:var(--bg3)}
+.nav-links a.active{color:var(--gold);background:rgba(200,169,110,.07)}
+.page-hero{background:linear-gradient(135deg,rgba(42,80,112,.15),rgba(22,27,33,.9));border-bottom:1px solid var(--border);padding:48px 32px}
+.page-hero-inner{max-width:1200px;margin:0 auto}
+.page-hero h1{font-size:32px;font-weight:900;margin-bottom:8px}.page-hero h1 span{color:var(--gold)}
+.page-hero p{font-size:14px;color:var(--text2)}
+.wrap{max-width:1200px;margin:0 auto;padding:40px 32px}
+/* 筛选 */
+.filter-tabs{display:flex;gap:0;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);overflow:hidden;margin-bottom:24px;flex-wrap:nowrap;overflow-x:auto}
+.f-tab{padding:12px 22px;font-size:13px;font-weight:600;cursor:pointer;color:var(--text3);border-right:1px solid var(--border);transition:all .2s;white-space:nowrap;flex-shrink:0;display:flex;align-items:center;gap:8px}
+.f-tab:last-child{border-right:none}
+.f-tab.on{background:rgba(200,169,110,.07);color:var(--gold);box-shadow:inset 0 -2px 0 var(--gold)}
+.f-tab .bg{font-size:10px;padding:2px 6px;border-radius:3px;font-weight:800}
+.bg-low{background:rgba(74,140,92,.2);color:var(--green2)}
+.bg-mid{background:rgba(192,112,48,.2);color:var(--orange2)}
+.bg-hi{background:rgba(200,169,110,.2);color:var(--gold)}
+/* 网格 */
+.loadouts-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.lc{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);overflow:hidden;transition:all .3s;cursor:pointer}
+.lc:hover{border-color:var(--gold);transform:translateY(-3px);box-shadow:0 8px 32px rgba(0,0,0,.5)}
+.lc.selected{border-color:var(--gold);box-shadow:0 0 20px rgba(200,169,110,.2)}
+.lc-header{padding:16px 18px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.lc-name{font-size:17px;font-weight:800}
+.lc-price{font-size:14px;color:var(--gold);font-family:var(--mono);font-weight:700}
+.lc-img{width:100%;height:80px;background:var(--bg2);display:flex;align-items:center;justify-content:center;font-size:40px}
+.lc-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-bottom:1px solid var(--border)}
+.ls{padding:12px;text-align:center;border-right:1px solid var(--border)}
+.ls:last-child{border-right:none}
+.ls-v{font-size:20px;font-weight:800;color:var(--gold);font-family:var(--mono);display:block}
+.ls-l{font-size:10px;color:var(--text3);letter-spacing:.5px}
+.lc-body{padding:14px 18px}
+.lc-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.lt{font-size:10px;padding:3px 8px;border-radius:3px;font-weight:700}
+.lt-rec{background:rgba(200,169,110,.12);color:var(--gold);border:1px solid rgba(200,169,110,.2)}
+.lt-pvp{background:rgba(192,80,80,.12);color:var(--red2);border:1px solid rgba(192,80,80,.2)}
+.lt-pve{background:rgba(74,140,92,.12);color:var(--green2);border:1px solid rgba(74,140,92,.2)}
+.lt-bgt{background:rgba(42,80,112,.25);color:var(--blue2);border:1px solid rgba(74,128,176,.2)}
+.lc-ammo{font-size:11px;color:var(--text3);display:flex;align-items:center;gap:5px}
+/* 详情弹窗 */
+.detail-overlay{position:fixed;inset:0;background:rgba(0,0,0,.85);backdrop-filter:blur(8px);z-index:999;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;visibility:hidden;transition:all .25s}
+.detail-overlay.show{opacity:1;visibility:visible}
+.detail-modal{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);max-width:600px;width:100%;max-height:85vh;overflow-y:auto}
+.dm-header{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:var(--bg3)}
+.dm-title{font-size:18px;font-weight:800}
+.dm-close{width:30px;height:30px;border-radius:var(--r);background:var(--bg2);border:1px solid var(--border);color:var(--text2);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px}
+.dm-close:hover{border-color:var(--red2);color:var(--red2)}
+.dm-body{padding:20px}
+.dm-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px}
+.dm-stat{background:var(--bg2);border-radius:var(--r);padding:12px;text-align:center}
+.dm-stat-v{font-size:22px;font-weight:800;color:var(--gold);font-family:var(--mono);display:block}
+.dm-stat-l{font-size:10px;color:var(--text3)}
+.dm-section{margin-bottom:16px}
+.dm-sec-title{font-size:12px;font-weight:700;color:var(--gold);margin-bottom:8px;letter-spacing:1px;text-transform:uppercase}
+.dm-parts{list-style:none;display:flex;flex-direction:column;gap:5px}
+.dm-parts li{font-size:12px;color:var(--text2);padding:6px 10px;background:var(--bg2);border-radius:var(--r);display:flex;align-items:center;gap:6px}
+.dm-parts li::before{content:'▸';color:var(--gold)}
+/* 空 */
+.empty{text-align:center;padding:60px;color:var(--text3);grid-column:1/-1}
+.footer{background:var(--bg2);border-top:1px solid var(--border);padding:24px 32px;margin-top:60px}
+.footer-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;font-size:12px;color:var(--text3);flex-wrap:wrap;gap:8px}
+.footer-inner a:hover{color:var(--gold)}
+@media(max-width:900px){.nav-links{display:none}.loadouts-grid{grid-template-columns:repeat(2,1fr)}.wrap{padding:32px 16px}.page-hero{padding:32px 16px}}
+@media(max-width:500px){.loadouts-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <a class="nav-logo" href="index.html"><div class="mark">⚔</div><span class="logo-name">TARKOV<span>GUIDE</span></span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">🏠 首页</a></li>
+    <li><a href="maps.html">🗺️ 地图</a></li>
+    <li><a href="ammo.html">💊 弹药</a></li>
+    <li><a href="loadouts.html" class="active">🔫 武器</a></li>
+    <li><a href="quests.html">📋 任务</a></li>
+    <li><a href="articles.html">📰 攻略</a></li>
+  </ul>
+</nav>
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <h1>🔫 武器<span>配装推荐</span></h1>
+    <p>按预算分类 · 本版本最优方案 · 点击配装卡片查看详细配件清单</p>
+  </div>
+</div>
+<div class="wrap">
+  <div class="filter-tabs">
+    <div class="f-tab on" onclick="switchBudget(this,'')">📋 全部配装</div>
+    <div class="f-tab" onclick="switchBudget(this,'low')">💚 低预算 <span class="bg bg-low">&lt;50K</span></div>
+    <div class="f-tab" onclick="switchBudget(this,'mid')">💛 中等 <span class="bg bg-mid">50-150K</span></div>
+    <div class="f-tab" onclick="switchBudget(this,'high')">👑 高端 <span class="bg bg-hi">&gt;150K</span></div>
+    <div class="f-tab" onclick="switchBudget(this,'pvp')">🎯 PVP专精</div>
+    <div class="f-tab" onclick="switchBudget(this,'pve')">🌿 PVE稳定</div>
+  </div>
+  <div class="loadouts-grid" id="loadoutsGrid"></div>
+</div>
+
+<div class="detail-overlay" id="detailOverlay" onclick="closeDetail(event)">
+  <div class="detail-modal" onclick="event.stopPropagation()">
+    <div class="dm-header">
+      <span class="dm-title" id="dmTitle">配装详情</span>
+      <div class="dm-close" onclick="closeDetail()">✕</div>
+    </div>
+    <div class="dm-body" id="dmBody"></div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span>© 2024 TarkovGuide · <a href="index.html">返回首页</a></span>
+    <span>非官方粉丝攻略站 · 仅供参考</span>
+  </div>
+</footer>
+<script>
+const DEF=[
+  {name:'AK-74N',price:'～38,000₽',icon:'🔫',budget:'low',type:'pvp',recoil:47,ergo:52,weight:'3.8',ammo:'7N40',parts:['6P20 AK-74N枪托','AK-74 Magpul制动器','Zenit RK-3握把','6P20前护木','Leupold Mark 6瞄准镜'],tips:'性价比最高的低预算配置，适合新手入门'},
+  {name:'SKS半自动',price:'～22,000₽',icon:'🎯',budget:'low',type:'pve',recoil:62,ergo:48,weight:'3.2',ammo:'BP',parts:['SKS Choate折叠枪托','SKS DTK补偿器','SKS标准弹匣×3'],tips:'超低预算首选，PVE表现稳定'},
+  {name:'MP5冲锋枪',price:'～65,000₽',icon:'🔫',budget:'mid',type:'pvp',recoil:38,ergo:74,weight:'2.8',ammo:'PBP',parts:['MP5 B&T消声器','MP5 Magpul折叠托','MP5 垂直握把','Burris FastFire全息'],tips:'近距离PVP神器，人机极佳'},
+  {name:'SA-58自动步枪',price:'～120,000₽',icon:'🎯',budget:'mid',type:'pve',recoil:42,ergo:55,weight:'4.0',ammo:'M61',parts:['SA-58 PARA枪托','SA-58 DTK制动器','SA-58 20发弹匣','SA-58 Magpul握把'],tips:'中端PVE首选，7.62x51穿透强'},
+  {name:'M4A1改装版',price:'～180,000₽',icon:'🔫',budget:'high',type:'pvp',recoil:32,ergo:68,weight:'4.2',ammo:'M995',parts:['M4A1 Geissele枪托','SLR ION超轻导轨','Ops Core消声器','Trijicon ACOG 4x','AFG握把','M4 PMAg 30发弹匣'],tips:'当前版本PVP性价比之王'},
+  {name:'RSASS精确步枪',price:'～220,000₽',icon:'🎯',budget:'high',type:'pvp',recoil:28,ergo:72,weight:'5.1',ammo:'M61',parts:['RSASS 18寸枪管','RSASS消声器','Leupold Mark 6 3-18x','RSASS钨合金制动'],tips:'远程精度极高，适合打狙'},
+];
+let allLoadouts=[],budgetFilter='',selectedId=-1;
+
+function getLS(k){try{const d=localStorage.getItem('tarkov_'+k);return d?JSON.parse(d):null;}catch{return null;}}
+async function loadData(){
+  let data=getLS('loadouts');
+  if(!data||!data.length){
+    try{const r=await fetch('data/loadouts.json?t='+Date.now());if(r.ok){const j=await r.json();data=j.loadouts||j||[];}}catch(e){}
+  }
+  allLoadouts=(data&&data.length?data:DEF).map((l,i)=>({...DEF[i],...l}));
+  render();
+}
+
+function render(){
+  let data=[...allLoadouts];
+  if(budgetFilter==='pvp') data=data.filter(l=>l.type==='pvp');
+  else if(budgetFilter==='pve') data=data.filter(l=>l.type==='pve');
+  else if(budgetFilter) data=data.filter(l=>l.budget===budgetFilter);
+  if(!data.length){document.getElementById('loadoutsGrid').innerHTML='<div class="empty">暂无该分类配装方案</div>';return;}
+  const typeL={pvp:'🔴 PVP',pve:'🟢 PVE',all:'🔵 全能'};
+  document.getElementById('loadoutsGrid').innerHTML=data.map((l,i)=>`
+  <div class="lc ${selectedId===i?'selected':''}" onclick="showDetail(${i})">
+    <div class="lc-header"><span class="lc-name">${l.icon||'🔫'} ${l.name}</span><span class="lc-price">${l.price}</span></div>
+    <div class="lc-img">${l.icon||'🔫'}</div>
+    <div class="lc-stats">
+      <div class="ls"><span class="ls-v">${l.recoil}</span><span class="ls-l">后坐力</span></div>
+      <div class="ls"><span class="ls-v">${l.ergo}</span><span class="ls-l">人机</span></div>
+      <div class="ls"><span class="ls-v">${l.weight}kg</span><span class="ls-l">重量</span></div>
+    </div>
+    <div class="lc-body">
+      <div class="lc-tags">
+        <span class="lt lt-rec">推荐</span>
+        <span class="lt lt-pvp">${typeL[l.type]||l.type}</span>
+        ${l.budget==='low'?'<span class="lt lt-bgt">低预算</span>':l.budget==='mid'?'<span class="lt lt-bgt">中等预算</span>':l.budget==='high'?'<span class="lt lt-bgt">高端配置</span>':''}
+      </div>
+      ${l.ammo?`<div class="lc-ammo">💊 推荐弹药：<b style="color:var(--text1)">${l.ammo}</b></div>`:''}
+      ${l.tips?`<div style="font-size:11px;color:var(--text3);margin-top:6px">${l.tips}</div>`:''}
+    </div>
+  </div>`).join('');
+}
+
+function showDetail(i){
+  const data=allLoadouts.filter(l=>budgetFilter==='pvp'?l.type==='pvp':budgetFilter==='pve'?l.type==='pve':budgetFilter?l.budget===budgetFilter:true);
+  const l=data[i];
+  if(!l) return;
+  selectedId=i;
+  document.getElementById('dmTitle').textContent=l.icon+' '+l.name;
+  const parts=l.parts||[];
+  document.getElementById('dmBody').innerHTML=`
+    <div class="dm-stats">
+      <div class="dm-stat"><span class="dm-stat-v">${l.recoil}</span><span class="dm-stat-l">后坐力</span></div>
+      <div class="dm-stat"><span class="dm-stat-v">${l.ergo}</span><span class="dm-stat-l">人机精度</span></div>
+      <div class="dm-stat"><span class="dm-stat-v">${l.weight}kg</span><span class="dm-stat-l">总重量</span></div>
+    </div>
+    <div class="dm-section">
+      <div class="dm-sec-title">💰 预算参考</div>
+      <div style="font-size:16px;font-weight:700;color:var(--gold);font-family:var(--mono)">${l.price}</div>
+    </div>
+    ${l.ammo?`<div class="dm-section"><div class="dm-sec-title">💊 推荐弹药</div><div style="font-size:14px;font-weight:600;color:var(--text1)">${l.ammo}</div></div>`:''}
+    ${parts.length?`<div class="dm-section"><div class="dm-sec-title">🔧 配件清单</div><ul class="dm-parts">${parts.map(p=>`<li>${p}</li>`).join('')}</ul></div>`:''}
+    ${l.tips?`<div class="dm-section"><div class="dm-sec-title">💡 使用建议</div><div style="font-size:13px;color:var(--text2);line-height:1.7">${l.tips}</div></div>`:''}`;
+  document.getElementById('detailOverlay').classList.add('show');
+}
+
+function closeDetail(e){
+  if(!e||e.target===document.getElementById('detailOverlay')) document.getElementById('detailOverlay').classList.remove('show');
+}
+
+function switchBudget(btn,b){
+  budgetFilter=b;
+  document.querySelectorAll('.f-tab').forEach(t=>t.classList.remove('on'));
+  btn.classList.add('on');
+  render();
+}
+
+document.addEventListener('keydown',e=>{if(e.key==='Escape') closeDetail();});
+loadData();
+</script>
+</body>
+</html>
