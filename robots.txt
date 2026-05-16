@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://yvan520.github.io/tarkov/sitemap.xml

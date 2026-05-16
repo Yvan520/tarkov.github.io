@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://yvan520.github.io/tarkov/</loc>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://yvan520.github.io/tarkov/maps.html</loc>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://yvan520.github.io/tarkov/ammo.html</loc>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://yvan520.github.io/tarkov/loadouts.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://yvan520.github.io/tarkov/quests.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://yvan520.github.io/tarkov/articles.html</loc>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://yvan520.github.io/tarkov/article.html</loc>
+    <priority>0.7</priority>
+  </url>
+</urlset>
