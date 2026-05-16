@@ -22,6 +22,17 @@ a{text-decoration:none;color:inherit;transition:all .2s}
 .nav-back{display:flex;align-items:center;gap:6px;background:var(--bg3);border:1px solid var(--border);color:var(--text2);padding:7px 14px;border-radius:var(--r);font-size:12px;cursor:pointer;transition:all .2s;text-decoration:none}
 .nav-back:hover{border-color:var(--gold);color:var(--gold)}
 
+button{font-family:var(--font);cursor:pointer}
+.nav-right{display:flex;gap:8px;align-items:center;flex-shrink:0}
+.nav-search-btn{display:flex;align-items:center;gap:8px;background:var(--bg3);border:1px solid var(--border);color:var(--text2);padding:7px 14px;border-radius:var(--r);font-size:12px;transition:all .2s;white-space:nowrap}
+.nav-search-btn:hover{border-color:var(--gold);color:var(--gold)}
+.nav-burger{display:none;flex-direction:column;gap:5px;background:transparent;border:none;padding:4px}
+.nav-burger span{display:block;width:22px;height:2px;background:var(--text2);border-radius:2px}
+.mobile-menu{display:none;position:fixed;top:60px;left:0;right:0;background:rgba(10,12,15,.98);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);z-index:999;padding:12px 0}
+.mobile-menu.open{display:block}
+.mobile-menu a{display:flex;align-items:center;gap:10px;padding:12px 24px;font-size:14px;color:var(--text2);text-decoration:none;border-bottom:1px solid rgba(255,255,255,.03)}
+.mobile-menu a:hover{color:var(--gold);background:rgba(200,169,110,.05)}
+.ver{font-size:10px;color:var(--text3);background:var(--bg3);border:1px solid var(--border);padding:2px 6px;border-radius:3px;font-family:var(--mono);margin-left:-4px}
 .container{max-width:860px;margin:0 auto;padding:48px 24px}
 
 /* 面包屑 */
@@ -98,7 +109,7 @@ a{text-decoration:none;color:inherit;transition:all .2s}
 .footer-inner a{color:var(--text3)}
 .footer-inner a:hover{color:var(--gold)}
 
-@media(max-width:700px){.nav-links{display:none}.related-grid{grid-template-columns:1fr}.container{padding:32px 16px}}
+@media(max-width:700px){.nav-links{display:none}.nav-burger{display:flex}.related-grid{grid-template-columns:1fr}.container{padding:32px 16px}}
 </style>
 </head>
 <body>
@@ -107,16 +118,30 @@ a{text-decoration:none;color:inherit;transition:all .2s}
   <a class="nav-logo" href="index.html">
     <div class="mark">⚔</div>
     <span class="logo-name">TARKOV<span>GUIDE</span></span>
+    <span class="ver">v0.15.0</span>
   </a>
   <ul class="nav-links">
     <li><a href="index.html">🏠 首页</a></li>
     <li><a href="maps.html">🗺️ 地图</a></li>
     <li><a href="ammo.html">💊 弹药</a></li>
+    <li><a href="loadouts.html">🔫 武器</a></li>
     <li><a href="quests.html">📋 任务</a></li>
     <li><a href="articles.html">📰 攻略</a></li>
   </ul>
-  <a class="nav-back" href="articles.html">← 返回攻略列表</a>
+  <div class="nav-right">
+    <button class="nav-search-btn" onclick="openSearch()">🔍 搜索 <kbd>Ctrl+K</kbd></button>
+    <button class="nav-burger" onclick="toggleMenu()" id="burgerBtn"><span></span><span></span><span></span></button>
+    <a class="nav-back" href="articles.html">← 返回</a>
+  </div>
 </nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">🏠 首页</a>
+  <a href="maps.html">🗺️ 地图攻略</a>
+  <a href="ammo.html">💊 弹药数据</a>
+  <a href="loadouts.html">🔫 武器配装</a>
+  <a href="quests.html">📋 任务攻略</a>
+  <a href="articles.html">📰 全部攻略</a>
+</div>
 
 <div class="container">
 
@@ -138,6 +163,16 @@ a{text-decoration:none;color:inherit;transition:all .2s}
 
 </div>
 
+<div class="search-ov" id="searchOv" onclick="closeSearchOv(event)">
+  <div class="search-box" onclick="event.stopPropagation()">
+    <div class="sm-wrap">
+      <span class="sm-icon">🔍</span>
+      <input class="sm-input" id="smInput" placeholder="搜索地图、武器、弹药、任务..." oninput="doSearch(this.value)">
+      <div class="sm-esc" onclick="closeSearch()">ESC</div>
+    </div>
+    <div class="search-results" id="searchResults" style="display:none"></div>
+  </div>
+</div>
 <footer class="footer">
   <div class="footer-inner">
     <span>© 2024 TarkovGuide · <a href="index.html">返回首页</a></span>
@@ -305,6 +340,27 @@ function showError(title, desc, backUrl) {
     </div>`;
 }
 
+/* ── 搜索/菜单 ── */
+function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open')}
+function openSearch(){document.getElementById('searchOv').classList.add('on');setTimeout(()=>document.getElementById('smInput')?.focus(),100)}
+function closeSearch(){document.getElementById('searchOv').classList.remove('on');document.getElementById('searchResults').style.display='none'}
+function closeSearchOv(e){if(e.target===document.getElementById('searchOv'))closeSearch()}
+const searchData=[];
+async function initSearch(){
+  try{const r=await fetch('data/articles.json?t='+Date.now());if(r.ok){const j=await r.json();const arts=j.articles||j||[];arts.forEach(a=>{if(a.title){searchData.push({title:a.title,icon:a.icon||'📄',url:'article.html?id='+(a.id||encodeURIComponent(a.title)),cat:a.categoryName||a.categoryLabel||'攻略',type:'article'})}})}}
+  catch(e){}
+}
+function doSearch(kw){
+  kw=kw.trim().toLowerCase();
+  const el=document.getElementById('searchResults');
+  if(!kw){el.style.display='none';return}
+  const results=searchData.filter(s=>s.title.toLowerCase().includes(kw)).slice(0,8);
+  if(!results.length){el.style.display='block';el.innerHTML='<div class="sr-empty">未找到相关内容</div>';return}
+  el.style.display='block';
+  el.innerHTML=results.map(r=>`<a href="${r.url}" class="sr-item"><span class="sr-icon">${r.icon}</span><div class="sr-body"><div class="sr-title">${r.title}</div><span class="sr-cat">${r.cat}</span></div></a>`).join('');
+}
+document.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key==='k'){e.preventDefault();openSearch()}if(e.key==='Escape')closeSearch()});
+initSearch();
 loadArticle();
 </script>
 </body>

@@ -1,0 +1,14 @@
+{
+  "prices": [
+    {"name":"GPU显卡","value":490000,"trend":"up","source":"工作站柜/任务物资","rank":1},
+    {"name":"比特币","value":285000,"trend":"stable","source":"藏匿处产出/掉落","rank":2},
+    {"name":"红钥匙卡","value":180000,"trend":"down","source":"实验室专用","rank":3},
+    {"name":"LEDX皮肤传感器","value":165000,"trend":"up","source":"医疗/任务物资","rank":4},
+    {"name":"防弹头盔FAST MT","value":98000,"trend":"stable","source":"Boss掉落/装备","rank":5},
+    {"name":"SICC公文包","value":120000,"trend":"up","source":"任务奖励/跳蚤","rank":6},
+    {"name":"军粮（发射架）","value":85000,"trend":"down","source":"藏匿处/任务","rank":7},
+    {"name":"火药（鹰型）","value":65000,"trend":"up","source":"军事物资/SCAV","rank":8},
+    {"name":"马灯","value":55000,"trend":"stable","source":"技术箱/SCAV","rank":9},
+    {"name":"滤水器","value":42000,"trend":"up","source":"技术箱/柜子","rank":10}
+  ]
+}

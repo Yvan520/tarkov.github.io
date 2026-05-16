@@ -1,84 +1,20 @@
 {
   "loadouts": [
-    {
-      "name": "AK-74N",
-      "price": "～38,000₽",
-      "icon": "🔫",
-      "recoil": "47",
-      "ergo": "3.2",
-      "weight": "3.8kg",
-      "tags": [
-        {
-          "text": "强烈推荐",
-          "cls": "lt-r"
-        },
-        {
-          "text": "PVP",
-          "cls": "lt-p"
-        },
-        {
-          "text": "低预算",
-          "cls": "lt-b"
-        }
-      ]
-    },
-    {
-      "name": "SKS 半自动",
-      "price": "～22,000₽",
-      "icon": "🎯",
-      "recoil": "62",
-      "ergo": "2.8",
-      "weight": "3.2kg",
-      "tags": [
-        {
-          "text": "PVE友好",
-          "cls": "lt-e"
-        },
-        {
-          "text": "超低预算",
-          "cls": "lt-b"
-        }
-      ]
-    },
-    {
-      "name": "M4A1 改装版",
-      "price": "～120,000₽",
-      "icon": "🔫",
-      "recoil": "32",
-      "ergo": "4.5",
-      "weight": "4.1kg",
-      "tags": [
-        {
-          "text": "版本答案",
-          "cls": "lt-r"
-        },
-        {
-          "text": "PVP",
-          "cls": "lt-p"
-        }
-      ]
-    },
-    {
-      "name": "VDL 前线套",
-      "price": "～280,000₽",
-      "icon": "👑",
-      "recoil": "28",
-      "ergo": "5.1",
-      "weight": "4.8kg",
-      "tags": [
-        {
-          "text": "顶级配置",
-          "cls": "lt-r"
-        },
-        {
-          "text": "PVP",
-          "cls": "lt-p"
-        },
-        {
-          "text": "高端",
-          "cls": "lt-b"
-        }
-      ]
-    }
+    {"name":"AK-74N","price":"～38,000₽","icon":"🔫","budget":"low","type":"pvp","recoil":"47","ergo":"52","weight":"3.8","ammo":"7N40","parts":["6P20 AK-74N枪托","AK-74 Magpul制动器","Zenit RK-3握把","6P20前护木","Leupold Mark 6瞄准镜"],"tips":"性价比最高的低预算配置，适合新手入门"},
+    {"name":"SKS半自动","price":"～22,000₽","icon":"🎯","budget":"low","type":"pve","recoil":"62","ergo":"48","weight":"3.2","ammo":"BP","parts":["SKS Choate折叠枪托","SKS DTK补偿器","SKS标准弹匣×3"],"tips":"超低预算首选，PVE表现稳定"},
+    {"name":"MP5冲锋枪","price":"～65,000₽","icon":"🔫","budget":"mid","type":"pvp","recoil":"38","ergo":"74","weight":"2.8","ammo":"PBP","parts":["MP5 B&T消声器","MP5 Magpul折叠托","MP5 垂直握把","Burris FastFire全息"],"tips":"近距离PVP神器，人机极佳"},
+    {"name":"SA-58自动步枪","price":"～120,000₽","icon":"🎯","budget":"mid","type":"pve","recoil":"42","ergo":"55","weight":"4.0","ammo":"M61","parts":["SA-58 PARA枪托","SA-58 DTK制动器","SA-58 20发弹匣","SA-58 Magpul握把"],"tips":"中端PVE首选，7.62x51穿透强"},
+    {"name":"M4A1改装版","price":"～180,000₽","icon":"🔫","budget":"high","type":"pvp","recoil":"32","ergo":"68","weight":"4.2","ammo":"M995","parts":["M4A1 Geissele枪托","SLR ION超轻导轨","Ops Core消声器","Trijicon ACOG 4x","AFG握把","M4 PMAg 30发弹匣"],"tips":"当前版本PVP性价比之王"},
+    {"name":"RSASS精确步枪","price":"～220,000₽","icon":"🎯","budget":"high","type":"pvp","recoil":"28","ergo":"72","weight":"5.1","ammo":"M61","parts":["RSASS 18寸枪管","RSASS消声器","Leupold Mark 6 3-18x","RSASS钨合金制动"],"tips":"远程精度极高，适合打狙"},
+    {"name":"AS VAL消音突袭","price":"～95,000₽","icon":"🔫","budget":"mid","type":"pvp","recoil":"35","ergo":"60","weight":"3.5","ammo":"SP-6","parts":["AS VAL护木","AS VAL消音器","OKP-7反射瞄具","AS VAL 30发弹匣","RK-1握把"],"tips":"默认消音+9x39高穿透，夜战神器"},
+    {"name":"MP7A2冲锋枪","price":"～85,000₽","icon":"🔫","budget":"mid","type":"pvp","recoil":"34","ergo":"78","weight":"2.4","ammo":"AP SX","parts":["MP7A2消音管","MP7 ACOG瞄具","MP7 RAL握把","MP7 40发弹匣"],"tips":"射速极快，近距离秒杀一切"},
+    {"name":"HK416A5","price":"～200,000₽","icon":"🔫","budget":"high","type":"pvp","recoil":"30","ergo":"70","weight":"4.3","ammo":"M995","parts":["HK416A5 14.5寸枪管","HK E1枪托","Ops Core消音器","HK 416垂直握把","Trijicon ACOG 4x","HK PMAg 30发"],"tips":"综合性能最强的5.56步枪之一"},
+    {"name":"MK47 Mutant","price":"～160,000₽","icon":"🔫","budget":"high","type":"pvp","recoil":"34","ergo":"65","weight":"4.0","ammo":"BP","parts":["MK47 Zenit枪托","MK47 消音器","RK-2握把","EOTech EXPS3全息","MK47 30发弹匣"],"tips":"7.62x39平台最佳选择，两枪带走"},
+    {"name":"Vector .45 ACP","price":"～110,000₽","icon":"🔫","budget":"mid","type":"pvp","recoil":"29","ergo":"72","weight":"2.9","ammo":"AP","parts":["Vector 消音器","Vector CR-1红点","AFG握把","Vector 30发弹匣"],"tips":"极低后坐力+超高射速，腰射王者"},
+    {"name":"UMP .45","price":"～35,000₽","icon":"🔫","budget":"low","type":"pve","recoil":"44","ergo":"68","weight":"2.6","ammo":"AP","parts":["UMP 消音器","UMP 红点瞄具","UMP 垂直握把"],"tips":"经济型冲锋枪，PVE性价比极高"},
+    {"name":"SIG MCX SPEAR","price":"～320,000₽","icon":"👑","budget":"high","type":"pvp","recoil":"27","ergo":"62","weight":"4.6","ammo":"6.8x51混合弹","parts":["MCX SPEAR高端导轨","MCX消音器","Schmidt Bender 3-12x","RK-1垂直握把"],"tips":"终极猛兽，两发胸射带走任何目标"},
+    {"name":"Saiga-12霰弹枪","price":"～45,000₽","icon":"🔫","budget":"low","type":"pve","recoil":"55","ergo":"45","weight":"4.2","ammo":"AP-20","parts":["Saiga-12 护木导轨","Saiga-12 红点","Saiga-12 8发弹鼓","Saiga-12补偿器"],"tips":"近战无敌，一发AP-20带走任何敌人"},
+    {"name":"SVDS狙击步枪","price":"～150,000₽","icon":"🎯","budget":"high","type":"pvp","recoil":"25","ergo":"58","weight":"4.8","ammo":"SNB","parts":["SVDS导轨","SVDS 消音器","Leupold Mark 6 3-18x","SVDS 10发弹匣"],"tips":"7.62x54R口径，超远距离一枪爆头"},
+    {"name":"DT MDR .308","price":"～180,000₽","icon":"🔫","budget":"high","type":"pvp","recoil":"33","ergo":"74","weight":"3.6","ammo":"M61","parts":["MDR消音器","EOTech EXPS3全息","RK-2握把","MDR 25发弹匣"],"tips":"紧凑型308步枪，人机极高无需深度改装"}
   ]
 }

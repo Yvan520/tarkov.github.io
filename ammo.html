@@ -5,20 +5,48 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="逃离塔科夫弹药数据库，穿透力、伤害、护甲穿透完整数据">
 <title>弹药数据 | 塔科夫攻略站</title>
-<style>
-:root{--bg1:#0a0c0f;--bg2:#111418;--bg3:#161b21;--border:#2a3540;--gold:#c8a96e;--gold3:#a07840;--text1:#eae0cc;--text2:#9aabb8;--text3:#5a7080;--green2:#6aaa7a;--red2:#c05050;--orange2:#e09050;--font:'Segoe UI','Microsoft YaHei',sans-serif;--mono:'Courier New',monospace;--r:4px;--r2:8px}
+  <style>
+:root{--bg1:#0a0c0f;--bg2:#111418;--bg3:#161b21;--bg4:#1c232b;--border:#2a3540;--gold:#c8a96e;--gold3:#a07840;--text1:#eae0cc;--text2:#9aabb8;--text3:#5a7080;--green2:#6aaa7a;--red2:#c05050;--orange2:#e09050;--font:'Segoe UI','Microsoft YaHei',sans-serif;--mono:'Courier New',monospace;--r:4px;--r2:8px}
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:var(--bg1);color:var(--text1);font-family:var(--font);line-height:1.6}
 ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--bg2)}::-webkit-scrollbar-thumb{background:var(--gold3);border-radius:3px}
-a{text-decoration:none;color:inherit}
+a{text-decoration:none;color:inherit;transition:all .2s}
+button{font-family:var(--font);cursor:pointer}
 .nav{position:sticky;top:0;z-index:1000;height:60px;background:rgba(10,12,15,.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 32px;gap:16px}
-.nav-logo{display:flex;align-items:center;gap:10px}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit}
 .mark{width:32px;height:32px;background:linear-gradient(135deg,var(--gold),var(--gold3));border-radius:var(--r);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;color:#07090b}
-.logo-name{font-size:17px;font-weight:800;letter-spacing:2px}.logo-name span{color:var(--gold)}
+.logo-name{font-size:17px;font-weight:800;letter-spacing:2px;color:var(--text1)}.logo-name span{color:var(--gold)}
+.ver{font-size:10px;color:var(--text3);background:var(--bg3);border:1px solid var(--border);padding:2px 6px;border-radius:3px;font-family:var(--mono);margin-left:-4px}
 .nav-links{display:flex;gap:2px;list-style:none;flex:1;justify-content:center}
-.nav-links a{padding:7px 12px;border-radius:var(--r);font-size:13px;color:var(--text2);white-space:nowrap}
+.nav-links a{padding:7px 12px;border-radius:var(--r);font-size:13px;color:var(--text2);white-space:nowrap;text-decoration:none}
 .nav-links a:hover{color:var(--text1);background:var(--bg3)}
 .nav-links a.active{color:var(--gold);background:rgba(200,169,110,.07)}
+.nav-right{display:flex;gap:8px;align-items:center;flex-shrink:0}
+.nav-search-btn{display:flex;align-items:center;gap:8px;background:var(--bg3);border:1px solid var(--border);color:var(--text2);padding:7px 14px;border-radius:var(--r);font-size:12px;transition:all .2s;white-space:nowrap}
+.nav-search-btn:hover{border-color:var(--gold);color:var(--gold)}
+.nav-burger{display:none;flex-direction:column;gap:5px;background:transparent;border:none;padding:4px}
+.nav-burger span{display:block;width:22px;height:2px;background:var(--text2);border-radius:2px}
+.mobile-menu{display:none;position:fixed;top:60px;left:0;right:0;background:rgba(10,12,15,.98);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);z-index:999;padding:12px 0}
+.mobile-menu.open{display:block}
+.mobile-menu a{display:flex;align-items:center;gap:10px;padding:12px 24px;font-size:14px;color:var(--text2);text-decoration:none;border-bottom:1px solid rgba(255,255,255,.03)}
+.mobile-menu a:hover{color:var(--gold);background:rgba(200,169,110,.05)}
+/* 搜索弹窗 */
+.search-ov{position:fixed;inset:0;background:rgba(0,0,0,.88);backdrop-filter:blur(8px);z-index:9999;display:flex;align-items:flex-start;justify-content:center;padding:80px 20px 20px;opacity:0;visibility:hidden;transition:all .25s}
+.search-ov.on{opacity:1;visibility:visible}
+.search-box{width:100%;max-width:640px}
+.sm-wrap{position:relative;margin-bottom:14px}
+.sm-icon{position:absolute;left:16px;top:50%;transform:translateY(-50%);font-size:20px;color:var(--gold);pointer-events:none}
+.sm-input{width:100%;background:var(--bg3);border:2px solid var(--gold);border-radius:var(--r2);padding:16px 52px;font-size:16px;color:var(--text1);outline:none;font-family:var(--font);box-shadow:0 0 32px rgba(200,169,110,.15)}
+.sm-input::placeholder{color:var(--text3)}
+.sm-esc{position:absolute;right:14px;top:50%;transform:translateY(-50%);background:var(--bg2);border:1px solid var(--border);color:var(--text2);width:36px;height:28px;border-radius:var(--r);display:flex;align-items:center;justify-content:center;font-size:10px;cursor:pointer;font-family:var(--mono)}
+.search-results{display:flex;flex-direction:column;gap:6px;max-height:300px;overflow-y:auto;margin-top:8px}
+.sr-item{display:flex;align-items:center;gap:12px;padding:10px 14px;background:var(--bg2);border-radius:var(--r);cursor:pointer;transition:all .2s;text-decoration:none;color:inherit}
+.sr-item:hover{background:var(--bg4);border-left:2px solid var(--gold)}
+.sr-icon{font-size:18px;flex-shrink:0}
+.sr-body{flex:1;min-width:0}
+.sr-title{font-size:13px;font-weight:600;color:var(--text1)}
+.sr-cat{font-size:10px;color:var(--text3)}
+.sr-empty{text-align:center;padding:24px;color:var(--text3);font-size:13px}
 .page-hero{background:linear-gradient(135deg,rgba(42,80,112,.15),rgba(22,27,33,.9));border-bottom:1px solid var(--border);padding:48px 32px}
 .page-hero-inner{max-width:1300px;margin:0 auto}
 .page-hero h1{font-size:32px;font-weight:900;margin-bottom:8px}.page-hero h1 span{color:var(--gold)}
@@ -69,12 +97,12 @@ td{padding:11px 14px;color:var(--text2);white-space:nowrap}
 .footer{background:var(--bg2);border-top:1px solid var(--border);padding:24px 32px;margin-top:60px}
 .footer-inner{max-width:1300px;margin:0 auto;display:flex;justify-content:space-between;font-size:12px;color:var(--text3);flex-wrap:wrap;gap:8px}
 .footer-inner a:hover{color:var(--gold)}
-@media(max-width:900px){.nav-links{display:none}.rec-grid{grid-template-columns:repeat(2,1fr)}.wrap{padding:32px 16px}.page-hero{padding:32px 16px}}
+@media(max-width:900px){.nav-links{display:none}.nav-burger{display:flex}.rec-grid{grid-template-columns:repeat(2,1fr)}.wrap{padding:32px 16px}.page-hero{padding:32px 16px}}
 </style>
 </head>
 <body>
 <nav class="nav">
-  <a class="nav-logo" href="index.html"><div class="mark">⚔</div><span class="logo-name">TARKOV<span>GUIDE</span></span></a>
+  <a class="nav-logo" href="index.html"><div class="mark">⚔</div><span class="logo-name">TARKOV<span>GUIDE</span></span><span class="ver">v0.15.0</span></a>
   <ul class="nav-links">
     <li><a href="index.html">🏠 首页</a></li>
     <li><a href="maps.html">🗺️ 地图</a></li>
@@ -83,7 +111,19 @@ td{padding:11px 14px;color:var(--text2);white-space:nowrap}
     <li><a href="quests.html">📋 任务</a></li>
     <li><a href="articles.html">📰 攻略</a></li>
   </ul>
+  <div class="nav-right">
+    <button class="nav-search-btn" onclick="openSearch()">🔍 搜索 <kbd>Ctrl+K</kbd></button>
+    <button class="nav-burger" onclick="toggleMenu()" id="burgerBtn"><span></span><span></span><span></span></button>
+  </div>
 </nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">🏠 首页</a>
+  <a href="maps.html">🗺️ 地图攻略</a>
+  <a href="ammo.html">💊 弹药数据</a>
+  <a href="loadouts.html">🔫 武器配装</a>
+  <a href="quests.html">📋 任务攻略</a>
+  <a href="articles.html">📰 全部攻略</a>
+</div>
 <div class="page-hero">
   <div class="page-hero-inner">
     <h1>💊 弹药<span>数据库</span></h1>
@@ -121,6 +161,17 @@ td{padding:11px 14px;color:var(--text2);white-space:nowrap}
     </table>
   </div>
 </div>
+<div class="search-ov" id="searchOv" onclick="closeSearchOv(event)">
+  <div class="search-box" onclick="event.stopPropagation()">
+    <div class="sm-wrap">
+      <span class="sm-icon">🔍</span>
+      <input class="sm-input" id="smInput" placeholder="搜索地图、武器、弹药、任务..." oninput="doSearch(this.value)">
+      <div class="sm-esc" onclick="closeSearch()">ESC</div>
+    </div>
+    <div class="search-results" id="searchResults" style="display:none"></div>
+  </div>
+</div>
+
 <footer class="footer">
   <div class="footer-inner">
     <span>© 2024 TarkovGuide · <a href="index.html">返回首页</a></span>
@@ -218,6 +269,29 @@ function doSort(key){
   });
   render();
 }
+/* ── 搜索/菜单 ── */
+function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open')}
+function openSearch(){document.getElementById('searchOv').classList.add('on');setTimeout(()=>document.getElementById('smInput')?.focus(),100)}
+function closeSearch(){document.getElementById('searchOv').classList.remove('on');document.getElementById('searchResults').style.display='none'}
+function closeSearchOv(e){if(e.target===document.getElementById('searchOv'))closeSearch()}
+const searchData=[];let searchIdx=0;
+async function initSearch(){
+  try{const r=await fetch('data/articles.json?t='+Date.now());if(r.ok){const j=await r.json();const arts=j.articles||j||[];arts.forEach(a=>{if(a.title){searchData.push({title:a.title,icon:a.icon||'📄',url:'article.html?id='+(a.id||encodeURIComponent(a.title)),cat:a.categoryName||a.categoryLabel||'攻略',type:'article'})}})}}
+  catch(e){}
+  try{const r=await fetch('data/ammo.json?t='+Date.now());if(r.ok){const j=await r.json();(j.ammo||j||[]).forEach(a=>{if(a.name){searchData.push({title:a.name+' ('+a.caliber+')',icon:'💊',url:'ammo.html?caliber='+encodeURIComponent(a.caliber),cat:'弹药',type:'ammo'})}})}}
+  catch(e){}
+}
+function doSearch(kw){
+  kw=kw.trim().toLowerCase();
+  const el=document.getElementById('searchResults');
+  if(!kw){el.style.display='none';return}
+  const results=searchData.filter(s=>s.title.toLowerCase().includes(kw)).slice(0,8);
+  if(!results.length){el.style.display='block';el.innerHTML='<div class="sr-empty">未找到相关内容</div>';return}
+  el.style.display='block';
+  el.innerHTML=results.map(r=>`<a href="${r.url}" class="sr-item"><span class="sr-icon">${r.icon}</span><div class="sr-body"><div class="sr-title">${r.title}</div><span class="sr-cat">${r.cat}</span></div></a>`).join('');
+}
+document.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key==='k'){e.preventDefault();openSearch()}if(e.key==='Escape')closeSearch()});
+initSearch();
 loadData();
 </script>
 </body>

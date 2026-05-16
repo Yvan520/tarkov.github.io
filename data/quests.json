@@ -1,64 +1,22 @@
 {
   "quests": [
-    {
-      "name": "肮脏的商业行为",
-      "difficulty": "easy",
-      "diffLabel": "简单",
-      "merchant": "🦔 帕帕",
-      "description": "在海关地图找到3个电脑，带出指定数据存储设备",
-      "exp": "7,800 EXP",
-      "rep": "+0.02",
-      "itemReward": "AK-74N"
-    },
-    {
-      "name": "工厂突袭",
-      "difficulty": "medium",
-      "diffLabel": "中等",
-      "merchant": "🦔 帕帕",
-      "description": "在工厂地图击杀5名卫兵，不能死亡才算完成",
-      "exp": "12,400 EXP",
-      "rep": "+0.04",
-      "itemReward": "防弹背心"
-    },
-    {
-      "name": "关键情报",
-      "difficulty": "hard",
-      "diffLabel": "困难",
-      "merchant": "🔧 机修工",
-      "description": "从储备基地的地下室找到情报文件，需要钥匙RB-AK",
-      "exp": "24,800 EXP",
-      "rep": "+0.07",
-      "itemReward": "60发弹匣×4"
-    },
-    {
-      "name": "最后的边界",
-      "difficulty": "extreme",
-      "diffLabel": "极难",
-      "merchant": "🎖️ 和平卫士",
-      "description": "在实验室击杀狂人Boss并带出其狗牌，生存状态撤离",
-      "exp": "68,000 EXP",
-      "rep": "+0.15",
-      "itemReward": "顶级装备箱"
-    },
-    {
-      "name": "医疗物资收集",
-      "difficulty": "easy",
-      "diffLabel": "简单",
-      "merchant": "🩺 治疗者",
-      "description": "收集5个医疗包并成功撤离",
-      "exp": "5,200 EXP",
-      "rep": "+0.02",
-      "itemReward": "医疗箱×3"
-    },
-    {
-      "name": "铁路巡逻",
-      "difficulty": "medium",
-      "diffLabel": "中等",
-      "merchant": "🚂 铁路员",
-      "description": "在储备基地标记3个铁路信号点",
-      "exp": "15,600 EXP",
-      "rep": "+0.05",
-      "itemReward": "弹药箱×2"
-    }
+    {"name":"肮脏的商业行为","difficulty":"easy","diffLabel":"简单","merchant":"帕帕","merchantIcon":"🦔","description":"在海关地图找到3个台式电脑，带出指定数据存储设备","exp":"7,800 EXP","rep":"+0.02","itemReward":"AK-74N","guide":"前往海关三层宿舍，在办公室和居住区寻找台式电脑。找到后互动获取存储设备，带出即可。从工厂出口撤离最安全。建议轻装进入。"},
+    {"name":"工厂突袭","difficulty":"medium","diffLabel":"中等","merchant":"帕帕","merchantIcon":"🦔","description":"在工厂地图击杀5名SCAV卫兵，不能死亡才算完成","exp":"12,400 EXP","rep":"+0.04","itemReward":"防弹背心","guide":"进入工厂地图，SCAV分布在各个角落。建议使用冲锋枪近距离作战，注意不要被玩家突袭。完成后从办公楼出口撤离。建议携带止痛药。"},
+    {"name":"波兰式清扫","difficulty":"medium","diffLabel":"中等","merchant":"帕帕","merchantIcon":"🦔","description":"使用AK系列武器击杀10名SCAV","exp":"9,600 EXP","rep":"+0.03","itemReward":"6B43防弹甲","guide":"建议使用AK-74N，装填BP或BT弹药。在海关或森林地图效率最高，SCAV数量多且分布广。注意不要误伤PMC。"},
+    {"name":"惩罚者","difficulty":"hard","diffLabel":"困难","merchant":"帕帕","merchantIcon":"🦔","description":"在森林地图使用消音武器击杀5名PMC","exp":"22,000 EXP","rep":"+0.06","itemReward":"Epsilon安全箱","guide":"建议使用VSS或AS VAL自带消音器的武器。森林地图开阔，注意利用地形。建议组队完成，单人难度较高。"},
+    {"name":"关键情报","difficulty":"hard","diffLabel":"困难","merchant":"机修工","merchantIcon":"🔧","description":"从储备基地的地下室找到情报文件，需要钥匙RB-AK","exp":"24,800 EXP","rep":"+0.07","itemReward":"60发弹匣×4","guide":"先从跳蚤市场获取RB-AK钥匙。进入储备基地后前往地下停机坪附近的储藏室，开锁后在货架上找到情报文件。"},
+    {"name":"零件收集","difficulty":"easy","diffLabel":"简单","merchant":"机修工","merchantIcon":"🔧","description":"收集散落在海关地图的机械零件并交给机修工","exp":"5,800 EXP","rep":"+0.02","itemReward":"工具箱","guide":"机械零件可以在海关工厂区域、维修车间和停车场找到。总共需要收集5个，注意带足背包容量。"},
+    {"name":"信号","difficulty":"medium","diffLabel":"中等","merchant":"机修工","merchantIcon":"🔧","description":"在海岸线安装3个信号干扰器","exp":"18,200 EXP","rep":"+0.05","itemReward":"情报文件夹","guide":"信号干扰器安装位置：气象站屋顶、码头仓库、度假村3楼阳台。每安装一个后需等待30秒信号传输。注意Boss桑塔在度假村巡逻。"},
+    {"name":"医疗物资收集","difficulty":"easy","diffLabel":"简单","merchant":"治疗者","merchantIcon":"🩺","description":"收集5个SALEWA急救包并成功撤离，建议在海岸线医院寻找","exp":"5,200 EXP","rep":"+0.02","itemReward":"医疗箱×3","guide":"前往海岸线度假村的医院区域，SALEWA多在医疗柜和急救箱中。地图较大注意规划撤离路线。建议带足够止痛药。"},
+    {"name":"私人诊所","difficulty":"hard","diffLabel":"困难","merchant":"治疗者","merchantIcon":"🩺","description":"在实验室找到3个LEDX皮肤传感器","exp":"32,000 EXP","rep":"+0.08","itemReward":"THICC医疗箱","guide":"LEDX在实验室的医疗区和注射器实验室刷新。需要实验室通行证。建议组队进入，狂人Boss威胁很大。成功撤离后收益极高。"},
+    {"name":"健康生活","difficulty":"medium","diffLabel":"中等","merchant":"治疗者","merchantIcon":"🩺","description":"从各种地图收集指定药品并上交","exp":"14,500 EXP","rep":"+0.04","itemReward":"医疗包×5","guide":"需要收集：吗啡×3、急救包×5、止痛药×3。在海岸线医院和海关宿舍最容易找到。建议一次性收集完成后一并上交。"},
+    {"name":"最后的边界","difficulty":"extreme","diffLabel":"极难","merchant":"和平卫士","merchantIcon":"🎖️","description":"在实验室击杀狂人Boss并带出其狗牌，生存状态撤离","exp":"68,000 EXP","rep":"+0.15","itemReward":"顶级装备箱","guide":"需要实验室通行证才能进入。建议组队4人以上，全员高配装备。狂人会在地图随机位置巡逻，击杀后拾取狗牌，从飞机库（需4人激活）撤离。"},
+    {"name":"和平协议","difficulty":"medium","diffLabel":"中等","merchant":"和平卫士","merchantIcon":"🎖️","description":"在森林地图找到并消灭沙皇Boss的手下","exp":"18,000 EXP","rep":"+0.05","itemReward":"M4A1改装版","guide":"沙皇Boss率领4-6名手下在森林地图巡逻。建议使用狙击枪远程解决，注意开阔地带的视野优势。击杀后搜刮狗牌作为证明。"},
+    {"name":"捕鱼行动","difficulty":"hard","diffLabel":"困难","merchant":"和平卫士","merchantIcon":"🎖️","description":"在海关地图的油罐区消灭5名身着重型护甲的敌人","exp":"28,000 EXP","rep":"+0.07","itemReward":"M995弹药×120发","guide":"油罐区是海关的中心区域，重型护甲敌人通常携带高穿透弹药。建议使用M61或7N39等高穿透弹药。注意屋顶可能有狙击手埋伏。"},
+    {"name":"铁路巡逻","difficulty":"medium","diffLabel":"中等","merchant":"铁路员","merchantIcon":"🚂","description":"在储备基地标记3个铁路信号点","exp":"15,600 EXP","rep":"+0.05","itemReward":"弹药箱×2","guide":"储备基地内有3个铁路信号点，分别位于地图北侧、中部铁路和南侧站台。每个信号点互动后标记完成。注意格鲁特Boss可能在附近出没。"},
+    {"name":"车辆调度","difficulty":"hard","diffLabel":"困难","merchant":"铁路员","merchantIcon":"🚂","description":"在灯塔地图激活并护送装甲列车","exp":"36,000 EXP","rep":"+0.09","itemReward":"铁路钥匙串","guide":"灯塔地图地图装甲列车需要信号弹激活。护送过程中会有大量SCAV和教徒Boss的攻击。建议组队4人分工合作，一人开车，三人防守。"},
+    {"name":"快递服务","difficulty":"easy","diffLabel":"简单","merchant":"铁路员","merchantIcon":"🚂","description":"在工厂地图的保险箱中取出任务包裹","exp":"6,800 EXP","rep":"+0.02","itemReward":"文件袋","guide":"工厂的保险箱在办公楼2楼。需要钥匙Factory Key。取到包裹后直接从最近出口撤离。工厂地图小但要防备PMC。"},
+    {"name":"服装设计","difficulty":"medium","diffLabel":"中等","merchant":"犹大","merchantIcon":"👨‍💼","description":"收集5件不同款式的战术背心并上交","exp":"19,000 EXP","rep":"+0.05","itemReward":"战术胸挂","guide":"战术背心在海关、储备站等地图的军事区域和Boss身上可以找到。不同款式包括：6B2、6B3、6B5、6B13、6B23。建议击杀玩家PMC获取。"},
+    {"name":"逃离","difficulty":"extreme","diffLabel":"极难","merchant":"犹大","merchantIcon":"👨‍💼","description":"连续撤离5次不同地图且每次击杀不少于2名敌人","exp":"75,000 EXP","rep":"+0.15","itemReward":"装备箱","guide":"建议选择熟悉的地图轮换：海关 → 森林 → 互换 → 储备站 → 海岸线。每次配装要稳定，不要冒进。建议组队降低难度。"}
   ]
 }
