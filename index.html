@@ -362,7 +362,7 @@ button{font-family:var(--font);cursor:pointer}
   <a class="nav-logo" href="index.html">
     <div class="mark">⚔</div>
     <span class="logo-name">TARKOV<span>GUIDE</span></span>
-    <span class="ver" id="navVer">v0.15.0</span>
+    <span class="ver" id="navVer">v1.0.0</span>
   </a>
   <ul class="nav-links">
     <li><a href="index.html" class="active">🏠 首页</a></li>
@@ -394,7 +394,7 @@ button{font-family:var(--font);cursor:pointer}
   <div class="hero-corner tl"></div><div class="hero-corner tr"></div>
   <div class="hero-corner bl"></div><div class="hero-corner br"></div>
   <div class="hero-body">
-    <div class="hero-badge">⚡ 每日更新 · 版本 <span id="heroBadgeVer">0.15.0</span> · 中文最全</div>
+    <div class="hero-badge">⚡ 每日更新 · 版本 <span id="heroBadgeVer">1.0.0</span> · 中文最全</div>
     <h1 class="hero-h1">
       <span class="l1" id="heroL1">不是每一次撤离</span>
       <span class="l2" id="heroL2">都靠运气</span>
@@ -440,7 +440,7 @@ button{font-family:var(--font);cursor:pointer}
 
 <main class="wrap">
   <div class="update-bar">
-    <span class="u-tag" id="uTag">VER 0.15.0</span>
+    <span class="u-tag" id="uTag">VER 1.0.0</span>
     <div class="u-body">
       <div class="u-title" id="uTitle">🔥 最新版本已上线，点击查看更新内容</div>
       <div class="u-desc" id="uDesc">加载中...</div>
@@ -765,7 +765,7 @@ let ammoFilter = '', ammoSortKey = 'penetration', ammoSortDir = -1;
 let loadoutFilter = 'low', questFilter = '';
 
 /* ── 地图 ── */
-const mapBg = {customs:'linear-gradient(135deg,#1a2a1a,#2a3a2a)',woods:'linear-gradient(135deg,#1a2a15,#2a3a1a)',interchange:'linear-gradient(135deg,#1a1a2a,#252535)',reserve:'linear-gradient(135deg,#252525,#352525)',shoreline:'linear-gradient(135deg,#15252a,#1a3040)',labs:'linear-gradient(135deg,#0a1520,#102030)',darkcorner:'linear-gradient(135deg,#0d0d1a,#1a0a2a)',factory:'linear-gradient(135deg,#1a1510,#2a2018)',lighthouse:'linear-gradient(135deg,#101a20,#182535)'};
+const mapBg = {customs:'linear-gradient(135deg,#1a2a1a,#2a3a2a)',woods:'linear-gradient(135deg,#1a2a15,#2a3a1a)',interchange:'linear-gradient(135deg,#1a1a2a,#252535)',reserve:'linear-gradient(135deg,#252525,#352525)',shoreline:'linear-gradient(135deg,#15252a,#1a3040)',labs:'linear-gradient(135deg,#0a1520,#102030)',darkcorner:'linear-gradient(135deg,#0d0d1a,#1a0a2a)',factory:'linear-gradient(135deg,#1a1510,#2a2018)',lighthouse:'linear-gradient(135deg,#101a20,#182535)',center:'linear-gradient(135deg,#1a2028,#253040)',groundzero:'linear-gradient(135deg,#1a1520,#2a2030)'};
 const diffClass = {'新手友好':'d-easy','easy':'d-easy','中等':'d-mid','medium':'d-mid','困难':'d-hard','hard':'d-hard','极难':'d-ex','extreme':'d-ex'};
 
 function renderMaps() {
@@ -1004,7 +1004,7 @@ async function renderSite() {
   const j = await loadJSON('site');
   const v = ls || (j?.version ? j : null);
   if (v) {
-    const ver = v.num || v.version || '0.15.0';
+    const ver = v.num || v.version || '1.0.0';
     document.getElementById('navVer').textContent = 'v'+ver;
     document.getElementById('heroBadgeVer').textContent = ver;
     document.getElementById('uTag').textContent = 'VER '+ver;

@@ -125,6 +125,34 @@
         "Boss·教徒",
         "难度高"
       ]
+    },
+    {
+      "id": "center",
+      "name": "中心区 Streets",
+      "difficulty": "easy",
+      "time": 45,
+      "players": 10,
+      "exits": 6,
+      "icon": "🏙️",
+      "tags": [
+        "1-20级专属",
+        "Boss·科隆泰",
+        "BTR装甲车"
+      ]
+    },
+    {
+      "id": "groundzero",
+      "name": "航站楼 Terminal",
+      "difficulty": "hard",
+      "time": 45,
+      "players": 10,
+      "exits": 4,
+      "icon": "🏗️",
+      "tags": [
+        "新地图1.0",
+        "高难度撤离",
+        "PVP密集"
+      ]
     }
   ]
 }

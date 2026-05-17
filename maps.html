@@ -106,7 +106,7 @@ button{font-family:var(--font);cursor:pointer}
 </head>
 <body>
 <nav class="nav">
-  <a class="nav-logo" href="index.html"><div class="mark">⚔</div><span class="logo-name">TARKOV<span>GUIDE</span></span><span class="ver">v0.15.0</span></a>
+  <a class="nav-logo" href="index.html"><div class="mark">⚔</div><span class="logo-name">TARKOV<span>GUIDE</span></span><span class="ver">v1.0.0</span></a>
   <ul class="nav-links">
     <li><a href="index.html">🏠 首页</a></li>
     <li><a href="maps.html" class="active">🗺️ 地图</a></li>
@@ -177,7 +177,7 @@ const DEF_MAPS=[
   {id:'lighthouse',name:'灯塔',nameEn:'Lighthouse',icon:'🗼',difficulty:'困难',time:50,players:12,exits:5,boss:'教徒',tags:['高价值','Boss·教徒','任务要地'],exits_list:['北岸出口','旧停车场','村庄出口','山顶信标','轮渡码头'],loot:['豪华别墅区','灯塔基地','水处理厂'],tips:['教徒AI极为精准','别墅区物资丰富','地图西侧危险区域','建议高配才进']},
   {id:'darkcorner',name:'黑暗之角',nameEn:'Dark Corner',icon:'🌑',difficulty:'困难',time:45,players:12,exits:5,boss:'暗影',tags:['新地图','0.15新增','高价值'],exits_list:['北部仓库门','地下通道（需钥匙）','屋顶直升机（信号弹）','东侧围栏','南部停车场'],loot:['银行金库','医院顶层','警察局','地下室'],tips:['新地图请仔细探索','地下室物资丰富','暗影Boss较难击杀','建议组队进入']}
 ];
-const mapBg={customs:'linear-gradient(135deg,#1a2a1a,#2a3a2a)',woods:'linear-gradient(135deg,#1a2a15,#2a3a1a)',interchange:'linear-gradient(135deg,#1a1a2a,#252535)',reserve:'linear-gradient(135deg,#252525,#352525)',shoreline:'linear-gradient(135deg,#15252a,#1a3040)',labs:'linear-gradient(135deg,#0a1520,#102030)',factory:'linear-gradient(135deg,#1a1510,#2a2018)',lighthouse:'linear-gradient(135deg,#101a20,#182535)',darkcorner:'linear-gradient(135deg,#0d0d1a,#1a0a2a)'};
+const mapBg={customs:'linear-gradient(135deg,#1a2a1a,#2a3a2a)',woods:'linear-gradient(135deg,#1a2a15,#2a3a1a)',interchange:'linear-gradient(135deg,#1a1a2a,#252535)',reserve:'linear-gradient(135deg,#252525,#352525)',shoreline:'linear-gradient(135deg,#15252a,#1a3040)',labs:'linear-gradient(135deg,#0a1520,#102030)',factory:'linear-gradient(135deg,#1a1510,#2a2018)',lighthouse:'linear-gradient(135deg,#101a20,#182535)',darkcorner:'linear-gradient(135deg,#0d0d1a,#1a0a2a)',center:'linear-gradient(135deg,#1a2028,#253040)',groundzero:'linear-gradient(135deg,#1a1520,#2a2030)'};
 const diffClass={'新手友好':'d-easy','easy':'d-easy','中等':'d-mid','medium':'d-mid','困难':'d-hard','hard':'d-hard','极难':'d-ex','extreme':'d-ex'};
 let allMaps=[],diffFilter='',activeId='';
 

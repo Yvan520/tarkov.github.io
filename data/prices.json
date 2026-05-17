@@ -9,6 +9,11 @@
     {"name":"军粮（发射架）","value":85000,"trend":"down","source":"藏匿处/任务","rank":7},
     {"name":"火药（鹰型）","value":65000,"trend":"up","source":"军事物资/SCAV","rank":8},
     {"name":"马灯","value":55000,"trend":"stable","source":"技术箱/SCAV","rank":9},
-    {"name":"滤水器","value":42000,"trend":"up","source":"技术箱/柜子","rank":10}
+    {"name":"滤水器","value":42000,"trend":"up","source":"技术箱/柜子","rank":10},
+    {"name":"情报文件夹","value":245000,"trend":"up","source":"情报箱/任务奖励","rank":11},
+    {"name":"实验室通行证","value":185000,"trend":"stable","source":"跳蚤市场/任务","rank":12},
+    {"name":"VPX闪存模块","value":320000,"trend":"up","source":"军事物资/机箱","rank":13},
+    {"name":"铁板烧（坦克电池）","value":380000,"trend":"up","source":"军事物资/地堡","rank":14},
+    {"name":"信号弹","value":105000,"trend":"down","source":"补给箱/SCAV","rank":15}
   ]
 }
