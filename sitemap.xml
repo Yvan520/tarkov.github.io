@@ -1,31 +1,119 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://yvan520.github.io/tarkov/</loc>
+    <loc>https://tarkov.gamewayz.com/</loc>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://yvan520.github.io/tarkov/maps.html</loc>
+    <loc>https://tarkov.gamewayz.com/maps.html</loc>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://yvan520.github.io/tarkov/ammo.html</loc>
+    <loc>https://tarkov.gamewayz.com/ammo.html</loc>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://yvan520.github.io/tarkov/loadouts.html</loc>
+    <loc>https://tarkov.gamewayz.com/loadouts.html</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://yvan520.github.io/tarkov/quests.html</loc>
+    <loc>https://tarkov.gamewayz.com/quests.html</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://yvan520.github.io/tarkov/articles.html</loc>
+    <loc>https://tarkov.gamewayz.com/articles.html</loc>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://yvan520.github.io/tarkov/article.html</loc>
+    <loc>https://tarkov.gamewayz.com/article.html?id=newbie-guide-2024</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://tarkov.gamewayz.com/article.html?id=m4a1-build-015</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://tarkov.gamewayz.com/article.html?id=dark-corner-map</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://tarkov.gamewayz.com/article.html?id=ammo-rank-015</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://tarkov.gamewayz.com/article.html?id=money-guide-2024</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://tarkov.gamewayz.com/article.html?id=weapon-tier-list</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://tarkov.gamewayz.com/article.html?id=map-customs-guide</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://tarkov.gamewayz.com/article.html?id=hideout-upgrade-guide</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://tarkov.gamewayz.com/article.html?id=armor-guide</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://tarkov.gamewayz.com/article.html?id=medical-guide</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://tarkov.gamewayz.com/article.html?id=quest-prapor-guide</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://tarkov.gamewayz.com/article.html?id=woods-map-guide</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://tarkov.gamewayz.com/article.html?id=labs-strategy</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://tarkov.gamewayz.com/article.html?id=scav-guide</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://tarkov.gamewayz.com/article.html?id=pvp-tactics</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://tarkov.gamewayz.com/article.html?id=interchange-guide</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://tarkov.gamewayz.com/article.html?id=streets-guide</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://tarkov.gamewayz.com/article.html?id=btr-mechanic</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://tarkov.gamewayz.com/article.html?id=arena-guide</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://tarkov.gamewayz.com/article.html?id=fps-optimization</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://tarkov.gamewayz.com/article.html?id=all-bosses-guide</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://tarkov.gamewayz.com/article.html?id=loot-routes-collection</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://tarkov.gamewayz.com/article.html?id=tarkov-1.0-steam</loc>
     <priority>0.7</priority>
   </url>
 </urlset>

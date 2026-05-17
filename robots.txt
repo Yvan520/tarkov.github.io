@@ -1,3 +1,4 @@
 User-agent: *
 Allow: /
-Sitemap: https://yvan520.github.io/tarkov/sitemap.xml
+
+Sitemap: https://tarkov.gamewayz.com/sitemap.xml
