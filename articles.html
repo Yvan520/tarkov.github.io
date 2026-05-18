@@ -149,16 +149,21 @@ let currentCat='';
 let currentKw='';
 
 function getLS(k){try{const d=localStorage.getItem('tarkov_'+k);return d?JSON.parse(d):null;}catch{return null;}}
+function setLS(k,v){try{localStorage.setItem('tarkov_'+k,JSON.stringify(v))}catch(e){}}
 
 async function loadData(){
-  let data=getLS('articles');
-  if(!data||!data.length){
+  // 缓存有效期30分钟，过期重新拉取
+  const cached=getLS('articles_cache');
+  const now=Date.now();
+  if(cached&&cached.ts&&(now-cached.ts<30*60*1000)&&cached.data&&cached.data.length){
+    allArticles=cached.data;
+  } else {
     try{
-      const r=await fetch('data/articles.json?t='+Date.now());
-      if(r.ok){const j=await r.json();data=j.articles||j||[];}
+      const r=await fetch('data/articles.json?t='+now);
+      if(r.ok){const j=await r.json();const data=j.articles||j||[];if(data.length){allArticles=data;setLS('articles_cache',{ts:now,data:data})}}
     }catch(e){}
   }
-  allArticles=data&&data.length?data:DEF;
+  if(!allArticles||!allArticles.length){allArticles=getLS('articles')||DEF;}
   // URL参数筛选
   const p=new URLSearchParams(location.search);
   const cat=p.get('cat');
