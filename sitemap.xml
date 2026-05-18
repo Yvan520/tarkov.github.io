@@ -116,4 +116,36 @@
     <loc>https://tarkov.gamewayz.com/article.html?id=tarkov-1.0-steam</loc>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://tarkov.gamewayz.com/article.html?id=streets-keys-guide</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://tarkov.gamewayz.com/article.html?id=edition-buying-guide</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://tarkov.gamewayz.com/article.html?id=flea-market-flip-guide</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://tarkov.gamewayz.com/article.html?id=kappa-container-quest</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://tarkov.gamewayz.com/article.html?id=reserve-underground-guide</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://tarkov.gamewayz.com/article.html?id=lighthouse-water-treatment</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://tarkov.gamewayz.com/article.html?id=shoreline-resort-secrets</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://tarkov.gamewayz.com/article.html?id=factory-close-quarters</loc>
+    <priority>0.7</priority>
+  </url>
 </urlset>

@@ -3,7 +3,32 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" id="metaDesc" content="塔科夫攻略站 - 逃离塔科夫攻略文章">
 <title>文章详情 | 塔科夫攻略站</title>
+<script type="application/ld+json" id="schemaOrg">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "逃离塔科夫攻略",
+  "description": "塔科夫攻略站文章详情",
+  "author": {
+    "@type": "Organization",
+    "name": "TarkovGuide"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "TarkovGuide",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://tarkov.gamewayz.com/favicon.ico"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://tarkov.gamewayz.com/article.html"
+  }
+}
+</script>
 <style>
 :root{--bg0:#07090b;--bg1:#0a0c0f;--bg2:#111418;--bg3:#161b21;--border:#2a3540;--gold:#c8a96e;--gold3:#a07840;--text1:#eae0cc;--text2:#9aabb8;--text3:#5a7080;--green2:#6aaa7a;--red2:#c05050;--blue2:#4a80b0;--orange2:#e09050;--purple2:#9060d0;--font:'Segoe UI','Microsoft YaHei',sans-serif;--mono:'Courier New',monospace;--r:4px;--r2:8px}
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
@@ -119,7 +144,7 @@ button{font-family:var(--font);cursor:pointer}
   <a class="nav-logo" href="index.html">
     <div class="mark">⚔</div>
     <span class="logo-name">TARKOV<span>GUIDE</span></span>
-    <span class="ver">v1.0.0</span>
+    <span class="ver">v1.0.1</span>
   </a>
   <ul class="nav-links">
     <li><a href="index.html">🏠 首页</a></li>
@@ -284,6 +309,21 @@ async function loadArticle() {
 function renderArticle(art, allArticles) {
   // 更新页面标题和meta
   document.title = art.title + ' | 塔科夫攻略站';
+  const md = document.getElementById('metaDesc');
+  if (md) md.content = art.summary || '逃离塔科夫' + art.title;
+  const schema = document.getElementById('schemaOrg');
+  if (schema) {
+    schema.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": art.title,
+      "description": art.summary || '',
+      "datePublished": art.date || '',
+      "author": {"@type":"Organization","name":"TarkovGuide"},
+      "publisher": {"@type":"Organization","name":"TarkovGuide","logo":{"@type":"ImageObject","url":"https://tarkov.gamewayz.com/favicon.ico"}},
+      "mainEntityOfPage": {"@type":"WebPage","@id":"https://tarkov.gamewayz.com/article.html?id="+(art.id||'')}
+    });
+  }
 
   // 面包屑
   document.getElementById('breadCat').textContent = art.categoryName || art.categoryLabel || '攻略';
