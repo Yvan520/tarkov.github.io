@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="关于逃离塔科夫攻略站 - 我们是最专业的中文塔科夫攻略平台">
+<title>关于我们 | 塔科夫攻略站</title>
+<style>
+:root{--bg0:#07090b;--bg1:#0a0c0f;--bg2:#111418;--bg3:#161b21;--border:#2a3540;--gold:#c8a96e;--gold3:#a07840;--text1:#eae0cc;--text2:#9aabb8;--text3:#5a7080;--font:'Segoe UI','Microsoft YaHei',sans-serif;--r:4px;--r2:8px}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg1);color:var(--text1);font-family:var(--font);line-height:1.8}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--bg2)}::-webkit-scrollbar-thumb{background:var(--gold3);border-radius:3px}
+a{text-decoration:none;color:inherit}
+.nav{position:sticky;top:0;z-index:1000;height:60px;background:rgba(10,12,15,.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 32px}
+.nav-logo{display:flex;align-items:center;gap:10px;cursor:pointer;color:inherit}
+.mark{width:32px;height:32px;background:linear-gradient(135deg,var(--gold),var(--gold3));border-radius:var(--r);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;color:var(--bg0)}
+.logo-name{font-size:17px;font-weight:800;letter-spacing:2px;color:var(--text1)}
+.logo-name span{color:var(--gold)}
+.ver{font-size:10px;color:var(--text3);background:var(--bg3);border:1px solid var(--border);padding:2px 6px;border-radius:3px;font-family:'Courier New',monospace}
+.nav-links{display:flex;gap:2px;list-style:none}
+.nav-links a{padding:7px 12px;border-radius:var(--r);font-size:13px;color:var(--text2);font-weight:500;white-space:nowrap}
+.nav-links a:hover{color:var(--text1);background:var(--bg3)}
+.nav-back{display:flex;align-items:center;gap:6px;background:var(--bg3);border:1px solid var(--border);color:var(--text2);padding:7px 14px;border-radius:var(--r);font-size:12px;cursor:pointer;transition:all .2s;text-decoration:none}
+.nav-back:hover{border-color:var(--gold);color:var(--gold)}
+.container{max-width:860px;margin:0 auto;padding:60px 24px}
+.hero{text-align:center;margin-bottom:48px}
+.hero h1{font-size:clamp(24px,3vw,36px);font-weight:900;margin-bottom:12px}
+.hero p{color:var(--text3);font-size:14px}
+.hero .icon{font-size:48px;margin-bottom:16px}
+.content h2{color:var(--gold);font-size:20px;font-weight:800;margin:36px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.content h3{color:var(--text1);font-size:16px;font-weight:700;margin:24px 0 10px}
+.content p{margin-bottom:16px;color:var(--text2);font-size:14px}
+.content ul{padding-left:24px;margin-bottom:16px;color:var(--text2);font-size:14px}
+.content li{margin-bottom:8px}
+.content strong{color:var(--text1)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:32px 0}
+.stat-box{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:24px;text-align:center}
+.stat-num{font-size:28px;font-weight:900;color:var(--gold)}
+.stat-label{font-size:12px;color:var(--text3);margin-top:4px}
+.contact{margin-top:32px}
+.contact-item{display:flex;align-items:center;gap:12px;padding:12px 16px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);margin-bottom:8px}
+.contact-item .ci-icon{font-size:20px}
+.contact-item .ci-text{font-size:13px;color:var(--text2)}
+.footer{background:var(--bg2);border-top:1px solid var(--border);padding:20px 32px;margin-top:80px}
+.footer-inner{max-width:860px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--text3);flex-wrap:wrap;gap:8px}
+.footer-inner a{color:var(--text3)}.footer-inner a:hover{color:var(--gold)}
+@media(max-width:700px){.nav-links{display:none}.container{padding:40px 16px}.nav-back span{display:none}.stats{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.stats{grid-template-columns:1fr}}
+</style>
+<!-- Google Analytics placeholder - AdSense审核通过后替换G-XXXXXXXXXX -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-XXXXXXXXXX');
+</script>
+</head>
+<body>
+<nav class="nav">
+  <a class="nav-logo" href="index.html">
+    <div class="mark">⚔</div>
+    <span class="logo-name">TARKOV<span>GUIDE</span></span>
+    <span class="ver">v1.1.0</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">🏠 首页</a></li>
+    <li><a href="maps.html">🗺️ 地图</a></li>
+    <li><a href="ammo.html">💊 弹药</a></li>
+    <li><a href="articles.html">📰 攻略</a></li>
+  </ul>
+  <a class="nav-back" href="index.html">← <span>返回首页</span></a>
+</nav>
+<div class="container">
+  <div class="hero">
+    <div class="icon">⚔</div>
+    <h1>关于 TarkovGuide</h1>
+    <p>最专业的中文逃离塔科夫攻略站</p>
+  </div>
+  <div class="content">
+    <p>TarkovGuide（塔科夫攻略站）是一个由玩家自发创建的<strong>非官方</strong>逃离塔科夫中文攻略平台。我们的使命是为中文玩家提供最新、最全、最实用的塔科夫攻略内容。</p>
+
+    <div class="stats">
+      <div class="stat-box"><div class="stat-num">31+</div><div class="stat-label">攻略文章</div></div>
+      <div class="stat-box"><div class="stat-num">11</div><div class="stat-label">地图数据</div></div>
+      <div class="stat-box"><div class="stat-num">67</div><div class="stat-label">弹药数据</div></div>
+      <div class="stat-box"><div class="stat-num">18</div><div class="stat-label">任务攻略</div></div>
+    </div>
+
+    <h2>我们的特色</h2>
+    <ul>
+      <li><strong>内容全面</strong>：覆盖弹药、配装、地图、任务、经济、PVP全领域</li>
+      <li><strong>版本同步</strong>：紧跟游戏版本更新，数据持续维护</li>
+      <li><strong>新手友好</strong>：从入门到进阶，循序渐进的内容体系</li>
+      <li><strong>完全免费</strong>：所有内容永久免费访问，无任何付费墙</li>
+    </ul>
+
+    <h2>站点信息</h2>
+    <div class="contact">
+      <div class="contact-item"><span class="ci-icon">🌐</span><span class="ci-text">网站地址：tarkov.gamewayz.com</span></div>
+      <div class="contact-item"><span class="ci-icon">📅</span><span class="ci-text">建站时间：2024年</span></div>
+      <div class="contact-item"><span class="ci-icon">🔄</span><span class="ci-text">当前版本：v1.1.0</span></div>
+      <div class="contact-item"><span class="ci-icon">📧</span><span class="ci-text">反馈渠道：GitHub Issues</span></div>
+    </div>
+
+    <h2>免责声明</h2>
+    <p>本站与 <strong>Battlestate Games</strong> 无任何关联。游戏名称"逃离塔科夫"、"Escape from Tarkov"及相关素材版权归 Battlestate Games 所有。本站内容仅供参考，如有错误或遗漏，欢迎指正。</p>
+  </div>
+</div>
+<footer class="footer">
+  <div class="footer-inner">
+    <span>© 2024 TarkovGuide · 非官方粉丝攻略站</span>
+    <span><a href="privacy.html">隐私政策</a> · <a href="terms.html">服务条款</a> · <a href="about.html">关于我们</a></span>
+  </div>
+</footer>
+</body>
+</html>

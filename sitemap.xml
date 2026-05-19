@@ -148,4 +148,36 @@
     <loc>https://tarkov.gamewayz.com/article.html?id=factory-close-quarters</loc>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://tarkov.gamewayz.com/article.html?id=tarkov-2026-roadmap</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://tarkov.gamewayz.com/article.html?id=prestige-system-guide</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://tarkov.gamewayz.com/article.html?id=pve-mode-guide</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://tarkov.gamewayz.com/article.html?id=promo-codes-2026</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://tarkov.gamewayz.com/article.html?id=terminal-endgame-guide</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://tarkov.gamewayz.com/privacy.html</loc>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://tarkov.gamewayz.com/terms.html</loc>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://tarkov.gamewayz.com/about.html</loc>
+    <priority>0.4</priority>
+  </url>
 </urlset>
