@@ -180,4 +180,24 @@
     <loc>https://tarkov.gamewayz.com/about.html</loc>
     <priority>0.4</priority>
   </url>
+  <url>
+    <loc>https://tarkov.gamewayz.com/article.html?id=all-traders-guide</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://tarkov.gamewayz.com/article.html?id=quest-items-collector</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://tarkov.gamewayz.com/article.html?id=headphones-audio-guide</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://tarkov.gamewayz.com/article.html?id=bitcoin-farm-guide</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://tarkov.gamewayz.com/article.html?id=flea-market-deep-dive</loc>
+    <priority>0.7</priority>
+  </url>
 </urlset>
